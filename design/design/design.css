@@ -168,26 +168,34 @@ body{
     }
         .carrusel-image{
             width: inherit;
-            position: absolute;  
+            position: absolute;
+            opacity: 0;  
+            transition: all ease-in-out .9s;
         }
+            .carruselmostrado{
+                opacity: 1;
+            }
             .carrusel-image img{
                 width: 100%;
                 height: 250px;
                 object-fit: cover;
+
             }
         .carrusel-image .carrusel-description{
             display: flex;
             position: absolute;
             width: 70%;
+            height: 90px;
             top:50%;
             left: 50%;
             transform: translate( -50% , -50%);
             text-align: center;
+            justify-content: center;
             padding: 10px;
             border-radius: 5px;
             font-size: 20px;
             background-color: rgba(150, 150, 150, .4);
-            color: var(--colortitulo)
+            color: var(--colortitulo);     
         }
 /* Botones avance/retroceso carrusel  */
 
@@ -226,13 +234,13 @@ body{
 .carrusel-position{
     font-size: 10px;
     color: var(--colorsecundario);
-    transition: all ease-in-out .9s;
+    transition: all ease-in-out .2s;
 }
 
     .posicionado{
         color: var(--colorprincipal);
         font-size: 12px;
-        transition: all ease-in-out .9s;
+        transition: all ease-in-out .2s;
     }
 /* texto */
 
