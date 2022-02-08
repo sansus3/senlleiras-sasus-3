@@ -1,0 +1,107 @@
+body{
+    font-size: 20px;
+}
+@font-face {
+    font-family: montserrat;
+    src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+    .titulo-administracion h2{
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 30px;
+        padding:10px;
+    }
+    .titulo-administracion p{
+        font-size: 25px;
+        text-align: center;
+    }
+.form-administrativo{
+    display: grid;
+    gap: 5px;
+    font-size: 25px;
+    min-width: 320px;
+    max-width: 50%;
+    margin: 20px auto;
+}
+    .form-administrativo .administrativo-input{
+       display: grid;
+       grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+       gap: 5px;
+    }
+    .form-administrativo .administrativo-submit{
+        width: 100px;
+        height: 50px;
+    }
+    .form-administrativo input{
+        height: 30px;
+        font-size: 25px;
+        font-family:  montserrat;
+    }
+    .form-administrativo textarea{
+        resize: none;
+        width: 100%;
+        font-size: 25px;
+        font-family: montserrat;
+        min-width: 320px;
+    }
+
+
+/* CATALOGO ADMINISTRATIVO */
+
+.catalogo-administrativo-section h2{
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.catalogo-administrativo{
+    width: 100%;
+    border: 2px solid black;
+}
+    .catalogo-administrativo th{
+        background-color: green;
+        color: white;
+        border: 2px solid black;
+        font-size: 25px;
+        gap: 5px;
+        border: none;
+    }
+
+    .table-header th:nth-child(-n+2){
+        width: 300px;
+    }
+        .table-subheader th{
+            width: 400px;
+            font-size: 20px;
+        }
+tr:nth-child(odd){
+    background-color: lightgrey;
+}
+
+ .table-icons{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 20px;
+ }
+    .table-icons i{
+        font-size: 20px;
+        color: green;
+    }
+
+    .mostrar{
+       position: relative;
+    }
+    .mostrar:hover::before{
+        content: attr(data-titulo);
+        position: absolute;
+        background-color: gray;
+        color: white;
+        font-size: 22px;
+        padding: 0 10px;
+        transform: translate(-50% , -50%);
+        top: 38px;
+        left: 50%;
+        z-index: 1;
+    }
+    

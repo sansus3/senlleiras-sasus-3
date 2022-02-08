@@ -10,10 +10,13 @@ document.addEventListener(
     var st = window.pageXOffset || document.documentElement.scrollTop;
         if(st > lastScrolltop){
             menuHeader.classList.add("reduced");
+           
         }else{
             menuHeader.classList.remove("reduced");
-        };       
-        lastScrolltop = st <= 0 ? 0 : st;
+            
+        };     
+        lastScrolltop = st <= 40 ? 40 : st;
+       
     }
 )
 
@@ -30,7 +33,6 @@ window.onload = function(){
     puntosCarrusel[0].classList.add("posicionado");
     imagenesCarrusel[contador].classList.add("carruselmostrado");
 }
-
 const limpiar = () => {
     puntosCarrusel.forEach(
         elemento =>{
@@ -43,7 +45,6 @@ const limpiar = () => {
         }
     );  
 }
-
 botonatras.addEventListener(
     "click",
     ()=>
@@ -58,7 +59,6 @@ botonatras.addEventListener(
         imagenesCarrusel[contador].classList.add("carruselmostrado");
     }
 );
-
 botonadelante.addEventListener(
     "click",
     ()=>{
@@ -72,7 +72,6 @@ botonadelante.addEventListener(
         imagenesCarrusel[contador].classList.add("carruselmostrado")
     }
 );
-
 setInterval(function(){
     contador++;
     if(contador >3){
