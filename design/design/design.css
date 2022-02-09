@@ -67,6 +67,7 @@ body{
     }
         .header-nav-buttons .header-search i{
             padding:3px;
+            color: white;
         }
         .header-nav-buttons .header-search input{
             width: 60%;
@@ -74,15 +75,10 @@ body{
             .header-nav-buttons .header-search input:focus{
                 outline: none;
             }
-    .header-nav-buttons .header-upload{
+    .header-nav-buttons .header-upload a{
         font-size: 20px;
         color: var(--colortitulo);
-        padding: 5px;
-    }
-    .header-nav-buttons .header-profile{
-        font-size: 20px;
-        color: var(--colortitulo);
-        padding: 5px 10px 5px 5px
+        padding: 10px;
     }
 
     /* Cabecera se encoge/ensancha */
@@ -108,48 +104,98 @@ body{
     align-items: center;
     bottom: 0;
     width: 100%;
+    height: 60px;
+    border-top: 9px solid var(--colorsecundario);
 }
-    .menu-principal .menu-display{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 20px;
-        background-color: var(--colorprincipal);
-        color:var(--colortitulo);
-        border-top-right-radius: 100%;
-        border-top-left-radius: 100%;
-    }
-        .menu-principal .menu-display i{
-            font-size: 15px;
-        }
     .menu-principal .menu-elements{
         display: flex;
         flex-direction: row;
         width: 100%;
-        height: 40px;
+        height: 100%;
         background-color: var(--colorprincipal);
         justify-content: space-around;
         align-items: center;
         
     }
     .menu-principal .menu-elements li{
-        height: 100%;
         width: 33%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+         
     }
     .menu-principal .menu-elements li a{
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 100px;
         height: 100%;
         justify-content: center;
         align-items: center;
-        font-size: 11px;
         color: var(--colortitulo);
+        position: relative;
+        transition: all .2s ease-in-out; 
+        
     }
-        .menu-principal i{
-            font-size: 20px;
+    .menu-principal .menu-elements li a p{
+        position: absolute;
+        bottom: 0px;
+        text-transform: uppercase;
+        display: block;
+        font-size: 16px;
+        display: none;
+    }
+        .menu-principal .menu-elements li a i{
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: var(--colortitulo);
+            width: 60px;
+            height: 60px;
+            border: 5px solid transparent;
+            transition: all .2s ease-in-out;  
         }
+        .menu-principal .menu-elements li a:hover::before{
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            border-top-right-radius: 25px;
+            width: 20px;
+            height: 20px;
+            top:3px;
+            left:5px;
+            box-shadow: 0 -10px 0 0 var(--colorsecundario);  
+        }
+        .menu-principal .menu-elements li a:hover::after{
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            border-top-left-radius: 25px;
+            width: 20px;
+            height: 20px;
+            top:3px;
+            right:5px;
+            box-shadow: 0 -10px 0 0 var(--colorsecundario); 
+        }
+
+           
+        
+    
+
+/* NAVEGADOR HOVER */
+
+.menu-principal .menu-elements li a:hover i{
+    transform: translateY(-20px);
+    background-color: var(--colorprincipal);
+    border: 5px solid var(--colorsecundario);
+    border-radius: 100%;
+}
+    .menu-principal .menu-elements li a:hover p{
+        display: block;
+        font-size: 16px;
+    }
+
     
 /* CARRUSEL     */
 

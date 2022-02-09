@@ -24,3 +24,7 @@
         </nav>
     </footer>
 </template>
+
+<style scoped>
+
+</style>
