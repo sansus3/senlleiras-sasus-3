@@ -11,9 +11,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="menu-inicio">
+                     <router-link class="menu-inicio" :to="{name:'Home'}">
                         <i class="fas fa-home"></i>Inicio
-                    </a>
+                     </router-link>                    
                 </li>
                 <li>
                     <a href="#" class="mapa">

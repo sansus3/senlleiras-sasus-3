@@ -1,0 +1,277 @@
+/* CONFIGURACIÓN BÁSICA WEB */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul, li, a{
+    text-decoration: none;
+    list-style-type: none;
+}
+@font-face {
+    font-family: montserrat;
+    src: url(./fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
+body{
+    font-family: 'montserrat','Open Sans';
+    padding-top:40px;
+    padding-bottom:60px;
+}
+
+:root{
+    --colorprincipal: green;
+    --colorsecundario: gray;
+    --colortitulo: white;
+}
+
+/* CABECERA TOP */
+
+.header-nav-app{
+    position: fixed;
+    top: 0; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    background-color: var(--colorprincipal); 
+    transition: all ease-in-out .3s;
+    z-index: 1;
+}
+.header-nav-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+    .header-nav-app .header-logo{
+        font-size: 30px;
+        width: 60px;
+        color: var(--colortitulo);
+        text-transform: uppercase;
+        font-weight: 900;
+        margin: 0;
+        padding: 0 10px;
+    }
+    .header-nav-buttons .header-search{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        color: var(--colortitulo);
+        font-size: 15px;
+        padding: 5px;
+    }
+        .header-nav-buttons .header-search i{
+            padding:3px;
+        }
+        .header-nav-buttons .header-search input{
+            width: 60%;
+        }
+            .header-nav-buttons .header-search input:focus{
+                outline: none;
+            }
+    .header-nav-buttons .header-upload{
+        font-size: 20px;
+        color: var(--colortitulo);
+        padding: 5px;
+    }
+    .header-nav-buttons .header-profile{
+        font-size: 20px;
+        color: var(--colortitulo);
+        padding: 5px 10px 5px 5px
+    }
+
+    /* Cabecera se encoge/ensancha */
+
+.reduced{
+    height: 0px;
+    transition: all ease-in-out .3s;  
+}
+    .reduced .header-logo{
+        display: none;
+    }
+    .reduced .header-nav-buttons{
+        display: none;
+    }
+
+    /* NAVEGADOR BOTTOM */
+
+.menu-principal{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 100%;
+}
+    .menu-principal .menu-display{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 20px;
+        background-color: var(--colorprincipal);
+        color:var(--colortitulo);
+        border-top-right-radius: 100%;
+        border-top-left-radius: 100%;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        border-right: 2px solid black;
+    }
+        .menu-principal .menu-display i{
+            font-size: 15px;
+        }
+    .menu-principal .menu-elements{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 40px;
+        background-color: var(--colorprincipal);
+        justify-content: space-around;
+        align-items: center;
+        border-top: 2px solid black;
+    }
+    .menu-principal .menu-elements li{
+        height: 100%;
+        width: 33%;
+    }
+    .menu-principal .menu-elements li a{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 11px;
+        color: var(--colortitulo);
+    }
+        .menu-principal i{
+            font-size: 20px;
+        }
+    
+/* CARRUSEL     */
+
+.header-carrusel-app{
+    display: inline-block;
+    position: relative;
+    height: 250px;
+    width: 100%;
+}
+    .carrusel-images-galery{
+        position: relative;
+        height:inherit;
+        width: inherit;
+    }
+        .carrusel-image{
+            width: inherit;
+            position: absolute;
+            opacity: 0;  
+            transition: all ease-in-out .9s;
+        }
+            .carruselmostrado{
+                opacity: 1;
+            }
+            .carrusel-image img{
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+
+            }
+        .carrusel-image .carrusel-description{
+            display: flex;
+            position: absolute;
+            width: 70%;
+            height: 90px;
+            top:50%;
+            left: 50%;
+            transform: translate( -50% , -50%);
+            text-align: center;
+            justify-content: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+            background-color: rgba(150, 150, 150, .4);
+            color: var(--colortitulo);     
+        }
+/* Botones avance/retroceso carrusel  */
+
+.carrusel-button{
+    width: 30px;
+    margin:0 10px;
+    font-size: 20px;
+    text-align: center;
+    color: var(--colortitulo);
+    opacity: .7;
+}  
+    .header-carrusel-app .carrusel-prev{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;     
+    }
+    .header-carrusel-app .carrusel-next{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+    }
+
+ /* Indicador de posicion */
+
+.div-carrusel-position{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    margin: 5px;
+    height: 15px;
+}
+.carrusel-position{
+    font-size: 10px;
+    color: var(--colorsecundario);
+    transition: all ease-in-out .2s;
+}
+
+    .posicionado{
+        color: var(--colorprincipal);
+        font-size: 12px;
+        transition: all ease-in-out .2s;
+    }
+/* texto */
+
+.carrusel-txt{
+    font-size: 18px;
+    text-align: justify;
+    padding: 10px;
+}
+
+/* CATALOGO ARBOLES  */
+
+.catalogo-especies-section{
+    display: grid;
+    align-self: center;
+}
+.catalogo-especies-section h2{
+    text-align: center;
+    text-transform: uppercase;
+    margin:20px;
+}
+
+.catalogo-arboles{
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    grid-template-rows: repeat(2, 150px);
+    gap: 10px;
+    align-self: center;
+    align-content: center;
+    margin: auto;
+}
+    .catalogo a img{
+        border: 2px solid black;
+    }
