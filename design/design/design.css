@@ -22,7 +22,7 @@ body{
 
 :root{
     --colorprincipal: green;
-    --colorsecundario: gray;
+    --colorsecundario: lightgray;
     --colortitulo: white;
 }
 
@@ -119,9 +119,6 @@ body{
         color:var(--colortitulo);
         border-top-right-radius: 100%;
         border-top-left-radius: 100%;
-        border-top: 2px solid black;
-        border-left: 2px solid black;
-        border-right: 2px solid black;
     }
         .menu-principal .menu-display i{
             font-size: 15px;
@@ -134,7 +131,7 @@ body{
         background-color: var(--colorprincipal);
         justify-content: space-around;
         align-items: center;
-        border-top: 2px solid black;
+        
     }
     .menu-principal .menu-elements li{
         height: 100%;

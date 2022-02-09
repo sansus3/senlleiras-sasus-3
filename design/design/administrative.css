@@ -1,10 +1,8 @@
-body{
-    font-size: 20px;
-}
-@font-face {
-    font-family: montserrat;
-    src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
-}
+
+@import url(design.css) root;
+
+/* FORMULARIO */
+
     .titulo-administracion h2{
         text-align: center;
         text-transform: uppercase;
@@ -45,7 +43,6 @@ body{
         min-width: 320px;
     }
 
-
 /* CATALOGO ADMINISTRATIVO */
 
 .catalogo-administrativo-section h2{
@@ -56,37 +53,45 @@ body{
 
 .catalogo-administrativo{
     width: 100%;
-    border: 2px solid black;
+    font-size: 14px;
 }
     .catalogo-administrativo th{
-        background-color: green;
+        background-color: var(--colorprincipal);
         color: white;
-        border: 2px solid black;
-        font-size: 25px;
-        gap: 5px;
-        border: none;
+        font-size: 22px;
     }
 
     .table-header th:nth-child(-n+2){
-        width: 300px;
+        width: 200px;
     }
         .table-subheader th{
-            width: 400px;
-            font-size: 20px;
+            width: 200px;
+            font-size: 18px;
         }
+    .table-header th:last-child{
+        width: 150px;
+        margin: 0 auto;
+    }
 tr:nth-child(odd){
-    background-color: lightgrey;
+    background-color: var(--colorsecundario);
 }
+tr td{
+    padding-left: 5px;
+}
+
 
  .table-icons{
      display: flex;
+     width: 100px;
      justify-content: center;
+     margin: auto;
+     padding: auto;
      align-items: center;
-     gap: 20px;
+     gap: 10px;
  }
     .table-icons i{
-        font-size: 20px;
-        color: green;
+        font-size: 18px;
+        color: var(--colorprincipal);
     }
 
     .mostrar{
@@ -97,10 +102,10 @@ tr:nth-child(odd){
         position: absolute;
         background-color: gray;
         color: white;
-        font-size: 22px;
-        padding: 0 10px;
+        font-size: 16px;
+        padding: 0 5px;
         transform: translate(-50% , -50%);
-        top: 38px;
+        top: 30px;
         left: 50%;
         z-index: 1;
     }
