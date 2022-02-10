@@ -98,62 +98,7 @@ body{
         display: none;
     }
 
-    /* NAVEGADOR BOTTOM */
-
-.menu-principal{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    bottom: 0;
-    width: 100%;
-}
-    .menu-principal .menu-display{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 20px;
-        background-color: var(--colorprincipal);
-        color:var(--colortitulo);
-        border-top-right-radius: 100%;
-        border-top-left-radius: 100%;
-        border-top: 2px solid black;
-        border-left: 2px solid black;
-        border-right: 2px solid black;
-    }
-        .menu-principal .menu-display i{
-            font-size: 15px;
-        }
-    .menu-principal .menu-elements{
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 40px;
-        background-color: var(--colorprincipal);
-        justify-content: space-around;
-        align-items: center;
-        border-top: 2px solid black;
-    }
-    .menu-principal .menu-elements li{
-        height: 100%;
-        width: 33%;
-    }
-    .menu-principal .menu-elements li a{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-        font-size: 11px;
-        color: var(--colortitulo);
-    }
-        .menu-principal i{
-            font-size: 20px;
-        }
-    
+  
 /* CARRUSEL     */
 
 .header-carrusel-app{
