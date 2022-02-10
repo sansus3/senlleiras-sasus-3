@@ -8,6 +8,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/solicitud-senlleira',
+    name: 'SolicitudSenlleira',
+    component: () => import('../views/senlleira/Solicitud.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

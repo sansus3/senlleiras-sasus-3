@@ -5,7 +5,16 @@
 
     <!-- Carrusel de fotos -->
     <carrusel-vue></carrusel-vue>
-  
+    <ul>
+      <li>
+        <router-link 
+        class="menu-inicio" 
+        :to="{ name: 'SolicitudSenlleira' }"
+        >
+          Nueva senlleira
+        </router-link>
+      </li>
+    </ul>
 
     <!-- Vista del pie de página -->
     <footer-section></footer-section>
@@ -14,9 +23,9 @@
 
 <script>
 // @ is an alias to /src
-import HeaderSection from './page_structure/HeaderSection.vue';
-import FooterSection from './page_structure/FooterSection.vue'
-import CarruselVue from './Carrusel.vue';
+import HeaderSection from '@/views/page_structure/HeaderSection.vue';
+import FooterSection from '@/views/page_structure/FooterSection.vue'
+import CarruselVue from '@/views/Carrusel.vue';
 
 export default {
   name: 'Home',
