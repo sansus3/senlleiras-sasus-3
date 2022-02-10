@@ -4,10 +4,10 @@
             <!-- <a href="#" class="menu-display"><i class="fas fa-chevron-up"></i></a> -->
             <ul class="menu-elements">
                 <li>
-                    <a href="#" class="menu-catalogo">
+                    <router-link class="menu-catalogo" :to="{ name: 'Catalogo' }">
                         <i class="fas fa-image"></i>
                         <p>Catalogo</p>
-                    </a>
+                    </router-link>
                 </li>
                 <li>
                     <router-link class="menu-inicio" :to="{ name: 'Home' }">

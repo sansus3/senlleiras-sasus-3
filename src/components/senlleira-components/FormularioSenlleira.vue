@@ -3,7 +3,7 @@
         <ul class="fields">
             <li class="field">
                 <label for="especie">Especie</label>
-                <select @change="obtenerNombreComun" v-model="especie" name="especie" id="especie">
+                <select @change="obtenerNombreComun" v-model="senlleira.idSpecie" name="especie" id="especie">
                     <option value="Desconocida">Lo ignoro</option>
                     <option
                         v-for="item in species"
@@ -17,25 +17,25 @@
                 <input
                     placeholder="Su texto aquí"
                     type="text"
-                    v-model.trim="nombreComun"
+                    v-model.trim="senlleira.nombreComun"
                     name="nombrecomun"
                     id="nombrecomun"
                 />
             </li>
             <li class="field">                
-                <the-geolocation :location="location"></the-geolocation>
+                <the-geolocation :location="senlleira.location"></the-geolocation>
             </li>
             <li class="field">
                 <label for="comentarios">Comentarios</label>
                 <textarea
                     placeholder="Su texto aquí"
-                    v-model.trim="comentarios"
+                    v-model.trim="senlleira.comentarios"
                     name="comentarios"
                     id="comentarios"
                 ></textarea>
             </li>
         </ul>
-        <button>Submit</button>
+        <button :disabled="btnDisabled">Submit</button>
     </form>
 </template>
 
@@ -66,17 +66,32 @@ const species = computed(() => {
     return store.getters.getSpecieSort;
 });
 
+const senlleira = computed(()=>{
+    return store.state.senlleira;
+});
+
+
+const btnDisabled = computed(()=>{
+    const expReg = /^-?\d+\.\d+$/;
+    //console.log(expReg.test(senlleira.value.location.latitude))
+    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreComun.length
+});
+
+
+
 const obtenerNombreComun = e => {
     //console.log(e.target.value)
     //console.log(species.value)
-    nombreComun.value = '';
+    senlleira.value.nombreComun = '';
     const specie = species.value.find(element => element.id === e.target.value);
-    if (specie) nombreComun.value = specie.names.join();
+    if (specie) {
+        senlleira.value.nombreComun = specie.names.join();
+        senlleira.value.genus = specie.genus;
+        senlleira.value.specie = specie.specie;
+    }
 }
 
 const submit = () => {
-    console.log(
-        especie.value, nombreComun.value,location
-    );
+    store.dispatch('insertSenlleira',senlleira.value)    
 }
 </script>
