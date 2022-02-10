@@ -1,16 +1,18 @@
 <template>
     <header class="main-header">
         <nav class="header-nav-app">
-            <a href="#" class="header-logo">lOGO</a>
+            <router-link class="header-logo" :to="{ name: 'Home' }">LOGO</router-link>
             <ul class="header-nav-buttons">
                 <li class="header-search">
                     <i class="fas fa-search"></i>
                     <input type="search" placeholder="Buscar" />
                 </li>
                 <li class="header-upload">
-                    <a href="#">
-                        <i class="fas fa-tree"></i>
-                    </a>
+                    <router-link 
+                    :to="{ name: 'SolicitudSenlleira' }"
+                    >
+                    <i class="fas fa-tree"></i>
+                    </router-link>
                 </li>
             </ul>
         </nav>
@@ -84,5 +86,11 @@
 }
 .reduced .header-nav-buttons {
     display: none;
+}
+
+.router-link-exact-active{
+    font-size: .8em;
+    text-shadow: 5px 1px 2px black, 8px 3px 4px #808080;
+    transform: skew(30deg, 0);
 }
 </style>

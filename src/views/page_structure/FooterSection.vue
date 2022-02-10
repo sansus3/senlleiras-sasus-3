@@ -15,10 +15,10 @@
                     </router-link>
                 </li>
                 <li>
-                    <a href="#" class="mapa">
-                        <i class="fas fa-map-marked-alt"></i>
+                    <router-link class="mapa" :to="{ name: 'Mapas' }">
+                         <i class="fas fa-map-marked-alt"></i>
                         <p>Mapa</p>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </nav>

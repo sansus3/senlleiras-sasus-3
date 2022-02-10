@@ -23,7 +23,7 @@
                 class="field__control form-control"
             />
         </div>
-        <input type="button" @click="getGeolocation" class="btn" value="Geolocalizar">
+        <input type="button" @click="getGeolocation" class="btn btn-secondary" value="Geolocalizar">
     </section>
 </template>
 

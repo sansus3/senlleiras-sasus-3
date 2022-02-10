@@ -3,26 +3,35 @@
         <ul class="fields">
             <li class="field">
                 <label for="especie">Especie</label>
-                <select @change="obtenerNombreComun" v-model="senlleira.idSpecie" name="especie" id="especie">
-                    <option value="Desconocida">Lo ignoro</option>
-                    <option
-                        v-for="item in species"
-                        :key="item.id"
-                        :value="item.id"
-                    >{{ item.genus }} {{ item.specie }}</option>
+                <select
+                    @change="obtenerNombreComun"
+                    v-model="senlleira.idSpecie"
+                    name="especie"
+                    id="especie"
+                >
+                    <optgroup label="Sin confirmar">
+                        <option value="null">Desconocida</option>
+                    </optgroup>
+                    <optgroup label="Especies">
+                        <option
+                            v-for="item in species"
+                            :key="item.id"
+                            :value="item.id"
+                        >{{ item.genus }} {{ item.specie }}</option>
+                    </optgroup>
                 </select>
             </li>
             <li class="field">
                 <label for="nombrecomun">Nombre común</label>
                 <input
-                    placeholder="Su texto aquí"
+                    placeholder="Su nombre aquí"
                     type="text"
                     v-model.trim="senlleira.nombreComun"
                     name="nombrecomun"
                     id="nombrecomun"
                 />
             </li>
-            <li class="field">                
+            <li class="field">
                 <the-geolocation :location="senlleira.location"></the-geolocation>
             </li>
             <li class="field">
@@ -35,7 +44,7 @@
                 ></textarea>
             </li>
         </ul>
-        <button :disabled="btnDisabled">Submit</button>
+        <button class="btn btn-primary" :disabled="btnDisabled">Submit</button>              
     </form>
 </template>
 
@@ -66,12 +75,12 @@ const species = computed(() => {
     return store.getters.getSpecieSort;
 });
 
-const senlleira = computed(()=>{
+const senlleira = computed(() => {
     return store.state.senlleira;
 });
 
 
-const btnDisabled = computed(()=>{
+const btnDisabled = computed(() => {
     const expReg = /^-?\d+\.\d+$/;
     //console.log(expReg.test(senlleira.value.location.latitude))
     return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreComun.length
@@ -92,6 +101,6 @@ const obtenerNombreComun = e => {
 }
 
 const submit = () => {
-    store.dispatch('insertSenlleira',senlleira.value)    
+    store.dispatch('insertSenlleira', senlleira.value)
 }
 </script>
