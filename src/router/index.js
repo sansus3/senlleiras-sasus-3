@@ -18,6 +18,11 @@ const routes = [
     component: () => import('../views/Catalogo.vue')
   },
   {
+    path: `/catalogo-:id`,
+    name: 'CatalogoSenlleira',
+    component: () => import('@/views/senlleira/Mostrar.vue')
+  },
+  {
     path: '/mapas',
     name: 'Mapas',
     component: () => import('../views/Mapas.vue')

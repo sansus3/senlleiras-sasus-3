@@ -25,12 +25,26 @@
                 <th>Especie</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th>Opciones</th>
             </tr>
             <tr v-for="item in senlleiras" :key="item.id">
                 <td>{{item.genus}} {{item.specie}}</td>
                 <td></td>
                 <td>{{item.nombreComun}}</td>
                 <td>{{item.comentarios}}</td>
+                <td>
+                    <router-link
+                        class="far fa-eye"
+                        data-titulo="Mostrar"
+                        :to="{
+                            name: 'CatalogoSenlleira',
+                            params: {
+                                id: item.id
+                            }
+                        }"
+                    >
+                    </router-link>
+                </td>
             </tr>          
         </table>
         <!-- End Catálogo -->

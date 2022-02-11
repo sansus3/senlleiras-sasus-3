@@ -32,6 +32,11 @@ export default createStore({
     setSenlleiras(state, payload) {
       state.senlleiras = payload;
     },
+    setSenlleira(state,payload){
+      console.log(state.senlleiras);
+      state.senlleira = state.senlleiras.find(senlleira=>senlleira.id===payload);
+      console.log(state.senlleira)
+    },
     resetSenlleira(state) {
       state.senlleira = { ...SENLLEIRA };
     },
@@ -120,6 +125,10 @@ export default createStore({
      resetSenlleira({ commit }) {
       commit('resetSenlleira');
     },
+    //Obtener ejemplar senlleria
+    setSenlleira({commit},id){
+      commit('setSenlleira',id);
+    }
   },
   getters: {
     getSpecieSort(state) {
