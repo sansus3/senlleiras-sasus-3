@@ -12,9 +12,9 @@ import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: '',//your-api-key
-    authDomain: '',//<your-auth-domain>
+    authDomain: 'arbores-senlleiras-b52f1',//<your-auth-domain>
     databaseURL: '',//<your-database-url>
-    storageBucket: '',//<your-storage-bucket-url>'
+    storageBucket: 'gs://arbores-senlleiras-b52f1.appspot.com',//<your-storage-bucket-url>'
 }
 
 const firebaseApp = initializeApp(firebaseConfig);

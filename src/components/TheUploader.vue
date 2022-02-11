@@ -1,26 +1,19 @@
 <template>
-    
-        <ul class="fields">
-            <li class="field">
-                <label for="formFileMultiple" class="form-label">Selecciona imágenes</label>
-                <input
-                    @change="almacenarImagenes($event)"
-                    class="form-control"
-                    type="file"
-                    id="formFileMultiple"
-                    :accept="accept"
-                    :multiple="multiple"
-                />
-            </li>
-        </ul>
-        
-        
-    
-    
+    <div class="field">
+        <label for="formFileMultiple" class="form-label">Selecciona imágenes</label>
+        <input
+            @change="almacenarImagenes($event)"
+            class="form-control"
+            type="file"
+            id="formFileMultiple"
+            :accept="accept"
+            :multiple="multiple"
+        />
+    </div>
 </template>
 
 <script>
-import { reactive,ref } from "vue";
+import { reactive, ref } from "vue";
 
 export default {
     props: {
@@ -32,7 +25,7 @@ export default {
             type: Boolean,
             default: true
         }
-    },    
+    },
     setup(props, { emit }) {
         let files = reactive({});
         //Métodos 
@@ -49,7 +42,7 @@ export default {
             // }
             emitAction();
         };
-      
+
         //Emit
         const emitAction = () => {
             if (files[0]) //Si hay algún fichero seleccionado

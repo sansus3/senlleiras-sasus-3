@@ -52,6 +52,7 @@
 </template>
 
 <script setup>
+//import {storage} from "@/firebase";//storage de firebase para almacenar ficheros
 import { onMounted, computed, reactive } from 'vue';
 import { useStore } from 'vuex';
 import TheGeolocation from '../TheGeolocation.vue';
@@ -61,6 +62,7 @@ import TheUploader from '../TheUploader.vue';
 const store = useStore();
 //Campos Imágnes
 let images = reactive({});
+const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
 
 //Ciclo de vida
 onMounted(() => {
@@ -72,6 +74,7 @@ const species = computed(() => {
     return store.getters.getSpecieSort;
 });
 
+//Obtenems del store el objeto senlleira que utilizaremos en el v-model del formulario
 const senlleira = computed(() => {
     return store.state.senlleira;
 });
@@ -103,17 +106,37 @@ const obtenerNombreComun = e => {
 }
 
 /**
-Rescatamos las imágenes del componente hijo seleccionadas
+Rescatamos las imágenes del componente hijo seleccionadas y las almacenamos en el objeto images. Utilizamos este método (assign) pues mantiene la reactividad
  */
 const asignarImagenes = (data) => {
     Object.assign(images, data)
 }
 
 /**
+ * @description Si el formulario es validado procedemos a subir los ficheros
+ * @returns {Boolean} Si la subida es correcta o no
+ */
+const subirImages = () => {
+    //Comprobamos si hay alguna imagen que no cumple con los requistos
+    for (let item in images) {
+        if(images[item].size > MAXSIZE){
+            const error = `${images[item].name} excedión el máximo tamaño permitido ${images[item].size} (Máximo: ${MAXSIZE}).`;
+            console.log(error);
+            return false;
+        }
+    }
+    //Subida de ficheros
+    for (let item in images) {
+    }
+    return true
+}
+
+/**
  * Validaremos el tamaño de imágenes por si alguno se pasa y si todo ok subimos
  */
 const submit = () => {
-    console.log(images)
+    if(subirImages()){
     //store.dispatch('insertSenlleira', senlleira.value)
+    }
 }
 </script>
