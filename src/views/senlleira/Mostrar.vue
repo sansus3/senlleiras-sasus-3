@@ -33,9 +33,17 @@ export default {
         const route = useRoute();
         onMounted(() => {
             store.dispatch('setSenlleira',route.params.id);
+            
         });
 
-        const senlleira = computed(()=>store.state.senlleira);
+        const senlleira = computed(()=>{
+            if(!store.state.senlleira){
+                store.dispatch('setSenlleiras');
+                store.dispatch('setSenlleira',route.params.id);
+                //console.log("ohoh")
+            }
+            return store.state.senlleira;
+        });
         return {
             senlleira
         }

@@ -33,9 +33,9 @@ export default createStore({
       state.senlleiras = payload;
     },
     setSenlleira(state,payload){
-      console.log(state.senlleiras);
+      //console.log(state.senlleiras);
       state.senlleira = state.senlleiras.find(senlleira=>senlleira.id===payload);
-      console.log(state.senlleira)
+      //console.log(state.senlleira)
     },
     resetSenlleira(state) {
       state.senlleira = { ...SENLLEIRA };
