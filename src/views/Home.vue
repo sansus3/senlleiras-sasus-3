@@ -25,7 +25,7 @@
 // @ is an alias to /src
 import HeaderSection from '@/views/page_structure/HeaderSection.vue';
 import FooterSection from '@/views/page_structure/FooterSection.vue'
-import CarruselVue from '@/views/Carrusel.vue';
+import CarruselVue from '@/components/senlleira-components/Carrusel.vue';
 
 export default {
   name: 'Home',
