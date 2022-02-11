@@ -1,5 +1,5 @@
 <template>
-    <form class="senlleiras" @submit.prevent="submit">
+    <form method="post" enctype="multipart/form-data" class="senlleiras" @submit.prevent="submit">
         <ul class="fields">
             <li class="field">
                 <label for="especie">Especie</label>
@@ -43,27 +43,24 @@
                     id="comentarios"
                 ></textarea>
             </li>
+            <li class="field">
+                <the-uploader  @gestionarImagenes="asignarImagenes"></the-uploader>
+            </li>
         </ul>
         <button class="btn btn-primary" :disabled="btnDisabled">Submit</button>              
     </form>
 </template>
 
 <script setup>
-import TheGeolocation from '../TheGeolocation.vue';
-import { onMounted, computed, ref, reactive } from 'vue';
+import { onMounted, computed, reactive } from 'vue';
 import { useStore } from 'vuex';
+import TheGeolocation from '../TheGeolocation.vue';
+import TheUploader from '../TheUploader.vue';
 
 //Accedemos al Store de Vuex
 const store = useStore();
-//Campos del formulario
-let especie = ref('');
-let nombreComun = ref('');
-let comentarios = ref('');
-
-const location = reactive({
-    latitude: null,
-    longitude: null
-});
+//Campos Imágnes
+let images = reactive({});
 
 //Ciclo de vida
 onMounted(() => {
@@ -79,15 +76,20 @@ const senlleira = computed(() => {
     return store.state.senlleira;
 });
 
-
+/**
+Activación del botón
+*/
 const btnDisabled = computed(() => {
     const expReg = /^-?\d+\.\d+$/;
     //console.log(expReg.test(senlleira.value.location.latitude))
-    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreComun.length
+    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreComun.length || !Object.keys(images).length
 });
 
 
-
+/**
+ * Select del html par buscar en el array de Especies el nombre común y no científico del mismo
+ * @param {Object} e Evento
+ */
 const obtenerNombreComun = e => {
     //console.log(e.target.value)
     //console.log(species.value)
@@ -100,7 +102,18 @@ const obtenerNombreComun = e => {
     }
 }
 
+/**
+Rescatamos las imágenes del componente hijo seleccionadas
+ */
+const asignarImagenes = (data) => {
+    Object.assign(images, data)
+}
+
+/**
+ * Validaremos el tamaño de imágenes por si alguno se pasa y si todo ok subimos
+ */
 const submit = () => {
-    store.dispatch('insertSenlleira', senlleira.value)
+    console.log(images)
+    //store.dispatch('insertSenlleira', senlleira.value)
 }
 </script>
