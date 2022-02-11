@@ -3,7 +3,7 @@ import router from '@/router';//Esta línea no está en el original. Nos permite
 
 //URL del listado de especies
 const SPECIES = 'https://arbores-senlleiras-default-rtdb.europe-west1.firebasedatabase.app/species.json';
-const SENLLEIRAS = 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/senlleiras.json';
+const SENLLEIRAS = 'https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/senlleiras.json';
 //Objeto con los campos de una senlleira nueva
 const SENLLEIRA = {
   id: null,
@@ -31,6 +31,9 @@ export default createStore({
     },
     setSenlleiras(state, payload) {
       state.senlleiras = payload;
+    },
+    resetSenlleira(state) {
+      state.senlleira = { ...SENLLEIRA };
     },
     insertSenlleira(state, payload) {
       state.senlleiras.push(payload);
@@ -98,14 +101,9 @@ export default createStore({
       }
     },
     //Nueva Senlleira
-    async insertSenlleira(context, obj) {
-      const regex = /\./g;
-      const latitude = `${obj.location.latitude}`.replace(regex, "");
-      //console.log(latitude)
-      const id = `sen-${latitude}-${Math.trunc(Math.random() * 100) + 1}`;
-      obj.id = id;
+    async insertSenlleira(context, obj) {  
       try {
-        const url = `https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/senlleiras/${id}.json`;
+        const url = `https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/senlleiras/${obj.id}.json`;
         const response = fetch(url, {
           method: 'PUT',
           headers: {
@@ -117,7 +115,11 @@ export default createStore({
       } catch (error) {
         console.log(`Error insertSenlleira en store/index.js: ${error}`);
       }
-    }
+    },
+     //reseteamos specie
+     resetSenlleira({ commit }) {
+      commit('resetSenlleira');
+    },
   },
   getters: {
     getSpecieSort(state) {

@@ -44,15 +44,17 @@
                 ></textarea>
             </li>
             <li class="field">
-                <the-uploader  @gestionarImagenes="asignarImagenes"></the-uploader>
+                <the-uploader @gestionarImagenes="asignarImagenes"></the-uploader>
+                <div v-if="errores.errorImg" class="alert alert-danger" role="alert">{{ errores.errorImgStr }}</div>
             </li>
         </ul>
-        <button class="btn btn-primary" :disabled="btnDisabled">Submit</button>              
+        <button class="btn btn-primary" :disabled="btnDisabled">Submit</button>
     </form>
 </template>
 
 <script setup>
-//import {storage} from "@/firebase";//storage de firebase para almacenar ficheros
+import { storage } from "@/firebase";//storage de firebase para almacenar ficheros
+import { ref, uploadBytes } from "firebase/storage";
 import { onMounted, computed, reactive } from 'vue';
 import { useStore } from 'vuex';
 import TheGeolocation from '../TheGeolocation.vue';
@@ -63,10 +65,15 @@ const store = useStore();
 //Campos Imágnes
 let images = reactive({});
 const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
+const errores = reactive({
+    errorImg : false,
+    errorImgStr:''
+});
 
 //Ciclo de vida
 onMounted(() => {
-    store.dispatch('setSpecies');
+    store.dispatch('resetSenlleira');//reseteamos el objeto del store senlleira
+    store.dispatch('setSpecies'); //Cargamos el listado de especies
 });
 
 //Para obtener los datos del store hay que utilizar los métodos compudados
@@ -119,14 +126,26 @@ const asignarImagenes = (data) => {
 const subirImages = () => {
     //Comprobamos si hay alguna imagen que no cumple con los requistos
     for (let item in images) {
-        if(images[item].size > MAXSIZE){
-            const error = `${images[item].name} excedión el máximo tamaño permitido ${images[item].size} (Máximo: ${MAXSIZE}).`;
+        if (images[item].size > MAXSIZE) {
+            const error = `${images[item].name} excede el máximo tamaño permitido ${images[item].size}. (Máximo: ${MAXSIZE}).`;
             console.log(error);
+            errores.errorImg = true;
+            errores.errorImgStr = error;
             return false;
         }
     }
     //Subida de ficheros
+    const regex = /\./g;
+    const latitude = `${senlleira.value.location.latitude}`.replace(regex, "");
+    //console.log(latitude)
+    const id = `sen-${latitude}-${Math.trunc(Math.random() * 100) + 1}`;
+    senlleira.value.id = id;
     for (let item in images) {
+        const storageRef = ref(storage, `${id}/${images[item].name}`); //creamos una referencia
+        uploadBytes(storageRef, images[item]).then((snapshot) => {
+            console.log("¡Terminada la subida de ficheros!");
+            
+        });
     }
     return true
 }
@@ -135,8 +154,8 @@ const subirImages = () => {
  * Validaremos el tamaño de imágenes por si alguno se pasa y si todo ok subimos
  */
 const submit = () => {
-    if(subirImages()){
-    //store.dispatch('insertSenlleira', senlleira.value)
+    if (subirImages()) {
+        store.dispatch('insertSenlleira', senlleira.value)
     }
 }
 </script>
