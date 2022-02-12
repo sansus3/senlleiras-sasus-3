@@ -12,6 +12,10 @@ const SENLLEIRA = {
   specie: '',
   genus: '',
   nombreComun: '',
+  nombreArbol: '', //nombre que el usuario le de al árbol
+  lugar:'',
+  concello: '',
+  provincia: 'A Coruña',
   location: {
     latitude: null,
     longitude: null,

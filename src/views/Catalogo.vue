@@ -22,15 +22,15 @@
         <table class="catalogo-administrativo">
             <tr class="table-header">
                 <th>Nombre científico</th>
-                <th>Especie</th>
-                <th>Nombre</th>
+                <th>Nombres comunes</th>
+                <th>Nombre del arbol</th>
                 <th>Descripción</th>
                 <th>Opciones</th>
             </tr>
             <tr v-for="item in senlleiras" :key="item.id">
                 <td>{{item.genus}} {{item.specie}}</td>
-                <td></td>
                 <td>{{item.nombreComun}}</td>
+                <td>{{item.nombreArbol}} ({{item.provincia}})</td>
                 <td>{{item.comentarios}}</td>
                 <td>
                     <router-link

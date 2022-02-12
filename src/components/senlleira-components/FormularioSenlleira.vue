@@ -26,10 +26,45 @@
                 <input
                     placeholder="Su nombre aquí"
                     type="text"
+                    disabled
                     v-model.trim="senlleira.nombreComun"
                     name="nombrecomun"
                     id="nombrecomun"
                 />
+            </li>
+            <li class="field">
+                <label for="nombrearbol">Nombre de referencia</label>
+                <input
+                    placeholder="Su nombre aquí"
+                    required
+                    type="text"
+                    v-model.trim="senlleira.nombreArbol"
+                    name="nombrearbol"
+                    id="nombrearbol"
+                />
+            </li>
+            <li class="field">
+                <label for="lugar">Lugar</label>
+                <input
+                    placeholder="Su nombre aquí"
+                    type="text"
+                    v-model.trim="senlleira.lugar"
+                    name="lugar"
+                    id="lugar"
+                />
+            </li>
+            <li class="field">
+                <label for="Provincia">Provincia</label>
+                <select
+                    v-model="senlleira.provincia"
+                    name="Provincia"
+                    id="Provincia"
+                >
+                <option selected value="A Coruña">A Coruña</option>
+                <option value="Lugo">Lugo</option>
+                <option value="Ourense">Ourense</option>
+                <option value="Pontevedra">Pontevedra</option>
+                </select>
             </li>
             <li class="field">
                 <the-geolocation :location="senlleira.location"></the-geolocation>
@@ -53,7 +88,7 @@
 </template>
 
 <script setup>
-import { storage } from "@/firebase";//storage de firebase para almacenar ficheros
+import { storage } from "@/hooks/firebase";//storage de firebase para almacenar ficheros
 import { ref, uploadBytes } from "firebase/storage";
 import { onMounted, computed, reactive } from 'vue';
 import { useStore } from 'vuex';
@@ -92,7 +127,7 @@ Activación del botón
 const btnDisabled = computed(() => {
     const expReg = /^-?\d+\.\d+$/;
     //console.log(expReg.test(senlleira.value.location.latitude))
-    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreComun.length || !Object.keys(images).length
+    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreArbol.length || !Object.keys(images).length
 });
 
 

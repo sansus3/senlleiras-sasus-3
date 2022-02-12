@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { storage } from '@/firebase';
+import { storage } from '@/hooks/firebase';
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { reactive,onMounted } from 'vue';
 
