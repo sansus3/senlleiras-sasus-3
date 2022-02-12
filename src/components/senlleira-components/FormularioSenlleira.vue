@@ -79,7 +79,9 @@
                 ></textarea>
             </li>
             <li class="field">
-                <the-uploader @gestionarImagenes="asignarImagenes"></the-uploader>
+                <the-uploader :title="'Imagen 1'" :required="true"></the-uploader>
+                <the-uploader :title="'Imagen 2'"></the-uploader>
+                <the-uploader :title="'Imagen 3'"></the-uploader>
                 <div v-if="errores.errorImg" class="alert alert-danger" role="alert">{{ errores.errorImgStr }}</div>
             </li>
         </ul>
@@ -98,7 +100,7 @@ import TheUploader from '../TheUploader.vue';
 //Accedemos al Store de Vuex
 const store = useStore();
 //Campos Imágnes
-const images = reactive({});
+const images = reactive([]);
 provide('images',images);
 const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
 const errores = reactive({
@@ -128,7 +130,7 @@ Activación del botón
 const btnDisabled = computed(() => {
     const expReg = /^-?\d+\.\d+$/;
     //console.log(expReg.test(senlleira.value.location.latitude))
-    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreArbol.length || !Object.keys(images).length
+    return !expReg.test(senlleira.value.location.latitude) || !expReg.test(senlleira.value.location.longitude) || !senlleira.value.nombreArbol.length || !images.length
 });
 
 
@@ -151,38 +153,37 @@ const obtenerNombreComun = e => {
 /**
 Rescatamos las imágenes del componente hijo seleccionadas y las almacenamos en el objeto images. Utilizamos este método (assign) pues mantiene la reactividad
  */
-const asignarImagenes = (data) => {
-    Object.assign(images, data)
-}
+// const asignarImagenes = (data) => {
+//     Object.assign(images, data)
+// }
 
 /**
  * @description Si el formulario es validado procedemos a subir los ficheros
  * @returns {Boolean} Si la subida es correcta o no
  */
 const subirImages = () => {
-    //Comprobamos si hay alguna imagen que no cumple con los requistos
-    for (let item in images) {
-        if (images[item].size > MAXSIZE) {
-            const error = `${images[item].name} excede el máximo tamaño permitido ${images[item].size}. (Máximo: ${MAXSIZE}).`;
-            console.log(error);
+    images.forEach(item=>{
+        //console.log(item[0])
+        if(item[0].size>MAXSIZE){
+            const error = `${item[0].name} excede el máximo tamaño permitido ${item[0].size}. (Máximo: ${MAXSIZE}).`;
             errores.errorImg = true;
             errores.errorImgStr = error;
             return false;
         }
-    }
-    //Subida de ficheros
+    })
+    //Generación del identificador
     const regex = /\./g;
     const latitude = `${senlleira.value.location.latitude}`.replace(regex, "");
     //console.log(latitude)
     const id = `sen-${latitude}-${Math.trunc(Math.random() * 100) + 1}`;
     senlleira.value.id = id;
-    for (let item in images) {
-        const storageRef = ref(storage, `${id}/${images[item].name}`); //creamos una referencia
-        uploadBytes(storageRef, images[item]).then((snapshot) => {
-            console.log("¡Terminada la subida de ficheros!");
-            
+    //Subida de imágenes
+    images.forEach(item=>{
+         const storageRef = ref(storage, `${id}/${item[0].name}`); //creamos una referencia
+        uploadBytes(storageRef, item[0]).then((snapshot) => {
+            console.log("¡Terminada la subida de ficheros!");            
         });
-    }
+    });
     return true
 }
 

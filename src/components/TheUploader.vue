@@ -1,15 +1,15 @@
 <template>
     <div class="field">
-        <label for="imagen1" class="form-label">Imagen 1</label>
+        <label class="form-label">{{title}}
         <input
             @change="almacenarImagenes($event)"
             class="form-control"
             type="file"
-            id="imagen1"
             :accept="accept"
             :multiple="multiple"
-            required
-        />
+            :required="required"
+        >
+        </label>
     </div>
 </template>
 
@@ -22,16 +22,25 @@ export default {
             type: String,
             default: "image/gif, image/jpeg, image/png",
         },
+        title: {
+            type: String,
+            default: "Imagen"
+        },
         multiple: {
             type: Boolean,
-            default: true
+            default: false
+        },
+        required: {
+            type: Boolean,
+            default: false
         }
     },
     setup() {
         const images = inject('images');
         //Métodos 
         const almacenarImagenes = event => {
-            Object.assign(images, event.target.files);
+            images.push(event.target.files);
+            //console.log(images)
         } 
 
         return {
