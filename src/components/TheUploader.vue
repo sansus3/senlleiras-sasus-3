@@ -1,19 +1,20 @@
 <template>
     <div class="field">
-        <label for="formFileMultiple" class="form-label">Selecciona imágenes</label>
+        <label for="imagen1" class="form-label">Imagen 1</label>
         <input
             @change="almacenarImagenes($event)"
             class="form-control"
             type="file"
-            id="formFileMultiple"
+            id="imagen1"
             :accept="accept"
             :multiple="multiple"
+            required
         />
     </div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { inject } from "vue";
 
 export default {
     props: {
@@ -26,32 +27,15 @@ export default {
             default: true
         }
     },
-    setup(props, { emit }) {
-        let files = reactive({});
+    setup() {
+        const images = inject('images');
         //Métodos 
         const almacenarImagenes = event => {
-            //Debugger
-            //console.clear();            //Limpiamos consola
-            //console.log(props.url)
-            //https://developer.mozilla.org/en-US/docs/Web/API/FileList
-            Object.assign(files, event.target.files); //Object.assign mantiene la reactividad
-            //Recorrer objeto
-            // for (let item in files) {
-            //     console.log(files[item])
-            //     console.log(files[item].name)               
-            // }
-            emitAction();
-        };
-
-        //Emit
-        const emitAction = () => {
-            if (files[0]) //Si hay algún fichero seleccionado
-                emit("gestionarImagenes", files);//información de los fichero subidos
-        };
+            Object.assign(images, event.target.files);
+        } 
 
         return {
-            almacenarImagenes,
-            emitAction,
+            almacenarImagenes,           
         };
     }
 }

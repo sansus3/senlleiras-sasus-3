@@ -90,7 +90,7 @@
 <script setup>
 import { storage } from "@/hooks/firebase";//storage de firebase para almacenar ficheros
 import { ref, uploadBytes } from "firebase/storage";
-import { onMounted, computed, reactive } from 'vue';
+import { onMounted, computed, reactive, provide } from 'vue';
 import { useStore } from 'vuex';
 import TheGeolocation from '../TheGeolocation.vue';
 import TheUploader from '../TheUploader.vue';
@@ -98,7 +98,8 @@ import TheUploader from '../TheUploader.vue';
 //Accedemos al Store de Vuex
 const store = useStore();
 //Campos Imágnes
-let images = reactive({});
+const images = reactive({});
+provide('images',images);
 const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
 const errores = reactive({
     errorImg : false,
