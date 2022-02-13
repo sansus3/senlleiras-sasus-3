@@ -171,11 +171,8 @@ const subirImages = () => {
             return false;
         }
     })
-    //Generación del identificador
-    const regex = /\./g;
-    const latitude = `${senlleira.value.location.latitude}`.replace(regex, "");
-    //console.log(latitude)
-    const id = `sen-${latitude}-${Math.trunc(Math.random() * 100) + 1}`;
+    
+    const id = `sen-${Date.now()}`;
     senlleira.value.id = id;
     //Subida de imágenes
     images.forEach(item=>{
