@@ -1,8 +1,9 @@
 import { createStore } from 'vuex'
 import router from '@/router';//Esta línea no está en el original. Nos permite manipular las rutas
 
-//URL del listado de especies
-const SPECIES = 'https://arbores-senlleiras-default-rtdb.europe-west1.firebasedatabase.app/species.json';
+//Modelo de la cuenta arboresenlleira@gmail.com. Realtime database "senlleiras-especies"
+const SPECIES = 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/species.json';
+//Modelo "arbores-senlleiras-b52f1"
 const SENLLEIRAS = 'https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/senlleiras.json';
 //Objeto con los campos de una senlleira nueva
 const SENLLEIRA = {

@@ -71,10 +71,10 @@ const change = i => {
 const turnLeft = () => {
     limpiar();
     contador--;
-    console.log(contador)
+    //console.log(contador)
     if (contador < 0) {
         contador = 3
-        console.log(contador)
+        //console.log(contador)
     }
     images[contador].clases['carruselmostrado'] = true;
     images[contador].puntos['posicionado'] = true;
@@ -85,7 +85,7 @@ const turnRight = () => {
     contador++
     if (contador > 3) {
         contador = 0
-        console.log(contador)
+        //console.log(contador)
     }
     images[contador].clases['carruselmostrado'] = true;
     images[contador].puntos['posicionado'] = true;
