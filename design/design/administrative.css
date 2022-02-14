@@ -32,7 +32,7 @@
     }
     .form-administrativo input{
         height: 30px;
-        font-size: 25px;
+        font-size: var(--textosize);
         font-family:  montserrat;
     }
     .form-administrativo textarea{
@@ -47,18 +47,18 @@
 
 .catalogo-administrativo-section h2{
     text-align: center;
-    font-size: 30px;
+    font-size: var(--titulosize);
     margin: 10px;
 }
 
 .catalogo-administrativo{
     width: 100%;
-    font-size: 14px;
+    font-size: var(--textosize);
 }
     .catalogo-administrativo th{
         background-color: var(--colorprincipal);
         color: white;
-        font-size: 22px;
+        font-size: var(--textosize);
     }
 
     .table-header th:nth-child(-n+2){
@@ -66,7 +66,7 @@
     }
         .table-subheader th{
             width: 200px;
-            font-size: 18px;
+            font-size: var(--textosize);
         }
     .table-header th:last-child{
         width: 150px;
@@ -90,7 +90,7 @@ tr td{
      gap: 10px;
  }
     .table-icons i{
-        font-size: 18px;
+        font-size: var(--textosize);
         color: var(--colorprincipal);
     }
 
@@ -102,7 +102,7 @@ tr td{
         position: absolute;
         background-color: gray;
         color: white;
-        font-size: 16px;
+        font-size: var(--textosize);
         padding: 0 5px;
         transform: translate(-50% , -50%);
         top: 30px;

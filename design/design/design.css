@@ -24,6 +24,8 @@ body{
     --colorprincipal: green;
     --colorsecundario: lightgray;
     --colortitulo: white;
+    --titulosize: clamp(1.5rem, 3.5vw, 3rem);
+    --textosize: clamp(.7rem, 2.5vw, 1rem)
 }
 
 /* CABECERA TOP */
@@ -104,8 +106,9 @@ body{
     align-items: center;
     bottom: 0;
     width: 100%;
-    height: 60px;
-    border-top: 9px solid var(--colorsecundario);
+    height: 50px;
+    border-top: 7px solid var(--colortitulo);
+    box-shadow: 0px 0px 6px 0 white;
 }
     .menu-principal .menu-elements{
         display: flex;
@@ -138,10 +141,11 @@ body{
     }
     .menu-principal .menu-elements li a p{
         position: absolute;
-        bottom: 0px;
+        bottom: 7px;
         text-transform: uppercase;
-        display: block;
-        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         display: none;
     }
         .menu-principal .menu-elements li a i{
@@ -149,51 +153,50 @@ body{
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
+            font-size: 20px;
             color: var(--colortitulo);
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border: 5px solid transparent;
             transition: all .2s ease-in-out;  
         }
-        .menu-principal .menu-elements li a:hover::before{
+        .menu-principal .menu-elements li a:hover::before{  
             content: "";
             position: absolute;
             background-color: transparent;
-            border-top-right-radius: 25px;
-            width: 20px;
+            border-top-right-radius: 100%;
+            width: 25px;
             height: 20px;
-            top:3px;
-            left:5px;
-            box-shadow: 0 -10px 0 0 var(--colorsecundario);  
+            top: 2px;
+            left:7px;
+            box-shadow: 0 -6px 0 0 var(--colortitulo);  
         }
         .menu-principal .menu-elements li a:hover::after{
             content: "";
             position: absolute;
             background-color: transparent;
-            border-top-left-radius: 25px;
-            width: 20px;
+            border-top-left-radius: 100%;
+            width: 25px;
             height: 20px;
-            top:3px;
-            right:5px;
-            box-shadow: 0 -10px 0 0 var(--colorsecundario); 
+            top: 2px;
+            right:7px;
+            box-shadow: 0 -6px 0 0 var(--colortitulo); 
+
         }
 
-           
-        
-    
 
 /* NAVEGADOR HOVER */
 
 .menu-principal .menu-elements li a:hover i{
-    transform: translateY(-20px);
+    transform: translateY(-25px);
     background-color: var(--colorprincipal);
-    border: 5px solid var(--colorsecundario);
+    border: 4px solid var(--colortitulo);
     border-radius: 100%;
+    box-shadow: 0px -1px 6px 0 var(--colortitulo);
 }
     .menu-principal .menu-elements li a:hover p{
         display: block;
-        font-size: 16px;
+        font-size: 13px;
     }
 
     
@@ -235,8 +238,9 @@ body{
             transform: translate( -50% , -50%);
             text-align: center;
             justify-content: center;
+            align-items: center;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 20px;
             background-color: rgba(150, 150, 150, .4);
             color: var(--colortitulo);     
@@ -294,27 +298,125 @@ body{
     padding: 10px;
 }
 
-/* CATALOGO ARBOLES  */
 
+/* CATALOGO ARBOLES  */
 .catalogo-especies-section{
-    display: grid;
-    align-self: center;
+    user-select: none;
 }
+
 .catalogo-especies-section h2{
     text-align: center;
     text-transform: uppercase;
-    margin:20px;
+    padding: 10px;
+    font-size: var(--titulosize); 
+
 }
 
-.catalogo-arboles{
-    display: grid;
-    grid-template-columns: repeat(2, 150px);
-    grid-template-rows: repeat(2, 150px);
-    gap: 10px;
-    align-self: center;
-    align-content: center;
+.catalogo-arboles-app{
     margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3 , minmax(100px,300px));
+    grid-template-rows: repeat(3, minmax(100px,300px));
+    justify-content: center;
+    max-width: 90%;
 }
-    .catalogo a img{
-        border: 2px solid black;
+
+@media screen and (max-width:1000px){
+    .catalogo-arboles-app{
+        grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3,150px);
     }
+}
+@media screen and (max-width:450px){
+    .catalogo-arboles-app{
+        grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3,100px);
+    }
+}
+
+/* Tarjeta de los arboles individual */
+.arboles-card{
+    background-color: transparent;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+}
+.arboles-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+     .arboles-front, .arboles-back{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden; 
+    }
+    .arboles-front  img, .arboles-back img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;    
+    }
+        .arboles-back{
+            transform: rotateY(180deg);
+        }
+
+/* ANIMACIONES   */
+
+ /* Tarjeta vertical */
+
+ .arboles-card:nth-child(1):hover .arboles-inner{
+    transform: rotateX(180deg);
+}
+.arboles-card:nth-child(1) .arboles-inner .arboles-back{
+    transform: rotateX(180deg);
+}
+
+/* Tarjeta horizontal */
+
+.arboles-card:nth-child(2):hover .arboles-inner{
+    transform: rotateY(180deg);
+}
+.arboles-card:nth-child(2) .arboles-inner .arboles-back{
+    transform: rotateY(180deg);
+}
+ 
+/* Tarjeta deslizamiento horizontal */
+
+.arboles-card:nth-child(3){
+    overflow: hidden;
+}
+.arboles-card:nth-child(3):hover .arboles-inner{
+    transform: translateX(-100%);
+}
+.arboles-card:nth-child(3) .arboles-inner .arboles-back{
+    transform: translateX(100%);
+}
+
+/* Tarjeta deslizamiento vertical */
+.arboles-card:nth-child(4){
+    overflow: hidden;
+}
+.arboles-card:nth-child(4):hover .arboles-inner{
+    transform: translateY(-100%);
+}
+.arboles-card:nth-child(4) .arboles-inner .arboles-back{
+    transform: translateY(100%);
+}
+
+/* Tarjeta horizontal flip */
+
+.arboles-card:nth-child(5):hover .arboles-inner{
+    transform: translateX(-100%) rotateY(-180deg);
+}
+.arboles-card:nth-child(5) .arboles-inner .arboles-back{
+    transform: translateX(-100%) rotateY(-180deg) ;
+}
+  
+
+        

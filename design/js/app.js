@@ -19,7 +19,7 @@ document.addEventListener(
        
     }
 )
-
+  
 // Carrusel
 
 const imagenesCarrusel = document.querySelectorAll(".carrusel-image");
@@ -53,7 +53,6 @@ botonatras.addEventListener(
         contador--
         if(contador <0){
             contador = 3
-            console.log(contador)
         }
         puntosCarrusel[contador].classList.add("posicionado")
         imagenesCarrusel[contador].classList.add("carruselmostrado");
@@ -66,7 +65,6 @@ botonadelante.addEventListener(
         contador++
         if(contador >3){
             contador = 0
-            console.log(contador)
         }
         puntosCarrusel[contador].classList.add("posicionado")
         imagenesCarrusel[contador].classList.add("carruselmostrado")
@@ -80,5 +78,4 @@ setInterval(function(){
     limpiar();
     puntosCarrusel[contador].classList.add("posicionado")
     imagenesCarrusel[contador].classList.add("carruselmostrado")
-    console.log(contador)
 },12000)
