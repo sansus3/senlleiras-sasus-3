@@ -110,3 +110,68 @@ tr td{
         z-index: 1;
     }
     
+/* FORMULARIO USUARIO   */
+
+.formulario-section{
+    background-image: url(../images/Carballo-del-Bosque-del-Banquete-de-Conxo-SANTIAGO-DE-COMPOSTELA-GALICIA-set-2021-scaled.jpg);
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formulario-usuario-app{
+    margin: auto;
+    backdrop-filter: blur(5px);
+    background-color: rgba(240,240,240, .6);
+    width: 400px;
+    height: 600px;
+    padding: 10px;
+    border-radius: 20px;
+}
+.formulario-usuario-app input[type=text]{
+    width: 150px;
+    text-align: right;   
+}
+.formulario-usuario-app input[type=file]{
+    font-size: 12px;
+}
+.formulario-usuario-app  input#file-upload-button{
+    font-size: 12px;
+    width: 10px;
+}
+
+
+/* Diseño estructura formulario */
+
+    .formulario-usuario-app h1{
+        text-align: center;
+    }
+    .formulario-usuario-app fieldset{
+        border: 2px solid black;
+        padding: 10px;
+    }
+    .formulario-usuario-app fieldset legend{
+        text-align: center;
+    }
+    .h2-form{
+        text-align: center;
+        color: var(--colorprincipal)
+    }
+    #description-arbol{
+        width: 100%;
+        height: 100px;
+        resize: none;
+        padding: 5px;
+    }
+
+.submit-arbol{
+    display: flex;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+}

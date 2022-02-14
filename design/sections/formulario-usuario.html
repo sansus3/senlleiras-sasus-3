@@ -9,23 +9,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../design/administrative.css">
 </head>
-<body>git
+<body>
     <nav class="header-nav-app">
         <a href="#" class="header-logo">lOGO</a>
         <ul class="header-nav-buttons">
             <li class="header-search"><i class="fas fa-search"></i><input type="search" placeholder="Buscar"></li>
-            <li class="header-upload"><i class="fas fa-tree"></i></li>
-            <li class="header-profile"><i class="fas fa-user-circle"></i></li>
+            <li class="header-upload"><a href="#"><i class="fas fa-tree"></i></a></li>
+            
         </ul>
-    </nav> 
+    </nav>
+    
 
-    <nav class="menu-principal">
-        <a href="#" class="menu-display"><i class="fas fa-chevron-up"></i></a>
-    <ul class="menu-elements">
-        <li><a href="#" class="menu-catalogo"><i class="fas fa-image"></i>Catalogo</a></li>
-        <li><a href="#" class="menu-inicio"><i class="fas fa-home"></i>Inicio</a></li>
-        <li><a href="#" class="mapa"><i class="fas fa-map-marked-alt"></i>Mapa</a></li>
-    </ul>
+    <div class="formulario-section">
+        <form action="#" class="formulario-usuario-app">
+            <h1>Subir  un árbol</h1>
+            <fieldset>
+                <legend>
+                    <h2 class="h2-form">Nombre y características</h2>
+                </legend>
+                <label for="especie">Especie</label>
+                <select id="especie">
+                    <option value="0">No seleccionado</option>
+                    <option value="1">Carballo</option>
+                    <option value="3">Arbol 2</option>
+                    <option value="4">Arbol 3</option>
+                </select> <br>
+                <label for="nombre-arbol">Nombre del árbol</label>
+                <input type="text" id="nombre-arbol"><br>
+                <label for="nombre-referencia">Nombre de Referencia</label>
+                <input type="text" id="nombre-referencia"> <br>
+                <label for="descripcion-arbol">Descripción</label> <br>
+                <textarea id="description-arbol" placeholder="Añadir descripción"></textarea> <br>
+            </fieldset>
+
+            <fieldset>
+                <legend><h2 class="h2-form">Cargar Imágenes</h2></legend>
+                <label for="arbol-imagenes">Cargar imagenes</label> <br>
+                    <input type="file"> <br>
+                    <input type="file"> <br>
+                    <input type="file"> <br>
+            </fieldset>
+            
+            <fieldset>
+                <legend>
+                    <h2 class="h2-form">Localización</h2>
+                </legend>
+                <label for="arbol-provincia">Provincia</label>
+                <select name="arbol-provincia" id="arbol-provincia">
+                    <option value="0">No seleccionada</option>
+                    <option value="1">A Coruña</option>
+                    <option value="2">Lugo</option>
+                    <option value="3">Orense</option>
+                    <option value="4">Pontevedra</option>
+                </select> <br>
+                <label for="latitud">Latitud</label>
+                    <input type="number" id="latitud" placeholder="-49,5443º"> <br>
+                <label for="longitud">Longitud</label>
+                    <input type="number" id="longitud" placeholder="154,3275º"> <br>
+            </fieldset>
+
+        <input  class="submit-arbol" type="submit">
+        </form>
+    </div>
+
+
+<nav class="menu-principal">
+<ul class="menu-elements">
+    <li><a href="#" class="menu-catalogo footer-element" ><i class="fas fa-image"></i><p>Catalogo</p></a></li>
+    <li><a href="#" class="menu-inicio footer-element"><i class="fas fa-home"></i><p>Inicio</p></a></li>
+    <li><a href="#" class="mapa footer-element"><i class="fas fa-map-marked-alt"></i><p>Mapa</p></a></li>
+</ul>
 </nav>
 
 </body>
