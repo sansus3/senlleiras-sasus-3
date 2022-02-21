@@ -93,7 +93,8 @@ const especies = computed(()=>{
 
 const loading = ref(false);
 
-onMounted(async ()=>{
+onMounted(
+    async ()=>{
     try {
         loading.value = true;
         await store.dispatch('especies/listarEspecies');

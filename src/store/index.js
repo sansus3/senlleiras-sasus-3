@@ -103,6 +103,6 @@ export default createStore({
   },
   modules: {
     species,
-    especies
+    especies,
   },
 })
