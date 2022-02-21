@@ -15,10 +15,15 @@
                         <label for="especie">Especie</label>
                         <select id="especie" name="especie" v-model="datos.especie">
                             <option value="0">No seleccionado</option>
-                            <option value="1">Carballo</option>
-                            <option value="3">Arbol 2</option>
-                            <option value="4">Arbol 3</option>
+                            <option 
+                            v-for="item in especies" 
+                            :value="item.id"
+                            :key="item.id"
+                            >
+                            {{item.genus}} {{item.specie}}
+                            </option>
                         </select>
+                        <strong v-if="loading">Cargando especies...</strong>
                     </span>
                     <label for="description-arbol">Descripción</label> <br>
                     <textarea id="description-arbol" placeholder="Añadir descripción" name="description-arbol" v-model.trim="datos.descriptionArbol"></textarea> <br> 
@@ -75,10 +80,32 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
+import { onMounted, reactive, ref,computed } from 'vue';
+import { useStore } from 'vuex';
 import FooterSection from'../page_structure/FooterSection.vue'
 import HeaderSection from '../page_structure/HeaderSection.vue'
-import HeaderSection1 from '../page_structure/HeaderSection.vue';
+
+const store = useStore();
+
+const especies = computed(()=>{
+    return store.state.especies.especies;
+});
+
+const loading = ref(false);
+
+onMounted(async ()=>{
+    try {
+        loading.value = true;
+        await store.dispatch('especies/listarEspecies');
+    } catch (error) {
+        console.log(error);
+    } finally {
+        loading.value = false;
+    }
+});
+
+
+
 
 const datos = reactive({  //objetos y array
     nombreArbol: "",
