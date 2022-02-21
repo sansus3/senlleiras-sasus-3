@@ -79,3 +79,30 @@ setInterval(function(){
     puntosCarrusel[contador].classList.add("posicionado")
     imagenesCarrusel[contador].classList.add("carruselmostrado")
 },12000)
+
+//ANIMACION GALERIA
+
+const verticalItem = document.querySelectorAll(".animation-vertical");
+const flipItem = document.querySelectorAll(".animation-flip");
+const horizontalItem = document.querySelectorAll(".animation-horizontal");
+const verticalFlipItem = document.querySelectorAll(".animation-flip-vertical")
+
+//Animaciones
+const horizontalMovement = "horizontalMovement";
+const verticalMovement = "verticalMovement";
+const horizontalFlip = "horizontalFlip";
+const verticalFlip = "verticalFlip";
+
+var execAnimation = (item,transition,interval) => {
+    (item).forEach(
+        (animation) => {
+            setInterval(()=>{
+                animation.classList.toggle(transition)
+            },interval)  
+    });
+};
+
+execAnimation(horizontalItem,horizontalMovement,15000);
+execAnimation(verticalItem,verticalMovement,10500);
+execAnimation(flipItem,horizontalFlip,5000);
+execAnimation(verticalFlipItem,verticalFlip,7000);

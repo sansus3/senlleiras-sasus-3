@@ -22,50 +22,56 @@
 
     <div class="formulario-section">
         <form action="#" class="formulario-usuario-app">
-            <h1>Subir  un árbol</h1>
-            <fieldset>
+            <h1>Subir  un árbol <i class="fa-solid fa-arrow-up-to-line"></i></h1>
+            <fieldset class="formulario-usuario-caracteristicas">
                 <legend>
-                    <h2 class="h2-form">Nombre y características</h2>
+                    <h2 class="h2-form">Nombre y características </h2>
                 </legend>
-                <label for="especie">Especie</label>
-                <select id="especie">
-                    <option value="0">No seleccionado</option>
-                    <option value="1">Carballo</option>
-                    <option value="3">Arbol 2</option>
-                    <option value="4">Arbol 3</option>
-                </select> <br>
-                <label for="nombre-arbol">Nombre del árbol</label>
-                <input type="text" id="nombre-arbol"><br>
-                <label for="nombre-referencia">Nombre de Referencia</label>
-                <input type="text" id="nombre-referencia"> <br>
-                <label for="descripcion-arbol">Descripción</label> <br>
-                <textarea id="description-arbol" placeholder="Añadir descripción"></textarea> <br>
+                    <input type="text" id="nombre-arbol" placeholder="Nombre del árbol"><br>
+                    <input type="text" id="nombre-referencia" placeholder="Nombre de referencia"> <br>
+                    <span class="form-label">
+                        <label for="especie">Especie</label>
+                        <select id="especie">
+                            <option value="0">No seleccionado</option>
+                            <option value="1">Carballo</option>
+                            <option value="3">Arbol 2</option>
+                            <option value="4">Arbol 3</option>
+                        </select>
+                    </span>
+                    <label for="description-arbol">Descripción</label> <br>
+                    <textarea id="description-arbol" placeholder="Añadir descripción"></textarea> <br> 
             </fieldset>
 
-            <fieldset>
+            <fieldset class="formulario-usuario-imagenes">
                 <legend><h2 class="h2-form">Cargar Imágenes</h2></legend>
-                <label for="arbol-imagenes">Cargar imágenes</label> <br>
                     <input type="file"> <br>
                     <input type="file"> <br>
                     <input type="file"> <br>
             </fieldset>
             
-            <fieldset>
+            <fieldset class="formulario-usuario-localizacion">
                 <legend>
                     <h2 class="h2-form">Localización</h2>
                 </legend>
-                <label for="arbol-provincia">Provincia</label>
-                <select name="arbol-provincia" id="arbol-provincia">
-                    <option value="0">No seleccionada</option>
-                    <option value="1">A Coruña</option>
-                    <option value="2">Lugo</option>
-                    <option value="3">Ourense</option>
-                    <option value="4">Pontevedra</option>
-                </select> <br>
-                <label for="latitud">Latitud</label>
-                    <input type="number" id="latitud" placeholder="-49,5443º"> <br>
-                <label for="longitud">Longitud</label>
-                    <input type="number" id="longitud" placeholder="154,3275º"> <br>
+
+                <span class="form-label">
+                    <label for="arbol-provincia">Provincia</label>
+                    <select disabled name="arbol-provincia" id="arbol-provincia">
+                        <option value="0">No seleccionada</option>
+                        <option selected value="1">A Coruña</option>
+                        <option value="2">Lugo</option>
+                        <option value="3">Ourense</option>
+                        <option value="4">Pontevedra</option>
+                    </select>
+                </span> 
+                <button type="button" class="location-button">Marcar mi ubicación &nbsp <i class="fa-solid fa-location-dot"></i></button>
+
+                <span class="label-form-input-location">
+                    <label for="latitud">Latitud</label>
+                        <input type="number" id="latitud" placeholder="-49,5443º">
+                    <label for="longitud">Longitud</label>
+                        <input type="number" id="longitud" placeholder="154,3275º">
+                </span>
             </fieldset>
 
         <input  class="submit-arbol" type="submit">
