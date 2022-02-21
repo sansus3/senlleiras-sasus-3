@@ -55,15 +55,11 @@
             </li>
             <li class="field">
                 <label for="Provincia">Provincia</label>
-                <select
-                    v-model="senlleira.provincia"
-                    name="Provincia"
-                    id="Provincia"
-                >
-                <option selected value="A Coruña">A Coruña</option>
-                <option value="Lugo">Lugo</option>
-                <option value="Ourense">Ourense</option>
-                <option value="Pontevedra">Pontevedra</option>
+                <select v-model="senlleira.provincia" name="Provincia" id="Provincia">
+                    <option selected value="A Coruña">A Coruña</option>
+                    <option value="Lugo">Lugo</option>
+                    <option value="Ourense">Ourense</option>
+                    <option value="Pontevedra">Pontevedra</option>
                 </select>
             </li>
             <li class="field">
@@ -82,7 +78,11 @@
                 <the-uploader :title="'Imagen 1'" :required="true"></the-uploader>
                 <the-uploader :title="'Imagen 2'"></the-uploader>
                 <the-uploader :title="'Imagen 3'"></the-uploader>
-                <div v-if="errores.errorImg" class="alert alert-danger" role="alert">{{ errores.errorImgStr }}</div>
+                <div
+                    v-if="errores.errorImg"
+                    class="alert alert-danger"
+                    role="alert"
+                >{{ errores.errorImgStr }}</div>
             </li>
         </ul>
         <button class="btn btn-primary" :disabled="btnDisabled">Submit</button>
@@ -101,22 +101,22 @@ import TheUploader from '../TheUploader.vue';
 const store = useStore();
 //Campos Imágnes
 const images = reactive([]);
-provide('images',images);
+provide('images', images);
 const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
 const errores = reactive({
-    errorImg : false,
-    errorImgStr:''
+    errorImg: false,
+    errorImgStr: ''
 });
 
 //Ciclo de vida
 onMounted(() => {
     store.dispatch('resetSenlleira');//reseteamos el objeto del store senlleira
-    store.dispatch('setSpecies'); //Cargamos el listado de especies
+    store.dispatch('species/setSpecies'); //Cargamos el listado de especies
 });
 
 //Para obtener los datos del store hay que utilizar los métodos compudados
 const species = computed(() => {
-    return store.getters.getSpecieSort;
+    return store.getters['species/getSpecieSort'];
 });
 
 //Obtenems del store el objeto senlleira que utilizaremos en el v-model del formulario
@@ -162,23 +162,23 @@ Rescatamos las imágenes del componente hijo seleccionadas y las almacenamos en 
  * @returns {Boolean} Si la subida es correcta o no
  */
 const subirImages = () => {
-    images.forEach(item=>{
+    images.forEach(item => {
         //console.log(item[0])
-        if(item[0].size>MAXSIZE){
+        if (item[0].size > MAXSIZE) {
             const error = `${item[0].name} excede el máximo tamaño permitido ${item[0].size}. (Máximo: ${MAXSIZE}).`;
             errores.errorImg = true;
             errores.errorImgStr = error;
             return false;
         }
     })
-    
+
     const id = `sen-${Date.now()}`;
     senlleira.value.id = id;
     //Subida de imágenes
-    images.forEach(item=>{
-         const storageRef = ref(storage, `${id}/${item[0].name}`); //creamos una referencia
+    images.forEach(item => {
+        const storageRef = ref(storage, `${id}/${item[0].name}`); //creamos una referencia
         uploadBytes(storageRef, item[0]).then((snapshot) => {
-            console.log("¡Terminada la subida de ficheros!");            
+            console.log("¡Terminada la subida de ficheros!");
         });
     });
     return true

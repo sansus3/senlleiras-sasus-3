@@ -1,8 +1,7 @@
 import { createStore } from 'vuex'
 import router from '@/router';//Esta línea no está en el original. Nos permite manipular las rutas
+import species from './species';
 
-//Modelo de la cuenta arboresenlleira@gmail.com. Realtime database "senlleiras-especies"
-const SPECIES = 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/species.json';
 //Modelo "arbores-senlleiras-b52f1"
 const SENLLEIRAS = 'https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/senlleiras.json';
 //Objeto con los campos de una senlleira nueva
@@ -14,7 +13,7 @@ const SENLLEIRA = {
   genus: '',
   nombreComun: '',
   nombreArbol: '', //nombre que el usuario le de al árbol
-  lugar:'',
+  lugar: '',
   concello: '',
   provincia: 'A Coruña',
   location: {
@@ -26,20 +25,16 @@ const SENLLEIRA = {
 
 export default createStore({
   state: {
-    species: [],
     senlleiras: [],
     senlleira: { ...SENLLEIRA }
   },
   mutations: {
-    setSpecies(state, payload) {
-      state.species = payload;
-    },
     setSenlleiras(state, payload) {
       state.senlleiras = payload;
     },
-    setSenlleira(state,payload){
+    setSenlleira(state, payload) {
       //console.log(state.senlleiras);
-      state.senlleira = state.senlleiras.find(senlleira=>senlleira.id===payload);
+      state.senlleira = state.senlleiras.find(senlleira => senlleira.id === payload);
       //console.log(state.senlleira)
     },
     resetSenlleira(state) {
@@ -51,36 +46,6 @@ export default createStore({
     }
   },
   actions: {
-    //Listado de especies de árboles (nombre científico ...)
-    async setSpecies(context) {
-      try {
-        const response = await fetch(SPECIES, {
-          method: 'GET',
-          headers: {
-            'content-type': 'application/json'
-          }
-        });
-
-        //Los datos obtenidos es un objeto con objetos en su interior
-        //{{},{},{}}
-        const data = await response.json();
-        //console.log(data)
-
-        //Creamos un array temporal vacío
-        const tmp = [];
-
-        //for...in. La instrucción for-in itera sobre todas las "propiedades enumerables" de un objeto que está codificado por cadenas
-        for (let item in data) {
-          tmp.push(data[item]);
-          //console.log(data[item])
-        }
-        //Pasamos al state
-        context.commit('setSpecies', tmp);
-
-      } catch (error) {
-        console.log(`Error setSpecies en store/index.js: ${error}`);
-      }
-    },
     async setSenlleiras(context) {
       try {
         const response = await fetch(SENLLEIRAS, {
@@ -111,7 +76,7 @@ export default createStore({
       }
     },
     //Nueva Senlleira
-    async insertSenlleira(context, obj) {  
+    async insertSenlleira(context, obj) {
       try {
         const url = `https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/senlleiras/${obj.id}.json`;
         const response = fetch(url, {
@@ -126,20 +91,16 @@ export default createStore({
         console.log(`Error insertSenlleira en store/index.js: ${error}`);
       }
     },
-     //reseteamos specie
-     resetSenlleira({ commit }) {
+    //reseteamos specie
+    resetSenlleira({ commit }) {
       commit('resetSenlleira');
     },
     //Obtener ejemplar senlleria
-    setSenlleira({commit},id){
-      commit('setSenlleira',id);
-    }
-  },
-  getters: {
-    getSpecieSort(state) {
-      return state.species.sort((x, y) => x.specie.localeCompare(y.specie))
+    setSenlleira({ commit }, id) {
+      commit('setSenlleira', id);
     }
   },
   modules: {
+    species
   }
 })
