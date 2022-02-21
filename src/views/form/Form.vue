@@ -1,33 +1,27 @@
 <template>
-    <HeaderSection />
-
+<!-- cabecer -->
+<HeaderSection />
+    <!-- formulario -->
     <div class="formulario-section">
-        <form action="#" class="formulario-usuario-app">
-            <h1>
-                Subir un árbol
-                <i class="fa-solid fa-arrow-up-to-line"></i>
-            </h1>
+        <form @submit.prevent action="#" class="formulario-usuario-app">
+            <h1>Subir  un árbol <i class="fa-solid fa-arrow-up-to-line"></i></h1>
             <fieldset class="formulario-usuario-caracteristicas">
                 <legend>
                     <h2 class="h2-form">Nombre y características</h2>
                 </legend>
-                <input type="text" id="nombre-arbol" placeholder="Nombre del árbol" />
-                <br />
-                <input type="text" id="nombre-referencia" placeholder="Nombre de referencia" />
-                <br />
-                <span class="form-label">
-                    <label for="especie">Especie</label>
-                    <select id="especie">
-                        <option value="0">No seleccionado</option>
-                        <option value="1">Carballo</option>
-                        <option value="3">Arbol 2</option>
-                        <option value="4">Arbol 3</option>
-                    </select>
-                </span>
-                <label for="description-arbol">Descripción</label>
-                <br />
-                <textarea id="description-arbol" placeholder="Añadir descripción"></textarea>
-                <br />
+                    <input type="text" id="nombre-arbol" placeholder="Nombre del árbol" name="nombre-arbol" v-model.trim="datos.nombreArbol"><br>
+                    <input type="text" id="nombre-referencia" placeholder="Nombre de referencia" name="nombre-referencia" v-model.trim="datos.nombreReferencia" > <br>
+                    <span class="form-label">
+                        <label for="especie">Especie</label>
+                        <select id="especie" name="especie" v-model="datos.especie">
+                            <option value="0">No seleccionado</option>
+                            <option value="1">Carballo</option>
+                            <option value="3">Arbol 2</option>
+                            <option value="4">Arbol 3</option>
+                        </select>
+                    </span>
+                    <label for="description-arbol">Descripción</label> <br>
+                    <textarea id="description-arbol" placeholder="Añadir descripción" name="description-arbol" v-model.trim="datos.descriptionArbol"></textarea> <br> 
             </fieldset>
 
             <fieldset class="formulario-usuario-imagenes">
@@ -49,7 +43,7 @@
 
                 <span class="form-label">
                     <label for="arbol-provincia">Provincia</label>
-                    <select disabled name="arbol-provincia" id="arbol-provincia">
+                    <select  name="arbol-provincia" id="arbol-provincia" v-model="datos.arbolProvincia">
                         <option value="0">No seleccionada</option>
                         <option selected value="1">A Coruña</option>
                         <option value="2">Lugo</option>
@@ -64,23 +58,40 @@
 
                 <span class="label-form-input-location">
                     <label for="latitud">Latitud</label>
-                    <input type="number" id="latitud" placeholder="-49,5443º" />
+                        <input type="number" id="latitud" placeholder="-49,5443º" name="latitud" v-model="datos.latitud">
                     <label for="longitud">Longitud</label>
-                    <input type="number" id="longitud" placeholder="154,3275º" />
+                        <input type="number" id="longitud" placeholder="154,3275º" name="longitud" v-model="datos.longitud">
                 </span>
             </fieldset>
 
-            <input class="submit-arbol" type="submit" />
+        <input :disabled="disabled" class="submit-arbol" type="submit">
         </form>
     </div>
 
-    <FooterSection />
+
+<!-- pie de pagina -->
+<FooterSection />
+  
 </template>
 
 <script setup>
-import FooterSection from '../page_structure/FooterSection.vue'
+import { reactive, ref } from 'vue';
+import FooterSection from'../page_structure/FooterSection.vue'
 import HeaderSection from '../page_structure/HeaderSection.vue'
 import HeaderSection1 from '../page_structure/HeaderSection.vue';
+
+const datos = reactive({  //objetos y array
+    nombreArbol: "",
+    nombreReferencia:"",
+    especie:[],
+    descriptionArbol:"",
+    arbolProvincia:["A Coruña", "Lugo", "Ourense", "Pontevedra"],  
+    latitud:"",
+    longitud:"",
+
+});
+
+const disabled = ref(true);
 
 </script>
 
