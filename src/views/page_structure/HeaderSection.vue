@@ -9,7 +9,7 @@
                 </li>
                 <li class="header-upload">
                     <router-link 
-                    :to="{ name: 'SolicitudSenlleira' }"
+                    :to="{ name: 'Form' }"
                     >
                     <i class="fas fa-tree"></i>
                     </router-link>
