@@ -1,8 +1,9 @@
 <template>
-<!-- cabecer -->
+<!-- cabecera -->
 <HeaderSection />
     <!-- formulario -->
     <div class="formulario-section">
+        <pre>{{datos}}</pre>
         <form @submit.prevent action="#" class="formulario-usuario-app">
             <h1>Subir  un árbol <i class="fa-solid fa-arrow-up-to-line"></i></h1>
             <fieldset class="formulario-usuario-caracteristicas">
@@ -17,7 +18,7 @@
                             <option value="0">No seleccionado</option>
                             <option 
                             v-for="item in especies" 
-                            :value="item.id"
+                            :value="`${item.genus} ${item.specie}`"
                             :key="item.id"
                             >
                             {{item.genus}} {{item.specie}}
@@ -49,11 +50,10 @@
                 <span class="form-label">
                     <label for="arbol-provincia">Provincia</label>
                     <select  name="arbol-provincia" id="arbol-provincia" v-model="datos.arbolProvincia">
-                        <option value="0">No seleccionada</option>
-                        <option selected value="1">A Coruña</option>
-                        <option value="2">Lugo</option>
-                        <option value="3">Ourense</option>
-                        <option value="4">Pontevedra</option>
+                        <option selected value="A Coruña">A Coruña</option>
+                        <option value="Lugo">Lugo</option>
+                        <option value="Ourense">Ourense</option>
+                        <option value="Pontevedra">Pontevedra</option>
                     </select>
                 </span>
                 <button type="button" class="location-button">
@@ -69,11 +69,10 @@
                 </span>
             </fieldset>
 
-        <input :disabled="disabled" class="submit-arbol" type="submit">
+        <input :disabled="disabled" class="submit-arbol" type="submit" @click="enviarAlta">
+        <strong v-if="loading">Grabando....</strong>
         </form>
     </div>
-
-
 <!-- pie de pagina -->
 <FooterSection />
   
@@ -105,21 +104,43 @@ onMounted(
     }
 });
 
-
-
-
 const datos = reactive({  //objetos y array
+    id:null,
     nombreArbol: "",
     nombreReferencia:"",
-    especie:[],
+    especie: '',
     descriptionArbol:"",
-    arbolProvincia:["A Coruña", "Lugo", "Ourense", "Pontevedra"],  
+    arbolProvincia: '',  
     latitud:"",
     longitud:"",
 
 });
 
-const disabled = ref(true);
+const disabled = ref(false);
+
+// Métodos
+/**
+ * funcion que da de alta un arbol senlleiro
+ */
+const enviarAlta = async()  =>{ 
+    datos.id = `a-${Date.now()}`;
+    try {
+        loading.value = true;
+        await store.dispatch('arboles/darAlta', datos);
+    } catch (error) {
+        console.log(error);
+    }finally{ 
+         loading.value = false;
+         datos.id =null;
+         datos.nombreArbol= "",
+         datos.nombreReferencia="",
+         datos.especie= '',
+         datos.descriptionArbol="",
+         datos.arbolProvincia= '',  
+         datos.latitud="",
+         datos.longitud=""
+    }  
+}
 
 </script>
 

@@ -2,7 +2,8 @@ import { createStore } from 'vuex'
 import router from '@/router';//Esta línea no está en el original. Nos permite manipular las rutas
 import species from './species';
 import especies from './especies';
-import users from './users'
+import users from './users';
+import arboles from './arboles';
 
 //Modelo "arbores-senlleiras-b52f1"
 const SENLLEIRAS = 'https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/senlleiras.json';
@@ -105,6 +106,7 @@ export default createStore({
   modules: {
     species,
     especies,
-    users
+    users,
+    arboles
   },
 })
