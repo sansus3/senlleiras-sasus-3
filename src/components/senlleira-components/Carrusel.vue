@@ -31,7 +31,7 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { onMounted, reactive } from 'vue';
 const images = reactive([
     {
         url: './conxo.jpg',
@@ -97,6 +97,17 @@ const limpiar = () => {
         images[i].puntos['posicionado'] = false;
     }
 }
+onMounted(()=>{
+    setInterval(()=>{
+    contador++;
+    if(contador >3){
+        contador = 0;
+    }
+    limpiar();
+    images[contador].clases['carruselmostrado'] = true;
+    images[contador].puntos['posicionado'] = true;
+      },12000)  
+});
 
 </script>
 
@@ -104,101 +115,97 @@ const limpiar = () => {
 <style scoped>
 /* CARRUSEL     */
 
-.header-carrusel-app {
+.header-carrusel-app{
     display: inline-block;
     position: relative;
     height: 250px;
     width: 100%;
 }
-.carrusel-images-galery {
-    position: relative;
-    height: inherit;
-    width: inherit;
-}
-.carrusel-image {
-    width: inherit;
-    position: absolute;
-    opacity: 0;
-    transition: all ease-in-out 0.9s;
-}
-.carruselmostrado {
-    opacity: 1;
-}
-.carrusel-image img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-.carrusel-image .carrusel-description {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 70%;
-    height: 90px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    border-radius: 5px;
-    font-size: clamp(1rem, 2.5vw, 2rem);
-    text-align: center;
-    font-weight: bold;
-    background-color: rgba(150, 150, 150, 0.7);
-    color: var(--colortitulo);
-}
+    .carrusel-images-galery{
+        position: relative;
+        height:inherit;
+        width: inherit;
+    }
+        .carrusel-image{
+            width: inherit;
+            position: absolute;
+            opacity: 0;  
+            transition: all ease-in-out .9s;
+        }
+            .carruselmostrado{
+                opacity: 1;
+            }
+            .carrusel-image img{
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+            }
+        .carrusel-image .carrusel-description{
+            display: flex;
+            position: absolute;
+            width: 70%;
+            height: 80px;
+            top:50%;
+            left: 50%;
+            transform: translate( -50% , -50%);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: rgba(150, 150, 150, .6);
+            color: var(--colortitulo);
+            backdrop-filter: blur(1px);   
+        }
 /* Botones avance/retroceso carrusel  */
 
-.carrusel-button {
+.carrusel-button{
     width: 30px;
-    margin: 0 10px;
-    font-size: 20px;
+    margin:0 10px;
+    font-size: 22px;
     text-align: center;
-    color: var(--colortitulo);
-    opacity: 0.7;
-}
-.header-carrusel-app .carrusel-prev {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-}
-.header-carrusel-app .carrusel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-}
+    color: var(--colorsecundario);
+    opacity: 1;
+}  
+    .header-carrusel-app .carrusel-prev{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;     
+    }
+    .header-carrusel-app .carrusel-next{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+    }
 
-/* Indicador de posicion */
+ /* Indicador de posicion */
 
-.div-carrusel-position {
+.div-carrusel-position{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap:5px;
     margin: 5px;
     height: 15px;
 }
-.div-carrusel-position .fa-circle:hover{
-    color: var(--colorsecundario);
-    cursor: pointer;
-}
-.carrusel-position {
+.div-carrusel-position li {
     font-size: 10px;
     color: var(--colorsecundario);
-    transition: all ease-in-out 0.2s;
+    transition: all ease-in-out .2s;
 }
 
-.posicionado {
-    color: var(--colorprincipal);
-    font-size: 12px;
-    transition: all ease-in-out 0.2s;
-}
+    .posicionado{
+        color: var(--colorprincipal);
+        font-size: 12px;
+        transition: all ease-in-out .2s;
+    }
 /* texto */
 
-.carrusel-txt {
+.carrusel-txt{
     font-size: 18px;
     text-align: justify;
     padding: 10px;

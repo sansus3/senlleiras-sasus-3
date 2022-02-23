@@ -27,33 +27,8 @@ body {
 
 :root {
   --colorprincipal: green;
-  --colorsecundario: gray;
-  --colortitulo: rgb(31, 30, 30);
+  --colorsecundario: lightgray;
+  --colortitulo: white;
 }
 
-
-/* CATALOGO ARBOLES  */
-
-.catalogo-especies-section {
-  display: grid;
-  align-self: center;
-}
-.catalogo-especies-section h2 {
-  text-align: center;
-  text-transform: uppercase;
-  margin: 20px;
-}
-
-.catalogo-arboles {
-  display: grid;
-  grid-template-columns: repeat(2, 150px);
-  grid-template-rows: repeat(2, 150px);
-  gap: 10px;
-  align-self: center;
-  align-content: center;
-  margin: auto;
-}
-.catalogo a img {
-  border: 2px solid black;
-}
 </style>

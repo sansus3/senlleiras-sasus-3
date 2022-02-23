@@ -26,7 +26,7 @@
 </template>
 
 <style scoped>
-.menu-principal {
+.menu-principal{
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -34,95 +34,128 @@
     align-items: center;
     bottom: 0;
     width: 100%;
-    height: 60px;
-    border-top: 9px solid var(--colorsecundario);
+    height: 50px;
+    border-top: 7px solid var(--colortitulo);
+    box-shadow: 0px 0px 6px 0 white;
 }
-.menu-principal .menu-elements {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
-    background-color: var(--colorprincipal);
-    justify-content: space-around;
-    align-items: center;
-}
-.menu-principal .menu-elements li {
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-.menu-principal .menu-elements li a {
-    display: flex;
-    flex-direction: column;
-    width: 100px;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    color: var(--colortitulo);
-    position: relative;
-    transition: all 0.2s ease-in-out;
-}
-.menu-principal .menu-elements li a p {
-    position: absolute;
-    bottom: 0px;
-    text-transform: uppercase;
-    display: block;
-    font-size: 16px;
-    display: none;
-}
-.menu-principal .menu-elements li a i {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    color: var(--colortitulo);
-    width: 60px;
-    height: 60px;
-    border: 5px solid transparent;
-    transition: all 0.2s ease-in-out;
-}
-.menu-principal .menu-elements li a:hover::before {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    border-top-right-radius: 25px;
-    width: 20px;
-    height: 20px;
-    top: 4px;
-    left: 5px;
-    box-shadow: 0 -8px 0 0 var(--colorsecundario);
-}
+    .menu-principal .menu-elements{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        background-color: var(--colorprincipal);
+        justify-content: space-around;
+        align-items: center;
+        
+    }
+    .menu-principal .menu-elements li{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;       
+    }
+    .menu-principal .menu-elements li a{
+        display: flex;
+        flex-direction: column;
+        width: 100px;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        color: var(--colortitulo);
+        position: relative;  
+    }
+    .menu-principal .menu-elements li a p{
+        position: absolute;
+        bottom: 7px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+        .menu-principal .menu-elements li a i{
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: var(--colortitulo);
+            width: 50px;
+            height: 50px;
+            border: 5px solid transparent;
+            transition: all .2s ease-in-out;  
+        }
+        .menu-principal .menu-elements li a:hover::before{  
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            border-top-right-radius: 100%;
+            width: 25px;
+            height: 20px;
+            top: 2px;
+            left:7px;
+            box-shadow: 0 -6px 0 0 var(--colortitulo);  
+        }
+        .menu-principal .menu-elements li a:hover::after{
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            border-top-left-radius: 100%;
+            width: 25px;
+            height: 20px;
+            top: 2px;
+            right:7px;
+            box-shadow: 0 -6px 0 0 var(--colortitulo); 
+        }
 
-.menu-principal .menu-elements li a:hover::after {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    border-top-left-radius: 25px;
-    width: 20px;
-    height: 20px;
-    top: 4px;
-    right: 5px;
-    box-shadow: 0 -8px 0 0 var(--colorsecundario);
-}
+/* NAVEGADOR HOVER */
 
-.menu-principal .menu-elements li a:hover i {
-    transform: translateY(-20px);
+.menu-principal .menu-elements li a:hover i{
+    transform: translateY(-25px);
     background-color: var(--colorprincipal);
-    border: 5px solid var(--colorsecundario);
+    border: 4px solid var(--colortitulo);
     border-radius: 100%;
+    box-shadow: 0px -1px 6px 0 var(--colortitulo);
 }
-.menu-principal .menu-elements li a:hover p {
-    display: block;
-    font-size: .8em;
-    padding-bottom: .3em;
-}
+    .menu-principal .menu-elements li a:hover p{
+        display: block;
+        font-size: 13px;
+    }
 
 /**Active */
-.router-link-exact-active i {
-    transform: translateY(-20px);
+
+li .router-link-exact-active i {
+    transform: translateY(-25px);
     background-color: var(--colorprincipal);
-    border: 5px solid var(--colorsecundario) !important;
+    border: 5px solid var(--colortitulo) !important;
     border-radius: 100%;
+    transition: all .2s linear !important; 
 }
+    .router-link-exact-active p{
+        display: block !important;
+        font-size: 13px;
+    }
+
+    .router-link-exact-active::after {
+        content: "";
+            position: absolute;
+            background-color: transparent;
+            border-top-left-radius: 100%;
+            width: 25px;
+            height: 20px;
+            top: 2px;
+            right:7px;
+            box-shadow: 0 -6px 0 0 var(--colortitulo); 
+    }
+    .router-link-exact-active::before{  
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            border-top-right-radius: 100%;
+            width: 25px;
+            height: 20px;
+            top: 2px;
+            left:7px;
+            box-shadow: 0 -6px 0 0 var(--colortitulo);  
+        }
 </style>
