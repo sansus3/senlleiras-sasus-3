@@ -20,6 +20,20 @@ document.addEventListener(
     }
 )
   
+//Buscador menu laptop
+
+const buscadorIcon = document.querySelector(".btn-search-laptop");
+const buscadorLi = document.querySelector(".header-search-laptop")
+
+buscadorIcon.addEventListener(
+    "click",
+    ()=>{
+        buscadorLi.classList.toggle("search-li-animation");
+        console.log("a")
+    }
+)
+
+
 // Carrusel
 
 const imagenesCarrusel = document.querySelectorAll(".carrusel-image");
