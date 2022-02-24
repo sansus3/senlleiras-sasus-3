@@ -4,7 +4,7 @@
             <!-- <a href="#" class="menu-display"><i class="fas fa-chevron-up"></i></a> -->
             <ul class="menu-elements">
                 <li>
-                    <router-link class="menu-catalogo" :to="{ name: 'Catalogo' }">
+                    <router-link class="menu-catalogo" :to="{ name: 'CatalogoAdmin' }">
                         <i class="fas fa-image"></i>
                         <p>Catalogo</p>
                     </router-link>
@@ -28,7 +28,7 @@
 <style scoped>
 .menu-principal{
     position: fixed;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -49,10 +49,11 @@
         
     }
     .menu-principal .menu-elements li{
-        width: 100%;
+        width: 33%;
         display: flex;
         justify-content: center;
-        text-align: center;       
+        text-align: center;
+         
     }
     .menu-principal .menu-elements li a{
         display: flex;
@@ -62,7 +63,9 @@
         justify-content: center;
         align-items: center;
         color: var(--colortitulo);
-        position: relative;  
+        position: relative;
+        transition: all .2s ease-in-out; 
+        
     }
     .menu-principal .menu-elements li a p{
         position: absolute;
@@ -122,40 +125,19 @@
         font-size: 13px;
     }
 
-/**Active */
-
-li .router-link-exact-active i {
-    transform: translateY(-25px);
-    background-color: var(--colorprincipal);
-    border: 5px solid var(--colortitulo) !important;
-    border-radius: 100%;
-    transition: all .2s linear !important; 
-}
-    .router-link-exact-active p{
-        display: block !important;
-        font-size: 13px;
-    }
-
-    .router-link-exact-active::after {
-        content: "";
-            position: absolute;
-            background-color: transparent;
-            border-top-left-radius: 100%;
-            width: 25px;
-            height: 20px;
-            top: 2px;
-            right:7px;
-            box-shadow: 0 -6px 0 0 var(--colortitulo); 
-    }
-    .router-link-exact-active::before{  
-            content: "";
-            position: absolute;
-            background-color: transparent;
-            border-top-right-radius: 100%;
-            width: 25px;
-            height: 20px;
-            top: 2px;
-            left:7px;
-            box-shadow: 0 -6px 0 0 var(--colortitulo);  
+    @media screen and (max-width:1080px){
+        .header-nav-app-laptop{
+            display: none;
         }
+        .header-nav-app{
+            display: flex;
+        }
+        .menu-principal{
+            display: flex;
+        }
+        body{
+            padding-top: 40px;
+            padding-bottom: 50px;
+        }  
+    }  
 </style>

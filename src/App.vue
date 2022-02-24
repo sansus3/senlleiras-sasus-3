@@ -21,9 +21,16 @@ a {
 }
 body {
   font-family: Montserrat, "Open Sans";
-  padding-top: 40px;
-  padding-bottom: 60px;
+  padding-top: 60px;
+  
+  
 }
+@media screen and (max-width:1080px){
+        body{
+            padding-top: 40px;
+            padding-bottom: 50px;
+        }  
+    }  
 
 :root {
   --colorprincipal: green;

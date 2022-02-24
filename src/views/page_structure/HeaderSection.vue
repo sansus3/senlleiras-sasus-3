@@ -25,7 +25,7 @@
 .header-nav-app {
     position: fixed;
     top: 0;
-    display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -93,4 +93,20 @@
     text-shadow: 5px 1px 2px black, 8px 3px 4px #808080;
     transform: skew(30deg, 0);
 }
+
+@media screen and (max-width:1080px){
+        .header-nav-app-laptop{
+            display: none;
+        }
+        .header-nav-app{
+            display: flex;
+        }
+        .menu-principal{
+            display: flex;
+        }
+        body{
+            padding-top: 40px;
+            padding-bottom: 50px;
+        }  
+    }  
 </style>

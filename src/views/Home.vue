@@ -2,6 +2,7 @@
   <div class="home">
     <!-- Vista de la cabecera página -->
     <header-section></header-section>
+    <Menuweb />
 
     <!-- Carrusel de fotos -->
     <carrusel-vue></carrusel-vue>
@@ -29,4 +30,5 @@ import HeaderSection from '@/views/page_structure/HeaderSection.vue';
 import FooterSection from '@/views/page_structure/FooterSection.vue'
 import CarruselVue from '@/components/senlleira-components/Carrusel.vue';
 import GaleriaVue from "@/components/galeria/galeria.vue"
+import Menuweb from './menu-top-web/Menuweb.vue';
 </script>
