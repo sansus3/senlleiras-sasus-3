@@ -110,7 +110,6 @@ const errores = reactive({
 
 //Ciclo de vida
 onMounted(() => {
-    store.dispatch('resetSenlleira');//reseteamos el objeto del store senlleira
     store.dispatch('species/setSpecies'); //Cargamos el listado de especies
 });
 
@@ -121,7 +120,7 @@ const species = computed(() => {
 
 //Obtenems del store el objeto senlleira que utilizaremos en el v-model del formulario
 const senlleira = computed(() => {
-    return store.state.senlleira;
+    return store.state.senlleiras.senlleira;
 });
 
 /**

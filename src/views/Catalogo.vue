@@ -54,34 +54,24 @@
     </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script setup>
+//Dependencias
 import HeaderSection from '@/views/page_structure/HeaderSection.vue';
 import FooterSection from '@/views/page_structure/FooterSection.vue';
 import { onMounted,computed } from 'vue';
 import { useStore } from 'vuex';
-export default {
-    name: 'Catalogo',
-    components: {
-        HeaderSection,
-        FooterSection,
-    },
-    setup(){
-        const store = useStore();
 
-         onMounted(()=>{
-            store.dispatch('setSenlleiras');
-        });
+//Cargamos el store
+const store = useStore();
 
-        const senlleiras = computed(()=>{
-            return store.state.senlleiras;
-        });
-
-        return {
-            senlleiras
-        }
-    }
-}
+//Variables
+const senlleiras = computed(()=>{
+    return store.state.senlleiras.senlleiras;
+});
+//Ciclo de vida
+onMounted(()=>{
+    store.dispatch('senlleiras/listSenlleiras');
+});
 </script>
 
 <style scoped>
