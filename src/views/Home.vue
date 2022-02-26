@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <!-- Vista de la cabecera página -->
-    <header-section></header-section>
-    <Menuweb />
+    <HeaderSection/>
+    <Menuweb/>
 
     <!-- Carrusel de fotos -->
-    <carrusel-vue></carrusel-vue>
+    <Carrusel/>
     <!-- <ul>
       <li>
         <router-link 
@@ -17,10 +17,10 @@
       </li>
     </ul> -->
 
-<!-- Galeria de contenido -->
-<galeria-vue> </galeria-vue>
+    <!-- Galeria de contenido -->
+    <Galeria/>
     <!-- Vista del pie de página -->
-    <footer-section></footer-section>
+    <FooterSection/>
   </div>
 </template>
 
@@ -31,4 +31,6 @@ import FooterSection from '@/views/page_structure/FooterSection.vue'
 import CarruselVue from '@/components/senlleira-components/Carrusel.vue';
 import GaleriaVue from "@/components/galeria/galeria.vue"
 import Menuweb from './menu-top-web/Menuweb.vue';
+import Carrusel from '../components/senlleira-components/Carrusel.vue';
+import Galeria from '../components/galeria/galeria.vue';
 </script>

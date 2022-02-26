@@ -1,7 +1,7 @@
 <template>
 
 <HeaderSection/>
-
+<Menuweb/>
 <section class="catalogo-administrativo-section">
     
 <h2>Listado de categorías arbóreas</h2>
@@ -81,8 +81,9 @@
 <script>
 import FooterSection from "../page_structure/FooterSection.vue";
 import HeaderSection from "../page_structure/HeaderSection.vue";
+import Menuweb from "../menu-top-web/Menuweb.vue";
 export default {
-    components: { FooterSection, HeaderSection }
+    components: { FooterSection, HeaderSection, Menuweb }
 }
 
 
