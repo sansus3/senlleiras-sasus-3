@@ -24,12 +24,16 @@ const SENLLEIRA = {
 
 const state = {
     senlleiras: [],
+    senlleirasFiltradas: [],
     senlleira: { ...SENLLEIRA },
 }
 
 const mutations = {
     listSenlleiras(state, payload) {
-        state.senlleiras = payload;
+        state.senlleiras = state.senlleirasFiltradas = payload;
+    },
+    senlleiraFilter(state,payload){
+        state.senlleirasFiltradas = payload;
     },
     confirmToggle(state, payload) {
         const index = state.senlleiras.findIndex(el => el.id === payload.id);
@@ -97,6 +101,14 @@ const actions = {
                 })
             commit('deleteSenlleira', id);
         }
+    },
+    senlleiraSearch({commit,state},data){
+        //Pasamos todo a minúsculas pues includes es sensible a mayúsculas y minúsculas
+        const min = data.toLowerCase();
+        //Array temporal donde almacenamos los resultados
+        const tmp = state.senlleiras.filter(senlleira=>senlleira.genus.toLowerCase().includes(min) || senlleira.specie.toLowerCase().includes(min) || senlleira.nombreReferencia.toLowerCase().includes(min) || senlleira.nombreComun.toLowerCase().includes(min));
+        //Almacenams en el state los datos filtrados
+        commit('senlleiraFilter',tmp);        
     },
     setSenlleira({ commit }, id) {
         commit('setSenlleira', id);
