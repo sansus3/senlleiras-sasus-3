@@ -19,7 +19,6 @@
                 </li>
             </ul>
         </header>
-        <the-search></the-search>
         <table class="catalogo-administrativo">
             <tr class="table-header">
                 <th>Nombre científico</th>
@@ -59,7 +58,6 @@
 //Dependencias
 import HeaderSection from '@/views/page_structure/HeaderSection.vue';
 import FooterSection from '@/views/page_structure/FooterSection.vue';
-import TheSearch from '../components/senlleira-components/TheSearch.vue';
 import { onMounted,computed } from 'vue';
 import { useStore } from 'vuex';
 

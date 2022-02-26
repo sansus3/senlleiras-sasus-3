@@ -1,5 +1,5 @@
 <template>
-    <input @keyup="filtrar" type="search" v-model.trim="search.text">
+    <input placeholder="Búsqueda ..." @keyup="filtrar" type="search" v-model.trim="search.text">
 </template>
 
 <script setup>

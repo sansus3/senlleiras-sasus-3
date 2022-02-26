@@ -19,6 +19,7 @@ const SENLLEIRA = {
     apellidos: '',
     comentarios: '',
     email: '',
+    confirmado: false
 }
 
 
@@ -35,20 +36,14 @@ const mutations = {
     senlleiraFilter(state,payload){
         state.senlleirasFiltradas = payload;
     },
-    confirmToggle(state, payload) {
-        const index = state.senlleiras.findIndex(el => el.id === payload.id);
-        state.senlleiras[index].confirmado = payload.confirm;
-    },
     setSenlleira(state, payload) {
         state.senlleira = payload;
     },
-    updateSenlleira(state, payload) {
-        state.specie = payload;
+    insertSenlleira(state, payload) {
+        state.senlleiras.push(payload);
+        state.senlleira = { ...SENLLEIRA };
+        router.push('/catalogo');//router es importado
     },
-    deleteSenlleira(state, payload) {
-        state.senlleiras = state.senlleiras.filter(el => el.id !== payload);
-        router.push('/Senlleiras');//router es importado
-    }
 }
 
 const actions = {
@@ -64,44 +59,20 @@ const actions = {
         if (data)
             context.commit('listSenlleiras', Object.values(data));
     },
-    async confirmToggle({ commit }, { id, confirm }) {
-        const response = await fetch(`${SENLLEIRAS}senlleiras/${id}.json`,
-            {
-                method: 'PATCH',
-                headers: {
-                    'Cotent-Type': 'application/json'
-                },
-                body:
-                    JSON.stringify({ 'confirmado': confirm })
-            });
-        commit('confirmToggle', { id, confirm });
-    },
-    async updateSenlleira({ commit }, obj) {
+    async insertSenlleira({ commit }, obj) {
         await fetch(
             `${SENLLEIRAS}senlleiras/${obj.id}.json`,
             {
-                method: 'PATCH', // Editar datos
+                method: 'PUT', // Editar datos
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
             }
         );
-        commit('updateSenlleira', obj);
+        commit('insertSenlleira', obj);
     },
-    async deleteSenlleira({ commit }, { id }) {
-        if (id) {
-            await fetch(
-                `${SENLLEIRAS}senlleiras/${id}.json`,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-            commit('deleteSenlleira', id);
-        }
-    },
+    
     senlleiraSearch({commit,state},data){
         //Pasamos todo a minúsculas pues includes es sensible a mayúsculas y minúsculas
         const min = data.toLowerCase();

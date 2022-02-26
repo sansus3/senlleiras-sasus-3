@@ -5,7 +5,7 @@
             <ul class="header-nav-buttons">
                 <li class="header-search">
                     <i class="fas fa-search"></i>
-                    <input type="search" placeholder="Buscar" />
+                    <the-search></the-search>
                 </li>
                 <li class="header-upload">
                     <router-link 
@@ -18,6 +18,10 @@
         </nav>
     </header>
 </template>
+
+<script setup>
+import TheSearch from '@/components/senlleira-components/TheSearch.vue';
+</script>
 
 <style scoped>
 /* CABECERA TOP */
