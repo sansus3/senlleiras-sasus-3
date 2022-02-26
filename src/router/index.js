@@ -6,17 +6,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/solicitud-senlleira',
-    name: 'SolicitudSenlleira',
-    component: () => import('../views/senlleira/Solicitud.vue')
-  },
-  {
-    path: '/catalogo',
-    name: 'Catalogo',
-    component: () => import('../views/Catalogo.vue')
-  },
+  },  
   {
     path: `/catalogo-:id`,
     name: 'CatalogoSenlleira',
@@ -30,14 +20,23 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {path: '/form',
     name: 'Form',
     component: () => import(/* webpackChunkName: "about" */ '../views/form/Form.vue')
+  },
+  {path: '/catalogoad',
+    name: 'CatalogoAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views//catalogo/CatalogoAdmin.vue')
+  },
+  {path: '/menuweb',
+    name: 'MenuWeb',
+    component: () => import(/* webpackChunkName: "about" */ '../views/menu-top-web/Menuweb.vue')
+  },
+  {path: '/carrusel',
+    name: 'Carrusel',
+    component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
   }
 ]
 

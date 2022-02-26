@@ -17,13 +17,13 @@
                     <i class="fas fa-chevron-circle-right"></i>
                 </a>
             </div>
+         </div>
             <!-- indicador de posicion -->
             <ul class="div-carrusel-position">
                 <li @click="change(index)" v-for="(item, index) in images" :key="index">
                     <i class="fas fa-circle" :class="item.puntos"></i>
                 </li>
             </ul>
-        </div>
         <div
             class="carrusel-txt"
         >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quidem nam quae libero beatae tenetur earum dolore ea minus, laboriosam conseqe nam!</div>
@@ -118,26 +118,26 @@ onMounted(()=>{
 .header-carrusel-app{
     display: inline-block;
     position: relative;
-    height: 250px;
     width: 100%;
 }
     .carrusel-images-galery{
         position: relative;
-        height:inherit;
+        height:400px;
         width: inherit;
     }
         .carrusel-image{
+            display: flex;
             width: inherit;
+            height: inherit;
             position: absolute;
             opacity: 0;  
-            transition: all ease-in-out .9s;
         }
             .carruselmostrado{
                 opacity: 1;
             }
             .carrusel-image img{
                 width: 100%;
-                height: 250px;
+                height: inherit;
                 object-fit: cover;
             }
         .carrusel-image .carrusel-description{
@@ -162,8 +162,8 @@ onMounted(()=>{
 
 .carrusel-button{
     width: 30px;
-    margin:0 10px;
-    font-size: 22px;
+    margin:0 30px;
+    font-size: 35px;
     text-align: center;
     color: var(--colorsecundario);
     opacity: 1;
@@ -192,7 +192,7 @@ onMounted(()=>{
     margin: 5px;
     height: 15px;
 }
-.div-carrusel-position li {
+.carrusel-position{
     font-size: 10px;
     color: var(--colorsecundario);
     transition: all ease-in-out .2s;
@@ -203,11 +203,15 @@ onMounted(()=>{
         font-size: 12px;
         transition: all ease-in-out .2s;
     }
-/* texto */
 
-.carrusel-txt{
-    font-size: 18px;
-    text-align: justify;
-    padding: 10px;
-}
+    @media screen and (max-width:1080px){  
+        .carrusel-images-galery{
+            height: 250px;
+        }
+        .header-carrusel-app .carrusel-button{
+            font-size: 22px;
+            margin: 0 10px;
+        }
+    }
+
 </style>
