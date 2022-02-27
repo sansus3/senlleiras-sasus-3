@@ -1,6 +1,13 @@
 <template>
+  <header-section></header-section>
   <router-view />
+  <footer-section></footer-section>
 </template>
+
+<script setup>
+import HeaderSection from '@/views/page_structure/HeaderSection.vue';
+import FooterSection from '@/views/page_structure/FooterSection.vue';
+</script>
 
 <style lang="scss">
 /* CONFIGURACIÓN BÁSICA WEB */

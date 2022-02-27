@@ -13,13 +13,13 @@ const routes = [
     component: () => import('../views/senlleira/Solicitud.vue')
   },
   {
-    path: '/catalogo',
-    name: 'Catalogo',
-    component: () => import('../views/Catalogo.vue')
+    path: '/catalogo-senlleira',
+    name: 'CatalogoSenlleira',
+    component: () => import('../views/senlleira/Catalogo.vue')
   },
   {
-    path: `/catalogo-:id`,
-    name: 'CatalogoSenlleira',
+    path: `/arb-:id`,
+    name: 'Senlleira',
     component: () => import('@/views/senlleira/Mostrar.vue')
   },
   {

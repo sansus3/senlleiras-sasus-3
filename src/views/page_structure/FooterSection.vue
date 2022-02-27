@@ -4,9 +4,9 @@
             <!-- <a href="#" class="menu-display"><i class="fas fa-chevron-up"></i></a> -->
             <ul class="menu-elements">
                 <li>
-                    <router-link class="menu-catalogo" :to="{ name: 'Catalogo' }">
+                    <router-link class="menu-catalogo" :to="{ name: 'CatalogoSenlleira' }">
                         <i class="fas fa-image"></i>
-                        <p>Catalogo</p>
+                        <p>Catálogo</p>
                     </router-link>
                 </li>
                 <li>
