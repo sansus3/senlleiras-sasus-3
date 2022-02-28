@@ -1,7 +1,7 @@
 //Dependencia router/index.js
 import router from '@/router';
 //Ruta en firebase del proyecto
-const SENLLEIRAS = 'https://arbores-senlleiras-b52f1-default-rtdb.europe-west1.firebasedatabase.app/';
+const SENLLEIRAS = 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/';
 
 //Objecto
 const SENLLEIRA = {

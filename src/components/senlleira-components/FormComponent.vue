@@ -214,7 +214,7 @@ const images = reactive({
 }); //Objetos de imágenes conseguido del input type file y capturados del componente TheUploader.vue
 
 const imagesLoader = computed(() => {
-    return images.uno !== null && images["uno"].length > 0 && images["uno"][0].size <= MAXSIZE
+    return images.uno !== null && images["uno"].size <= MAXSIZE
 });//Comprobamos que esté cargada la primera imágen
 const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
 const errores = reactive({ //gestión de errores de imagen
@@ -272,6 +272,10 @@ const btnDisabled = computed(() => {
     return !expReg.test(form.value.location.latitude) || !expReg.test(form.value.location.longitude) || !expRegEmail.test(form.value.email) || !form.value.nombreReferencia.length || !form.value.email.length || loaderSpecies.value || !imagesLoader.value || errores.errorImg
 });
 
+/**
+ * 
+ * @param {Object} item Formato {id: string, file: Object File}
+ */
 const obtenerImagen = (item) => {
     const { id, file } = item;
     images[id] = file;
@@ -308,10 +312,10 @@ const cargaImagenes = () => {
     errores.errorImg = false;
     errores.errorImgStr = '';
     for (let item in images) {
-        if (images[item] && images[item].length) {
+        if (images[item]!==null) {
             //console.log(images[item][0])
-            if (images[item][0].size > MAXSIZE) {
-                const error = `${images[item][0].name} excede el máximo tamaño permitido ${images[item][0].size}. (Máximo: ${MAXSIZE}).`;
+            if (images[item].size > MAXSIZE) {
+                const error = `${images[item].name} excede el máximo tamaño permitido ${images[item].size}. (Máximo: ${MAXSIZE}).`;
                 errores.errorImg = true;
                 errores.errorImgStr = error;
                 console.log("¡Oppss!");
@@ -324,10 +328,10 @@ const subirImages = async (id) => {
     if (!errores.errorImg) {
         //Subida de imágenes
         for (let item in images) {
-            if (images[item] && images[item].length) {
+            if (images[item]!==null) {
                 //console.log(images[item][0].name)
-                const storageRef = ref(storage, `${id}/${images[item][0].name}`); //creamos una referencia
-                const reponse = await uploadBytes(storageRef, images[item][0]);
+                const storageRef = ref(storage, `${id}/${images[item].name}`); //creamos una referencia
+                const reponse = await uploadBytes(storageRef, images[item]);
             }
         }
     }

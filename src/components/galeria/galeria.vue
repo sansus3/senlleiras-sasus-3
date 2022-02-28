@@ -5,56 +5,56 @@
             
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Camelia.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/ALAMEDA_Carballo_Santa_Susana1.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/400/400" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-horizontal" :class="animationHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Castinheiro_de_indidas_1.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/ALAMEDA_Cedro_do_Atlas_1.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/240/400" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-horizontal" :class="animationHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Sen-identifica-xardin-Mendez_Nunhez.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/FECHA_Corticeira_20211216_3.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/300/600" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-vertical" :class="animationVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Palmeiras_e_Perona.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/ALAMEDA_Palmeiras_e_Perona_2.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip" :class="flipHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Sen-identifica-xardin-Mendez_Nunhez.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/FECHA_Carballo_20211216_3.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/FECHA_Corticeira_20211216_1.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/FECHA_Corticeira_20211216_3.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-vertical" :class="animationVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/FECHA_Corticeira_20211216_4.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/FECHA_Corticeira_20211216_5.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Palmeiras_e_Perona_2.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/FECHA_Corticeira_20211216_3.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip" :class="flipHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="../../../public/images/ALAMEDA_Castinheiro_de_indidas_1.jpg" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="../../../public/images/FECHA_Corticeira_20211216_4.jpg" alt=""></div>
+                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
                 </div>
             </div>
         </div>

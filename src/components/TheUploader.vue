@@ -44,8 +44,11 @@ export default {
 
         //Métodos 
         const almacenarImagenes = event => {
-            if (event.target.files.length !== 0);
-            emit('obtenerImagen', { id: props.cod, file: event.target.files });
+            emit('obtenerImagen', 
+            { 
+                id: props.cod, 
+                file: event.target.files.length!==0?event.target.files[0]:null
+            });
         }
 
         return {
