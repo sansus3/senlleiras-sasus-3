@@ -1,20 +1,21 @@
 <template>
     <div class="field">
-        <label class="form-label">{{title}}
-        <input
-            @change="almacenarImagenes($event)"
-            class="form-control"
-            type="file"
-            :accept="accept"
-            :multiple="multiple"
-            :required="required"
-        >
+        <label class="form-label">
+            {{ title }}
+            <input
+                @change="almacenarImagenes($event)"
+                class="form-control"
+                type="file"
+                :accept="accept"
+                :multiple="multiple"
+                :required="required"
+            />
         </label>
     </div>
 </template>
 
 <script>
-import { inject } from "vue";
+
 
 export default {
     props: {
@@ -26,6 +27,10 @@ export default {
             type: String,
             default: "Imagen"
         },
+        cod: {
+            type: String,
+            required: true
+        },
         multiple: {
             type: Boolean,
             default: false
@@ -35,16 +40,16 @@ export default {
             default: false
         }
     },
-    setup() {
-        const images = inject('images');
+    setup(props, { emit }) {
+
         //Métodos 
         const almacenarImagenes = event => {
-            images.push(event.target.files);
-            //console.log(images)
-        } 
+            if (event.target.files.length !== 0);
+            emit('obtenerImagen', { id: props.cod, file: event.target.files });
+        }
 
         return {
-            almacenarImagenes,           
+            almacenarImagenes,
         };
     }
 }

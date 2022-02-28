@@ -43,7 +43,7 @@ const mutations = {
     insertSenlleira(state, payload) {
         state.senlleiras.push(payload);
         state.senlleira = { ...SENLLEIRA };
-        router.push('/catalogo');//router es importado
+        router.push('/catalogo-senlleira');//router es importado
     },
 }
 

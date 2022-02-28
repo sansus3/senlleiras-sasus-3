@@ -147,7 +147,7 @@ table {
         font-weight: bold;
     }
     td:nth-of-type(1):before {
-        content: "Fila";
+        content: "";
     }
     td:nth-of-type(2):before {
         content: "Nombre científico";

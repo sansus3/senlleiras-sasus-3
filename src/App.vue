@@ -9,7 +9,7 @@ import HeaderSection from '@/views/page_structure/HeaderSection.vue';
 import FooterSection from '@/views/page_structure/FooterSection.vue';
 </script>
 
-<style lang="scss">
+<style>
 /* CONFIGURACIÓN BÁSICA WEB */
 @font-face {
   font-family: Montserrat;
