@@ -340,23 +340,5 @@ const subirImages = async (id) => {
 </script>
 
 <style lang="scss">
-@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
-ul {
-    list-style-type: none;
-    padding-left: 0;
-}
-.required{
-    position: relative;
-    &:hover span::before{
-        content: attr(data-set);
-        position: absolute;        
-        top: -1.5em;
-        left: 0;
-        width: fit-content;
-        padding: .5em;
-        background-color: white;
-        white-space: nowrap;
-        box-shadow: 0 0 2px 2px black;
-    }
-}
+@import url(../../assets/scss/form.scss);
 </style>
