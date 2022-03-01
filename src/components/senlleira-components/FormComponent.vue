@@ -12,13 +12,14 @@
             <legend>Nombre de la planta</legend>
             <ul class="fields row g-2">
                 <li class="field col-auto">
-                    <label class="form-label" for="especie">
+                    <label class="form-label required" for="especie">
                         <span
                             v-if="loaderSpecies"
                             class="spinner-border spinner-border-sm"
                             role="status"
                             aria-hidden="true"
                         ></span> Nombre científico
+                        <span data-set="Campo obligatorio" class="text-danger">*</span>
                     </label>
                     <select
                         @change="obtenerNombreComun"
@@ -54,7 +55,7 @@
                     />
                 </li>
                 <li class="field col">
-                    <label class="form-label" for="nombrearbol">Nombre de referencia</label>
+                    <label class="form-label required" for="nombrearbol">Nombre de referencia<span data-set="Campo obligatorio" class="text-danger">*</span></label>
                     <input
                         class="form-control"
                         placeholder="Su nombre aquí"
@@ -141,7 +142,7 @@
                     aria-describedby="correo"
                     v-model.trim="form.email"
                 />
-                <span class="input-group-text" id="correo">Correo electrónico</span>
+                <span class="input-group-text required" id="correo">Correo electrónico<span data-set="Campo obligatorio" class="text-danger">*</span></span>
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
@@ -197,8 +198,8 @@ import { storage } from "@/hooks/firebase";//storage de firebase para almacenar 
 import { ref, uploadBytes } from "firebase/storage";
 import { ref as refe, onMounted, computed, reactive } from 'vue';
 import { useStore } from 'vuex';
-import TheGeolocation from '@/components/TheGeolocation.vue';
-import TheUploader from '@/components/TheUploader.vue';
+import TheGeolocation from '@/components/senlleira-components/TheGeolocation.vue';
+import TheUploader from '@/components/senlleira-components/TheUploader.vue';
 
 //Accedemos al Store de Vuex
 const store = useStore();
@@ -288,12 +289,12 @@ const submit = async () => {
     const id = `sen-${Date.now()}`;
     if (!errores.errorImg) {
         try {
+            loaderSave.value = true;
             try {
                 await subirImages(id);
             } catch (error) {
                 console.log(error);
-            }
-            loaderSave.value = true;
+            }            
             form.value.id = id;
             await store.dispatch('senlleiras/insertSenlleira', form.value);
         } catch (error) {
@@ -338,10 +339,24 @@ const subirImages = async (id) => {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 @import url("https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css");
 ul {
     list-style-type: none;
     padding-left: 0;
+}
+.required{
+    position: relative;
+    &:hover span::before{
+        content: attr(data-set);
+        position: absolute;        
+        top: -1.5em;
+        left: 0;
+        width: fit-content;
+        padding: .5em;
+        background-color: white;
+        white-space: nowrap;
+        box-shadow: 0 0 2px 2px black;
+    }
 }
 </style>

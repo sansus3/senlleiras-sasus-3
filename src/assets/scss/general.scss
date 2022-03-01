@@ -1,0 +1,29 @@
+@import "_variables";
+@font-face {
+  font-family: $mainFont;
+  src: url($mainFontURL);
+}
+:root {
+    --colorprincipal: green;
+    --colorsecundario: lightgray;
+    --colortitulo: white;
+}
+*,
+*::before,
+*::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+    font-family: Montserrat, "Open Sans";
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+ul{
+    list-style-type: none;
+    padding-left: 0;
+}
+a {
+  text-decoration: none;
+}

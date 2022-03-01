@@ -6,7 +6,8 @@ import arboles from './arboles';
 
 
 export default createStore({
-  state: {   
+  state: {
+    realtimeDatabase : 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/'
   },
   mutations: { 
   },

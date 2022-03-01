@@ -1,8 +1,5 @@
 //Dependencia router/index.js
 import router from '@/router';
-//Ruta en firebase del proyecto
-const SENLLEIRAS = 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/';
-
 //Objecto
 const SENLLEIRA = {
     idSpecie: '',
@@ -49,7 +46,7 @@ const mutations = {
 
 const actions = {
     async listSenlleiras(context) {
-        const response = await fetch(`${SENLLEIRAS}senlleiras.json`,
+        const response = await fetch(`${context.rootState.realtimeDatabase}senlleiras.json`,
             {
                 method: 'GET',
                 headers: {
@@ -61,9 +58,9 @@ const actions = {
             context.commit('listSenlleiras', Object.values(data));
         }
     },
-    async insertSenlleira({ commit }, obj) {
+    async insertSenlleira({ commit,rootState }, obj) {
         await fetch(
-            `${SENLLEIRAS}senlleiras/${obj.id}.json`,
+            `${rootState.realtimeDatabase}senlleiras/${obj.id}.json`,
             {
                 method: 'PUT', // Editar datos
                 headers: {

@@ -1,7 +1,7 @@
 <template>
     <section class="geolocation">
         <div class="geolocation__field">
-            <label for="latitud" class="form-label">Latitud</label>
+            <label for="latitud" class="form-label required">Latitud<span data-set="Campo obligatorio" class="text-danger">*</span></label>
             <input
                 id="latitud"
                 name="latitud"
@@ -13,7 +13,7 @@
         </div>
 
         <div class="geolocation__field">
-            <label for="longitude" class="form-label">Longitud</label>
+            <label for="longitude" class="form-label required">Longitud<span data-set="Campo obligatorio" class="text-danger">*</span></label>
             <input
                 id="longitude"
                 name="longitude"

@@ -2,6 +2,7 @@
     <div class="field">
         <label class="form-label">
             {{ title }}
+            <span v-if="required" data-set="Campo obligatorio" class="text-danger">*</span>
             <input
                 @change="almacenarImagenes($event)"
                 class="form-control"
@@ -9,7 +10,7 @@
                 :accept="accept"
                 :multiple="multiple"
                 :required="required"
-            />
+            />            
         </label>
     </div>
 </template>
