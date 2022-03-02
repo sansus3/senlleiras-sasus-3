@@ -28,10 +28,10 @@ const state = {
 
 const mutations = {
     listSenlleiras(state, payload) {
-        payload = payload.filter(el=>el.confirmado===true);
+        payload = payload.filter(el => el.confirmado === true);
         state.senlleiras = state.senlleirasFiltradas = payload;
     },
-    senlleiraFilter(state,payload){
+    senlleiraFilter(state, payload) {
         state.senlleirasFiltradas = payload;
     },
     setSenlleira(state, payload) {
@@ -54,11 +54,11 @@ const actions = {
                 }
             });
         const data = await response.json();
-        if (data){
+        if (data) {
             context.commit('listSenlleiras', Object.values(data));
         }
     },
-    async insertSenlleira({ commit,rootState }, obj) {
+    async insertSenlleira({ commit, rootState }, obj) {
         await fetch(
             `${rootState.realtimeDatabase}senlleiras/${obj.id}.json`,
             {
@@ -71,14 +71,20 @@ const actions = {
         );
         commit('insertSenlleira', obj);
     },
-    
-    senlleiraSearch({commit,state},data){
+
+    senlleiraSearch({ commit, state }, data) {
         //Pasamos todo a minúsculas pues includes es sensible a mayúsculas y minúsculas
         const min = data.toLowerCase();
         //Array temporal donde almacenamos los resultados
-        const tmp = state.senlleiras.filter(senlleira=>senlleira.genus.toLowerCase().includes(min) || senlleira.specie.toLowerCase().includes(min) || senlleira.nombreReferencia.toLowerCase().includes(min) || senlleira.concello.toLowerCase().includes(min) || senlleira.nombreComun.toLowerCase().includes(min)); 
+        const tmp = state.senlleiras.filter(senlleira => senlleira.genus.toLowerCase().includes(min) || senlleira.specie.toLowerCase().includes(min) || senlleira.nombreReferencia.toLowerCase().includes(min) || senlleira.concello.toLowerCase().includes(min) || senlleira.nombreComun.toLowerCase().includes(min));
         //Almacenams en el state los datos filtrados
-        commit('senlleiraFilter',tmp);        
+        commit('senlleiraFilter', tmp);
+    },
+    senlleiraSort({ state }, { field, sort }) {
+        if (sort)
+            state.senlleirasFiltradas.sort((a, z) => a[field].localeCompare(z[field]));
+        else
+            state.senlleirasFiltradas.sort((z, a) => a[field].localeCompare(z[field]));
     },
     setSenlleira({ commit }, id) {
         commit('setSenlleira', id);

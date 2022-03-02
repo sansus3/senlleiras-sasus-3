@@ -1,25 +1,20 @@
+<!-- 
+    Vista donde mostramos el catálogo de senlleiras.
+ -->
 <template>
-    <div style="overflow-x:auto;">
+    <div class="table-container">
         <table role="table">
             <caption>
                 Catálogo de Árbores senlleiras
-                <router-link type="button" :to="{ name: 'SolicitudSenlleira' }">Nueva senlleira</router-link>
+                <router-link tag="button" :to="{ name: 'SolicitudSenlleira' }">Nueva senlleira</router-link>
             </caption>
-            <thead role="rowgroup">
-                <tr role="row">
-                    <th></th>
-                    <th role="columnheader">Nombre científico</th>
-                    <th role="columnheader">Nombres comunes</th>
-                    <th role="columnheader">Nombre del arbol</th>
-                    <th role="columnheader">Concello</th>
-                    <th role="columnheader">Información</th>
-                </tr>
-            </thead>
-
+            <!-- thead Componente -->
+            <catalogo-cabecera></catalogo-cabecera>
+            <!-- tbody -->
             <tbody role="rowgroup">
                 <tr class="row" v-for="(item, index) in senlleiras" :key="item.id">
                     <td>{{ index + 1 }}</td>
-                    <td role="cell" data-th="Género y especie">{{ item.genus }} {{ item.specie }}</td>
+                    <td role="cell" data-th="Género y especie"><strong>{{ item.genus }}</strong> {{ item.specie }}</td>
                     <td role="cell" data-th="Nombre común">{{ item.nombreComun }}</td>
                     <td role="cell" data-th="Nombre de referencia">{{ item.nombreReferencia }}</td>
                     <td role="cell" data-th="Concello">{{ item.concello }}</td>
@@ -38,48 +33,46 @@
                 </tr>
             </tbody>
         </table>
+        <div style="text-align: center;">
+            <the-loader foreground="green" :loading="loading"></the-loader>
+        </div>
     </div>
 </template>
 
 <script setup>
 //Dependencias
-import { onMounted, computed } from 'vue';
+import CatalogoCabeceraVue from '@/components/senlleira-components/CatalogoCabecera.vue';
+import TheLoader from '@/components/TheLoader.vue';
+import { onMounted, computed,ref } from 'vue';
 import { useStore } from 'vuex';
-
+import CatalogoCabecera from '../../components/senlleira-components/CatalogoCabecera.vue';
 //Cargamos el store
 const store = useStore();
 
-//Variables
+/**
+ * Obtenemos el catálogo de las senlleiras filtrados
+ */
 const senlleiras = computed(() => {
     return store.state.senlleiras.senlleirasFiltradas;
 });
-//Ciclo de vida
-onMounted(() => {
-    store.dispatch('senlleiras/listSenlleiras');
+const loading = ref(false); //Variable que carga un loader en función de la carga asíncrona de los datos
+
+/**
+ * Lanzamos la acción vuex/store para obtener los datos
+ */
+onMounted(async() => {
+    try {
+       loading.value=true;
+       store.dispatch('senlleiras/listSenlleiras');
+    } catch (error) {
+        console.log(error);
+    } finally {
+        loading.value=false;
+    }
+    
 });
 </script>
 
-<style scoped>
-table {
-    width: 100%;
-}
-
-table,
-th,
-td {
-    border: 1px solid darkseagreen;
-    border-collapse: collapse;
-    padding: 5px;
-    color: forestgreen;
-}
-
-th {
-    border: 1px solid white;
-    border-bottom-color: forestgreen;
-}
-
-td:nth-child(odd) {
-    background-color: forestgreen;
-    color: white;
-}
+<style scoped lang="scss">
+ @import url(../../assets/scss/table.scss);
 </style>

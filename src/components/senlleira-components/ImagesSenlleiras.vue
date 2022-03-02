@@ -4,13 +4,17 @@
 <template>
     <div class="images">Images {{ id }}</div>
     <div class="imagenes">
+        
         <img class="imagen" v-for="(src,index) in rutas" :key="index" :src="src" :alt="`Imagen ${index}`">
+        <the-loader :loading="loader"></the-loader>
+        
     </div>
-    <span v-if="loader">Cargando</span>
+    
 </template>
 
 <script setup>
 //Dependencias
+import TheLoader from '../TheLoader.vue';
 import { storage } from '@/hooks/firebase';
 import { ref, listAll, getDownloadURL } from "firebase/storage";
 import { ref as referencia } from 'vue';
@@ -72,13 +76,15 @@ const images = async () => {
 
 <style lang="scss" scoped>
 .imagenes{
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    gap: 5px;
+    margin: 0 auto;
+    
+    border: 1px solid black;
     .imagen{
         object-fit: cover;
-        width: 20vw;
-        height: 20vh;
+        width: 200px;
     }
 }
 </style>
