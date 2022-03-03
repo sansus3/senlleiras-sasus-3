@@ -81,10 +81,11 @@ const images = async () => {
     gap: 5px;
     margin: 0 auto;
     
-    border: 1px solid black;
+    // border: 1px solid black;
     .imagen{
         object-fit: cover;
         width: 200px;
+        height: 150px;
     }
 }
 </style>

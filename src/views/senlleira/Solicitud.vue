@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import FormularioSenlleira from '@/components/senlleira-components/FormComponent';
+import FormularioSenlleira from '@/components/senlleira-components/form/FormComponent';
 </script>

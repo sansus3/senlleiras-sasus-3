@@ -168,33 +168,28 @@
             <input type="hidden" v-model="form.specie" />
             <input type="hidden" v-model="form.genus" />
             <button :disabled="btnDisabled" class="btn btn-primary">
-                <span
-                    v-if="loaderSave"
-                    class="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                ></span>
+                <the-loader :loading="loaderSave"></the-loader>
                 Guardar
             </button>
-            <span v-if="inserted">Senlleira insertado de forma correcta. Gracias por su colaboración</span>
+            <span v-if="inserted">Senlleira insertada de forma correcta. Gracias por su colaboración</span>
         </div>
     </form>
 </template>
 
 <script setup>
-import { storage } from "@/hooks/firebase";//storage de firebase para almacenar ficheros
-import { ref, uploadBytes } from "firebase/storage";
-import { ref as refe, onMounted, computed, reactive, provide } from 'vue';
+import {subirImagenes} from '@/hooks/imageUploader';
+import { ref, onMounted, computed, reactive, provide } from 'vue';
 import { useStore } from 'vuex';
 import FieldsetImages from "@/components/senlleira-components/form/FieldsetImages.vue";
 import TheGeolocation from '@/components/senlleira-components/TheGeolocation.vue';
+import TheLoader from "@/components/TheLoader.vue";
 
 //Accedemos al Store de Vuex
 const store = useStore();
 //Variables y constantes
-const loaderSpecies = refe(false);//Loader que espera a que se cargue el selector de especies
-const loaderSave = refe(false);//En espera a guardar el formulario
-const inserted = refe(false);//Si es insertado de forma correcta una senlleira esta variable mostrará un mensaje
+const loaderSpecies = ref(false);//Loader que espera a que se cargue el selector de especies
+const loaderSave = ref(false);//En espera a guardar el formulario
+const inserted = ref(false);//Si es insertado de forma correcta una senlleira esta variable mostrará un mensaje
 const form = computed(() => store.state.senlleiras.senlleira);//Generamos campos del formulario a partir de lo cargado del objeto senlleria del store
 const species = computed(() => store.state.species.speciesFilter);//Obtenemos las especies para el selector html y ordenados por género
 const images = reactive({
@@ -210,9 +205,14 @@ const errores = reactive({ //gestión de errores de imagen
     errorImgStr: '',
     maxsize: 750000
 });
+/**
+ * Pasaremos estos datos a componentes hijos
+ */
 provide('images', images);
 provide('errores', errores);
-
+/**
+ * Comprobamos si el primer elemento input tipo file se encuentra cargado
+ */
 const imagesLoader = computed(() => {
     return images.uno !== null && images["uno"].size <= errores.maxsize
 });//Comprobamos que esté cargada la primera imágen
@@ -227,7 +227,7 @@ onMounted(async () => {
         await store.dispatch('species/getListadoEspecies');
         //Los ordenamos alfabéticamente por el género
         store.dispatch('species/setSpeciesGenusSort')
-        store.dispatch('senlleiras/resetSenlleira');
+        store.dispatch('senlleiras/resetSenlleira');//cada vez que entre en esta sección reseteamos los datos de senlleiras
     } catch (error) {
         console.log(error);
     } finally {
@@ -278,7 +278,7 @@ const submit = async () => {
         try {
             loaderSave.value = true;
             try {
-                await subirImages(id);
+                await subirImagenes(id,images); //este es un hook
             } catch (error) {
                 console.log(error);
             }
@@ -287,7 +287,7 @@ const submit = async () => {
             inserted.value = true;
             window.setTimeout(() => {
                 inserted.value = false;
-            }, 3000);
+            }, 10000);
         } catch (error) {
             console.log("EditView.vue --> Submit()", error);
         } finally {
@@ -295,23 +295,8 @@ const submit = async () => {
         }
     }
 }
-
-
-//Subida de imágenes
-const subirImages = async (id) => {
-    if (!errores.errorImg) {
-        //Subida de imágenes
-        for (let item in images) {
-            if (images[item] !== null) {
-                //console.log(images[item][0].name)
-                const storageRef = ref(storage, `${id}/${images[item].name}`); //creamos una referencia
-                const reponse = await uploadBytes(storageRef, images[item]);
-            }
-        }
-    }
-}
 </script>
 
 <style lang="scss">
-@import url(../../assets/scss/form.scss);
+@import url(../../../assets/scss/form.scss);
 </style>
