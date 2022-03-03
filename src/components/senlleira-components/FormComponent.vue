@@ -55,7 +55,10 @@
                     />
                 </li>
                 <li class="field col">
-                    <label class="form-label required" for="nombrearbol">Nombre de referencia<span data-set="Campo obligatorio" class="text-danger">*</span></label>
+                    <label class="form-label required" for="nombrearbol">
+                        Nombre de referencia
+                        <span data-set="Campo obligatorio" class="text-danger">*</span>
+                    </label>
                     <input
                         class="form-control"
                         placeholder="Su nombre aquí"
@@ -142,7 +145,10 @@
                     aria-describedby="correo"
                     v-model.trim="form.email"
                 />
-                <span class="input-group-text required" id="correo">Correo electrónico<span data-set="Campo obligatorio" class="text-danger">*</span></span>
+                <span class="input-group-text required" id="correo">
+                    Correo electrónico
+                    <span data-set="Campo obligatorio" class="text-danger">*</span>
+                </span>
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
@@ -155,28 +161,9 @@
                     aria-label="With textarea"
                 ></textarea>
             </div>
-            <!-- <div
-                    v-if="errores.errorImg"
-                    class="alert alert-danger"
-                    role="alert"
-            >{{ errores.errorImgStr }}</div>-->
         </fieldset>
-        <fieldset class="card p-3 mb-3">
-            <the-uploader
-                @obtenerImagen="obtenerImagen"
-                :title="'Imagen 1'"
-                :required="true"
-                cod="uno"
-            ></the-uploader>
-            <the-uploader @obtenerImagen="obtenerImagen" :title="'Imagen 2'" cod="dos"></the-uploader>
-            <the-uploader @obtenerImagen="obtenerImagen" :title="'Imagen 3'" cod="tres"></the-uploader>
-            <div
-                v-if="errores.errorImg"
-                class="alert alert-danger"
-                role="alert"
-            >{{ errores.errorImgStr }}</div>
-        </fieldset>
-
+        <!-- fieldset images -->
+        <fieldset-images></fieldset-images>
         <div class="d-grid mb-5 gap-2 col-6 mx-auto">
             <input type="hidden" v-model="form.specie" />
             <input type="hidden" v-model="form.genus" />
@@ -189,6 +176,7 @@
                 ></span>
                 Guardar
             </button>
+            <span v-if="inserted">Senlleira insertado de forma correcta. Gracias por su colaboración</span>
         </div>
     </form>
 </template>
@@ -196,32 +184,40 @@
 <script setup>
 import { storage } from "@/hooks/firebase";//storage de firebase para almacenar ficheros
 import { ref, uploadBytes } from "firebase/storage";
-import { ref as refe, onMounted, computed, reactive } from 'vue';
+import { ref as refe, onMounted, computed, reactive, provide } from 'vue';
 import { useStore } from 'vuex';
+import FieldsetImages from "@/components/senlleira-components/form/FieldsetImages.vue";
 import TheGeolocation from '@/components/senlleira-components/TheGeolocation.vue';
-import TheUploader from '@/components/senlleira-components/TheUploader.vue';
 
 //Accedemos al Store de Vuex
 const store = useStore();
-//Variables
+//Variables y constantes
 const loaderSpecies = refe(false);//Loader que espera a que se cargue el selector de especies
 const loaderSave = refe(false);//En espera a guardar el formulario
+const inserted = refe(false);//Si es insertado de forma correcta una senlleira esta variable mostrará un mensaje
 const form = computed(() => store.state.senlleiras.senlleira);//Generamos campos del formulario a partir de lo cargado del objeto senlleria del store
 const species = computed(() => store.state.species.speciesFilter);//Obtenemos las especies para el selector html y ordenados por género
 const images = reactive({
     uno: null,
     dos: null,
     tres: null,
-}); //Objetos de imágenes conseguido del input type file y capturados del componente TheUploader.vue
-
-const imagesLoader = computed(() => {
-    return images.uno !== null && images["uno"].size <= MAXSIZE
-});//Comprobamos que esté cargada la primera imágen
-const MAXSIZE = 750000;//Tamaño máximo permitido de las imágenes
+});
+/**
+ * Objetos de imágenes conseguido del input type file y capturados del componente TheUploader.vue
+ */
 const errores = reactive({ //gestión de errores de imagen
     errorImg: false,
-    errorImgStr: ''
+    errorImgStr: '',
+    maxsize: 750000
 });
+provide('images', images);
+provide('errores', errores);
+
+const imagesLoader = computed(() => {
+    return images.uno !== null && images["uno"].size <= errores.maxsize
+});//Comprobamos que esté cargada la primera imágen
+
+
 
 //Ciclo de vida
 onMounted(async () => {
@@ -231,8 +227,7 @@ onMounted(async () => {
         await store.dispatch('species/getListadoEspecies');
         //Los ordenamos alfabéticamente por el género
         store.dispatch('species/setSpeciesGenusSort')
-        //Optenemos los datos de la senlleira
-        //store.dispatch('senlleiras/setSenlleira', idSenlleira);
+        store.dispatch('senlleiras/resetSenlleira');
     } catch (error) {
         console.log(error);
     } finally {
@@ -273,15 +268,7 @@ const btnDisabled = computed(() => {
     return !expReg.test(form.value.location.latitude) || !expReg.test(form.value.location.longitude) || !expRegEmail.test(form.value.email) || !form.value.nombreReferencia.length || !form.value.email.length || loaderSpecies.value || !imagesLoader.value || errores.errorImg
 });
 
-/**
- * 
- * @param {Object} item Formato {id: string, file: Object File}
- */
-const obtenerImagen = (item) => {
-    const { id, file } = item;
-    images[id] = file;
-    cargaImagenes();
-}
+
 /**
  * Validaremos el tamaño de imágenes por si alguno se pasa y si todo ok subimos
  */
@@ -294,9 +281,13 @@ const submit = async () => {
                 await subirImages(id);
             } catch (error) {
                 console.log(error);
-            }            
+            }
             form.value.id = id;
             await store.dispatch('senlleiras/insertSenlleira', form.value);
+            inserted.value = true;
+            window.setTimeout(() => {
+                inserted.value = false;
+            }, 3000);
         } catch (error) {
             console.log("EditView.vue --> Submit()", error);
         } finally {
@@ -305,31 +296,13 @@ const submit = async () => {
     }
 }
 
-/**
- * @description Si el formulario es validado procedemos a subir los ficheros
- * @returns {Boolean} Si la subida es correcta o no
- */
-const cargaImagenes = () => {
-    errores.errorImg = false;
-    errores.errorImgStr = '';
-    for (let item in images) {
-        if (images[item]!==null) {
-            //console.log(images[item][0])
-            if (images[item].size > MAXSIZE) {
-                const error = `${images[item].name} excede el máximo tamaño permitido ${images[item].size}. (Máximo: ${MAXSIZE}).`;
-                errores.errorImg = true;
-                errores.errorImgStr = error;
-                console.log("¡Oppss!");
-            }
-        }
-    }
-}
+
 //Subida de imágenes
 const subirImages = async (id) => {
     if (!errores.errorImg) {
         //Subida de imágenes
         for (let item in images) {
-            if (images[item]!==null) {
+            if (images[item] !== null) {
                 //console.log(images[item][0].name)
                 const storageRef = ref(storage, `${id}/${images[item].name}`); //creamos una referencia
                 const reponse = await uploadBytes(storageRef, images[item]);

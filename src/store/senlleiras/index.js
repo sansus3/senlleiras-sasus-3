@@ -38,9 +38,10 @@ const mutations = {
         state.senlleira = state.senlleiras.find(element => element.id === payload);
     },
     insertSenlleira(state, payload) {
+        state.senlleira = {...SENLLEIRA};
+        state.senlleira.location.latitude='';
+        state.senlleira.location.longitude='';
         state.senlleiras.push(payload);
-        state.senlleira = { ...SENLLEIRA };
-        router.push('/catalogo-senlleira');//router es importado
     },
 }
 
@@ -88,6 +89,11 @@ const actions = {
     },
     setSenlleira({ commit }, id) {
         commit('setSenlleira', id);
+    },
+    resetSenlleira({state}){
+        state.senlleira = {...SENLLEIRA};
+        state.senlleira.location.latitude='';
+        state.senlleira.location.longitude='';
     }
 }
 
