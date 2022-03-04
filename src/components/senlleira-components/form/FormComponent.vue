@@ -3,6 +3,7 @@
  -->
 <template>
     <form
+        id="senlleiras"
         method="post"
         enctype="multipart/form-data"
         class="senlleiras container mt-3"
@@ -117,9 +118,10 @@
             </button>
             <span v-if="inserted">Senlleira insertada de forma correcta. Gracias por su colaboración</span>
         </div>
+        <!-- <pre>{{imagenesArray}}</pre>
+    {{errores}} -->
     </form>
-    <pre>{{imagenesArray}}</pre>
-    {{errores}}
+    
 </template>
 
 <script setup>
