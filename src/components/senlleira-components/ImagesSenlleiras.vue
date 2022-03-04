@@ -2,23 +2,24 @@
     Componente donde cargamos las imágenes de "unha árbore senlleria"
  -->
 <template>
-    <div class="images">Images {{ id }}</div>
     <div class="imagenes">
-        
-        <img class="imagen" v-for="(src,index) in rutas" :key="index" :src="src" :alt="`Imagen ${index}`">
+        <carrusel
+            :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
+            :showlegend="false"
+            :images="rutas"
+        ></carrusel>
         <the-loader :loading="loader"></the-loader>
-        
     </div>
-    
 </template>
 
 <script setup>
 //Dependencias
 import TheLoader from '../TheLoader.vue';
+import Carrusel from './Carrusel.vue';
 import { storage } from '@/hooks/firebase';
 import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { ref as referencia } from 'vue';
-import { reactive,onMounted } from 'vue';
+import { ref as referencia, inject } from 'vue';
+import { reactive, onMounted } from 'vue';
 
 
 const props = defineProps({
@@ -40,17 +41,19 @@ const rutas = reactive([]);
  */
 const loader = referencia(false);
 
+const senlleira = inject('senlleira');
+
 /**
  * Obtención de las imágenes del storage de Firebase
  */
-onMounted(async ()=>{
+onMounted(async () => {
     try {
-        loader.value=true;
+        loader.value = true;
         await images();
     } catch (error) {
         console.log(error)
-    } finally{
-        loader.value=false;
+    } finally {
+        loader.value = false;
     }
 });
 
@@ -68,24 +71,16 @@ const images = async () => {
         //console.log(itemRef.fullPath)
         (async () => {
             const url = await getDownloadURL(ref(storage, itemRef.fullPath));
-            rutas.push(url);
+            const bool = rutas.length ? false : true;
+            rutas.push(
+                {
+                    url,
+                    text: 'Carballo del Bosque del Banquete de Conxo',
+                    clases: { 'carrusel-image': true, 'carruselmostrado': bool },
+                    puntos: { 'posicionado': true },
+                },
+            );
         })()
     });
 }
 </script>
-
-<style lang="scss" scoped>
-.imagenes{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-    gap: 5px;
-    margin: 0 auto;
-    
-    // border: 1px solid black;
-    .imagen{
-        object-fit: cover;
-        width: 200px;
-        height: 150px;
-    }
-}
-</style>

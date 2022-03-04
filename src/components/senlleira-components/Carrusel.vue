@@ -5,7 +5,7 @@
             <ul class="carrusel-images-galery">
                 <li v-for="(item, index) in images" :key="index" :class="item.clases">
                     <img :src="item.url" alt="texto-ejemplo" />
-                    <p class="carrusel-description">{{ item.text }}</p>
+                    <p v-if="showlegend" class="carrusel-description">{{ item.text }}</p>
                 </li>
             </ul>
             <!-- botones -->
@@ -24,48 +24,51 @@
                 </li>
             </ul>
         </div>
-        <div
-            class="carrusel-txt"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quidem nam quae libero beatae tenetur earum dolore ea minus, laboriosam conseqe nam!</div>
+        <div class="carrusel-txt">{{ carruseltext }}</div>
     </section>
 </template>
 
 <script setup>
-import { onMounted, reactive } from 'vue';
-const images = reactive([
-    {
-        url: './conxo.jpg',
-        text: 'Carballo del Bosque del Banquete de Conxo',
-        clases: { 'carrusel-image': true, 'carruselmostrado': true },
-        puntos: { 'posicionado': true },
+import { onMounted, defineProps } from 'vue';
+
+const props = defineProps({
+    /**
+     * Array de objetos. Formato:
+    [
+        {
+            url: './conxo.jpg',
+            text: 'Carballo del Bosque del Banquete de Conxo',
+            clases: { 'carrusel-image': true, 'carruselmostrado': true },//El primero mostrado
+            puntos: { 'posicionado': true },
+        },
+    ]
+     */
+    images: {
+        type: Array
     },
-    {
-        url: 'http://placekitten.com/320/249',
-        text: 'chámome Gusifredo, e levei un bo susto',
-        clases: { 'carrusel-image': true, 'carruselmostrado': false },
-        puntos: { 'posicionado': false },
+    /**
+     * {Boolean} Muestra o no la leyenda de foto de la página
+     */
+    showlegend: {
+        type: Boolean,
+        default: true
     },
-    {
-        url: 'http://placekitten.com/320/248',
-        text: 'Ese do espello son eu? Pensei que era unha Galiña',
-        clases: { 'carrusel-image': true, 'carruselmostrado': false },
-        puntos: { 'posicionado': false },
-    },
-    {
-        url: 'http://placekitten.com/320/247',
-        text: 'A eso lle chamas pienso? comeo tí lambón',
-        clases: { 'carrusel-image': true, 'carruselmostrado': false },
-        puntos: { 'posicionado': false },
-    },
-]);
+    carruseltext: {
+        type: String,
+        default: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quidem nam quae libero beatae tenetur earum dolore ea minus, laboriosam conseqe nam!'
+    }
+
+});
+
+
 
 let contador = 0;
 
 const change = i => {
     limpiar();
     contador = i;
-    images[i].clases['carruselmostrado'] = true;
-    images[i].puntos['posicionado'] = true;
+    props.images[i].clases['carruselmostrado'] = true;
+    props.images[i].puntos['posicionado'] = true;
 }
 
 const turnLeft = () => {
@@ -73,40 +76,40 @@ const turnLeft = () => {
     contador--;
     //console.log(contador)
     if (contador < 0) {
-        contador = 3
+        contador = props.images.length - 1;
         //console.log(contador)
     }
-    images[contador].clases['carruselmostrado'] = true;
-    images[contador].puntos['posicionado'] = true;
+    props.images[contador].clases['carruselmostrado'] = true;
+    props.images[contador].puntos['posicionado'] = true;
 }
 
 const turnRight = () => {
     limpiar();
     contador++
-    if (contador > 3) {
+    if (contador > props.images.length - 1) {
         contador = 0
         //console.log(contador)
     }
-    images[contador].clases['carruselmostrado'] = true;
-    images[contador].puntos['posicionado'] = true;
+    props.images[contador].clases['carruselmostrado'] = true;
+    props.images[contador].puntos['posicionado'] = true;
 }
 
 const limpiar = () => {
-    for (let i = 0, tam = images.length; i < tam; i++) {
-        images[i].clases['carruselmostrado'] = false;
-        images[i].puntos['posicionado'] = false;
+    for (let i = 0, tam = props.images.length; i < tam; i++) {
+        props.images[i].clases['carruselmostrado'] = false;
+        props.images[i].puntos['posicionado'] = false;
     }
 }
-onMounted(()=>{
-    setInterval(()=>{
-    contador++;
-    if(contador >3){
-        contador = 0;
-    }
-    limpiar();
-    images[contador].clases['carruselmostrado'] = true;
-    images[contador].puntos['posicionado'] = true;
-      },12000)  
+onMounted(() => {
+    setInterval(() => {
+        contador++;
+        if (contador > props.images.length - 1) {
+            contador = 0;
+        }
+        limpiar();
+        props.images[contador].clases['carruselmostrado'] = true;
+        props.images[contador].puntos['posicionado'] = true;
+    }, 12000)
 });
 
 </script>
@@ -115,97 +118,104 @@ onMounted(()=>{
 <style scoped>
 /* CARRUSEL     */
 
-.header-carrusel-app{
+.header-carrusel-app {
     display: inline-block;
     position: relative;
     height: 250px;
     width: 100%;
+    background: rgba(75, 76, 80, 0.4);
+    background: linear-gradient(
+        90deg,
+        rgba(75, 76, 80, 0.5) 4%,
+        rgba(131, 186, 31, 0.2556372890953257) 100%,
+        rgba(197, 205, 194, 0.48252804539784666) 100%
+    );
 }
-    .carrusel-images-galery{
-        position: relative;
-        height:inherit;
-        width: inherit;
-    }
-        .carrusel-image{
-            width: inherit;
-            position: absolute;
-            opacity: 0;  
-            transition: all ease-in-out .9s;
-        }
-            .carruselmostrado{
-                opacity: 1;
-            }
-            .carrusel-image img{
-                width: 100%;
-                height: 250px;
-                object-fit: cover;
-            }
-        .carrusel-image .carrusel-description{
-            display: flex;
-            position: absolute;
-            width: 70%;
-            height: 80px;
-            top:50%;
-            left: 50%;
-            transform: translate( -50% , -50%);
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 20px;
-            background-color: rgba(150, 150, 150, .6);
-            color: var(--colortitulo);
-            backdrop-filter: blur(1px);   
-        }
+.carrusel-images-galery {
+    position: relative;
+    height: inherit;
+    width: inherit;
+}
+.carrusel-image {
+    width: inherit;
+    position: absolute;
+    opacity: 0;
+    transition: all ease-in-out 0.9s;
+}
+.carruselmostrado {
+    opacity: 1;
+}
+.carrusel-image img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+.carrusel-image .carrusel-description {
+    display: flex;
+    position: absolute;
+    width: 70%;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(150, 150, 150, 0.6);
+    color: var(--colortitulo);
+    backdrop-filter: blur(1px);
+}
 /* Botones avance/retroceso carrusel  */
 
-.carrusel-button{
+.carrusel-button {
     width: 30px;
-    margin:0 10px;
+    margin: 0 10px;
     font-size: 22px;
     text-align: center;
     color: var(--colorsecundario);
     opacity: 1;
-}  
-    .header-carrusel-app .carrusel-prev{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0;     
-    }
-    .header-carrusel-app .carrusel-next{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-    }
+}
+.header-carrusel-app .carrusel-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+.header-carrusel-app .carrusel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}
 
- /* Indicador de posicion */
+/* Indicador de posicion */
 
-.div-carrusel-position{
+.div-carrusel-position {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap:5px;
+    gap: 5px;
     margin: 5px;
     height: 15px;
 }
 .div-carrusel-position li {
     font-size: 10px;
     color: var(--colorsecundario);
-    transition: all ease-in-out .2s;
+    transition: all ease-in-out 0.2s;
 }
 
-    .posicionado{
-        color: var(--colorprincipal);
-        font-size: 12px;
-        transition: all ease-in-out .2s;
-    }
+.posicionado {
+    color: var(--colorprincipal);
+    font-size: 12px;
+    transition: all ease-in-out 0.2s;
+}
 /* texto */
 
-.carrusel-txt{
+.carrusel-txt {
     font-size: 18px;
     text-align: justify;
     padding: 10px;

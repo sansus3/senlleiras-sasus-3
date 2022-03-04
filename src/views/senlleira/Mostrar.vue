@@ -20,7 +20,7 @@
 //Dependencias
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { computed,provide } from 'vue';
 import ImagesSenlleiras from '@/components/senlleira-components/ImagesSenlleiras.vue';
 //Cargamos el store y el route
 const store = useStore();
@@ -40,4 +40,6 @@ const senlleira = computed(() => {
     }
     return store.state.senlleiras.senlleira;
 });
+
+provide('senlleira',senlleira);
 </script>

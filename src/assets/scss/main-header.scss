@@ -41,9 +41,23 @@
 }
 .main-header .header-nav-buttons .header-search input {
     width: 60%;
+    border-width: 0;
+    padding: 0.175rem 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .main-header .header-nav-buttons .header-search input:focus {
     outline: none;
+    
 }
 .header-nav-buttons .header-upload a {
     font-size: 20px;

@@ -64,8 +64,8 @@
             border-top-right-radius: 100%;
             width: 25px;
             height: 20px;
-            top: 2px;
-            left:7px;
+            top: 3px;
+            left:8px;
             box-shadow: 0 -6px 0 0 var(--colortitulo);  
         }
         .main-footer .menu-principal .menu-elements li a:hover::after{
@@ -75,8 +75,8 @@
             border-top-left-radius: 100%;
             width: 25px;
             height: 20px;
-            top: 2px;
-            right:7px;
+            top: 3px;
+            right:8px;
             box-shadow: 0 -6px 0 0 var(--colortitulo); 
         }
 
@@ -115,8 +115,8 @@
             border-top-left-radius: 100%;
             width: 25px;
             height: 20px;
-            top: 2px;
-            right:7px;
+            top: 3px;
+            right:8px;
             box-shadow: 0 -6px 0 0 var(--colortitulo); 
     }
     .main-footer .router-link-exact-active::before{  
@@ -126,7 +126,7 @@
             border-top-right-radius: 100%;
             width: 25px;
             height: 20px;
-            top: 2px;
-            left:7px;
+            top: 3px;
+            left:8px;
             box-shadow: 0 -6px 0 0 var(--colortitulo);  
         }
