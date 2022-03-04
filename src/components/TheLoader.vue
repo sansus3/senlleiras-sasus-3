@@ -109,7 +109,7 @@ const props = defineProps({
   display: inline-block;
   width: var(--size);
   height: var(--size);
-  margin: calc(var(--size)/8px);
+  margin: calc(var(--size)/8);
   border-radius: 50%;
   background: var(--foreground);
   animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
