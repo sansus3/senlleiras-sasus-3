@@ -10,8 +10,16 @@
                 :required="true"
                 cod="uno"
             ></the-uploader>
-            <the-uploader @obtenerImagen="obtenerImagen" :title="'Imagen 2'" cod="dos"></the-uploader>
-            <the-uploader @obtenerImagen="obtenerImagen" :title="'Imagen 3'" cod="tres"></the-uploader>
+             <the-uploader
+                @obtenerImagen="obtenerImagen"
+                :title="'Imagen 2'"
+                cod="dos"
+            ></the-uploader>
+             <the-uploader
+                @obtenerImagen="obtenerImagen"
+                :title="'Imagen 3'"
+                cod="tres"
+            ></the-uploader>
             <div
                 v-if="errores.errorImg"
                 class="alert alert-danger"
@@ -22,39 +30,32 @@
 
 <script setup>
 //Dependencias
-import {inject} from "vue";
+import { imagenesArray,errores } from "@/hooks/imageUploader.hook";
 import TheUploader from '@/components/senlleira-components/TheUploader.vue';
 
-//Variables del componennte padre
-const images = inject('images');
-const errores = inject('errores');
+
 //Métodos
 /**
  * @description Envento emitido del evento onchange de componente hijo TheUploader
  * @param {Object} item Formato {id: string, file: Object File}
  */
 const obtenerImagen = (item) => {
-    const { id, file } = item;
-    images[id] = file;
-    cargaImagenes();
-}
-/**
- * @description Si el formulario es validado procedemos a subir los ficheros
- * @returns {Boolean} Si la subida es correcta o no
- */
-const cargaImagenes = () => {
-    errores.errorImg = false;
-    errores.errorImgStr = '';
-    for (let item in images) {
-        if (images[item]!==null) {
-            //console.log(images[item][0])
-            if (images[item].size > errores.maxsize) {
-                const error = `${images[item].name} excede el máximo tamaño permitido ${images[item].size}. (Máximo: ${errores.maxsize}).`;
-                errores.errorImg = true;
-                errores.errorImgStr = error;
-                console.log("¡Oppss!");
-            }
-        }
+    const index = imagenesArray.findIndex(el=>el.id===item.id);
+    if(index<0)
+        imagenesArray.push(item);
+    else if(item.file)
+        imagenesArray[index]=item;
+    else 
+        imagenesArray.splice(index,1);
+
+    if(!imagenesArray.length){
+        errores.errorImg = true;
+    }else{
+        const index = imagenesArray.findIndex(el=>el.error===true);
+        if(index<0)
+            errores.errorImg = false;
+        else
+            errores.errorImg = true;
     }
 }
 </script>

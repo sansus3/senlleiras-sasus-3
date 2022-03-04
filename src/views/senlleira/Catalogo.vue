@@ -25,7 +25,6 @@
                     <td role="cell" data-th="Concello">{{ item.concello }}</td>
                     <td role="cell" data-th="Opciones">
                         <router-link
-                            class="far fa-eye"
                             data-titulo="Mostrar"
                             :to="{
                                 name: 'Senlleira',
@@ -33,7 +32,7 @@
                                     id: item.id
                                 }
                             }"
-                        ></router-link>
+                        >🍳</router-link>
                     </td>
                 </tr>
             </tbody>

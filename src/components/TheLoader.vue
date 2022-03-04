@@ -5,7 +5,7 @@
     <div 
         v-if="loading" 
         :class="classname" 
-        :style="`--foreground: ${foreground};`"
+        :style="`--foreground: ${foreground};--size: ${sizecircle}`"
     ><div></div></div>
 </template>
 
@@ -28,10 +28,18 @@ const props = defineProps({
         default: 'lds-circle'
     },
     /**
+     * Color de frontal del loader
      */
     foreground: {
         type: String,
         default: 'rgba(53, 51, 51,.5)'
+    },
+    /**
+     * Tamaño del círculo
+     */
+    sizecircle: {
+        type: String,
+        default: '64px'
     }
 });
 </script>
@@ -99,9 +107,9 @@ const props = defineProps({
 }
 .lds-circle > div {
   display: inline-block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size)/8px);
   border-radius: 50%;
   background: var(--foreground);
   animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;

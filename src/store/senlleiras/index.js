@@ -15,7 +15,7 @@ const SENLLEIRA = {
     nombrePila: '',
     apellidos: '',
     comentarios: '',
-    email: '',
+    email: 'store/senlleira@prueba.com',
     confirmado: false
 }
 

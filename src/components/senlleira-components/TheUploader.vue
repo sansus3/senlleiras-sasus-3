@@ -16,13 +16,13 @@
                 :multiple="multiple"
                 :required="required"
             />
+            {{ error }}
         </label>
     </div>
 </template>
 
 <script>
-
-
+import { ref } from "vue";
 export default {
     props: {
         /**
@@ -31,6 +31,13 @@ export default {
         accept: {
             type: String,
             default: "image/gif, image/jpeg, image/png",
+        },
+        /**
+         * Tamaño máximo permitido
+         */
+        size: {
+            type: Number,
+            default: 750000
         },
         /**
          * Título de la imagen
@@ -63,21 +70,43 @@ export default {
         }
     },
     setup(props, { emit }) {
-
+        const error = ref('');
         /**
-         * Esta función emite una función para comunicarse con su componente padre y le pasará un objeto con el identificador y el fichero seleccionado o null si no se selecciona nada
-         * @param {Object} event Evento onchange de seleccionar una imagen
-         */
+        * Esta función emite una función para comunicarse con su componente padre y le pasará un objeto con el identificador y el fichero seleccionado o null si no se selecciona nada
+        * @param {Object} event Evento onchange de seleccionar una imagen
+        */
         const almacenarImagenes = event => {
-            emit('obtenerImagen',
-                {
-                    id: props.cod,
-                    file: event.target.files.length !== 0 ? event.target.files[0] : null
-                });
+            error.value = '';
+            /**
+             * Entrega de un objeto con un identificador pasado por el padre
+             */
+            if (event.target.files.length !== 0 && event.target.files[0].size > props.size) {
+                error.value = `${event.target.files[0].name} excede el máximo tamaño permitido ${event.target.files[0].size}. (Máximo: ${props.size}).`;
+            }
+            emit('obtenerImagen', {
+                /**
+                 * {String} id Identificador de la imagen
+                 */
+                id: props.cod,
+                /**
+                 * {Boolean} si hay elemento con error
+                 */
+                error:error.value.length>0,
+                /**
+                 * {Boolean} Si el campo del formulario es obligatorio
+                 */
+                required: props.required,
+                /**
+                 * {File|null} file Objeto. Null si se pulsa cancelar o excede el máximo tamaño permitido
+                 */
+                file: event.target.files.length !== 0 && !error.value.length ? event.target.files[0] : null
+            });
+
         }
 
         return {
             almacenarImagenes,
+            error,
         };
     }
 }
