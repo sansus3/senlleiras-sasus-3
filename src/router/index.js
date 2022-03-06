@@ -8,6 +8,11 @@ const routes = [
     component: Home
   },
   {
+    path:'/js6',
+    name: 'JavaScript6',
+    component: () => import('../views/javascript/JavaScript6.vue')
+  },
+  {
     path: '/solicitud-senlleira',
     name: 'SolicitudSenlleira',
     component: () => import('../views/senlleira/Solicitud.vue')
