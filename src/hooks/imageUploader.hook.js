@@ -1,5 +1,5 @@
 import { storage } from "@/hooks/firebase";//storage de firebase para almacenar ficheros
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import { reactive } from "vue";
 
 /**
@@ -32,4 +32,28 @@ const subirImagenes = async (id) => {
     }
 }
 
-export {subirImagenes,errores,imagenesArray}
+const getImages = async (id,rutas) => {
+    // Create a reference under which you want to list
+    const listRef = ref(storage, id);
+    // Find all the prefixes and items.
+    const res = await listAll(listRef)
+    //console.log(res)
+    res.items.forEach(async (itemRef) => {
+        // All the items under listRef.
+        //console.log(itemRef.fullPath)
+        (async () => {
+            const url = await getDownloadURL(ref(storage, itemRef.fullPath));
+            const bool = rutas.length ? false : true;
+            rutas.push(
+                {
+                    url,
+                    text: 'Carballo del Bosque del Banquete de Conxo',
+                    clases: { 'carrusel-image': true, 'carruselmostrado': bool },
+                    puntos: { 'posicionado': true },
+                },
+            );
+        })();     
+    });
+}
+
+export {subirImagenes,getImages,errores,imagenesArray}

@@ -4,7 +4,7 @@
   src: url($mainFontURL);
 }
 :root {
-    --colorprincipal: green;
+    --colorprincipal: darkgreen;
     --colorsecundario: lightgray;
     --colortitulo: white;
 }
@@ -26,4 +26,36 @@ ul{
 }
 a {
   text-decoration: none;
+}
+.container-fluid{
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.p-1{
+  padding: .25rem;
+}
+.p-3{
+  padding: .5rem;
+}
+.p-3{
+  padding: 1rem;
+}
+
+.hr{
+  border: 10px solid var(--colorprincipal);
+  width:50vw;
+  border-radius: 5px;
+}
+
+.main-title{
+  font-size: calc(1.375rem + 1.5vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+.secondary-title{
+  font-size: calc(1.275rem + 1vw);
+  font-weight: 300;
+  line-height: 1.2;
 }

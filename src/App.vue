@@ -2,7 +2,9 @@
   <!-- Main Header -->
   <header-section></header-section>
   <!-- Content -->
-  <router-view />
+  <div class="container-fluid">
+    <router-view />
+  </div>
   <!-- Main Footer -->
   <footer-section></footer-section>
 </template>
