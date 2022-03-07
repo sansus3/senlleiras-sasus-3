@@ -41,14 +41,6 @@ const routes = [
     name: 'Form',
     component: () => import(/* webpackChunkName: "about" */ '../views/form/Form.vue')
   },
-  {path: '/catalogoad',
-    name: 'CatalogoAdmin',
-    component: () => import(/* webpackChunkName: "about" */ '../views//catalogo/CatalogoAdmin.vue')
-  },
-  {path: '/menuweb',
-    name: 'MenuWeb',
-    component: () => import(/* webpackChunkName: "about" */ '../views/menu-top-web/Menuweb.vue')
-  },
   {path: '/carrusel',
     name: 'Carrusel',
     component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
