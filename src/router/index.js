@@ -37,7 +37,11 @@ const routes = [
   {path: '/carrusel',
     name: 'Carrusel',
     component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
-  }
+  },
+  // {path: '/ficha',
+  //   name: 'Ficha',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/fichas/FichaTecnica.vue')
+  // }
 ]
 
 const router = createRouter({

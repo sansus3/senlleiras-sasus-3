@@ -7,6 +7,9 @@ const state ={
 const mutations ={
     darAlta(state,payload){
     state.arboles.push(payload);
+    },
+    leerDatos(state, payload){
+        state.arboles = payload;
     }
 }
 const actions ={
@@ -19,6 +22,27 @@ const actions ={
             body: JSON.stringify(data) 
         });
         commit('darAlta',data);   
+    },
+    async leerDatos({commit}){
+        try {
+            const temporal = [];
+            const response = await fetch(`${SENLLEIRA}arboles.json`,{
+                method: 'GET',
+                headers:{
+                    'Content-Type': 'application/json',           
+                },
+            });
+            const data = await response.json();
+            for(let index in data){
+                temporal.push(data[index])
+            }
+            commit('leerDatos', temporal);
+            
+        } catch (error) {
+            console.log('Error de función leerDatos()',error);
+            
+        }
+       
     }  
 }
 

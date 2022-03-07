@@ -42,6 +42,8 @@
                 <br />
             </fieldset>
 
+            <input type="checkbox" v-model="datos.grosorTronco">
+
             <fieldset class="formulario-usuario-localizacion">
                 <legend>
                     <h2 class="h2-form">Localización</h2>
@@ -113,6 +115,8 @@ const datos = reactive({  //objetos y array
     arbolProvincia: '',  
     latitud:"",
     longitud:"",
+    confirmado: false,
+    grosorTronco: false,
 
 });
 

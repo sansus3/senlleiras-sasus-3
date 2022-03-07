@@ -6,71 +6,31 @@
     
 <h2>Listado de categorías arbóreas</h2>
 <table class="catalogo-administrativo">
-    <input type="text" 
-    name="" 
-    id=""
-    placeholder="Genero, especie, nombre"
-    >
-
-    <hr>
+    
 
     <tr class="table-header">
-        <th rowspan="2">Género</th>
-        <th rowspan="2">Especie</th>
-        <th colspan="2" >Nombre</th>
-        <th rowspan="2">Descripción</th>
-        
+        <th>Especie</th>
+        <th>Provincia</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+               
     </tr>
-    <tr class="table-subheader">
-        <th>Gallego</th>
-        <th>Castellano</th>
-    </tr>
+    <tr v-for="item in arboles" :key="item.id">
+        <td>{{item.especie}}</td>
+        <td>{{item.arbolProvincia}}</td>
+        <td>{{item.nombreArbol}}</td>
+        <td>{{item.descriptionArbol}}</td>
 
-    <tr>
-        <td>Quercus</td>
-        <td>Robur</td>
-        <td>Carballo</td>
-        <td>Roble</td>
-        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis, quia.</td>
-        <td>
-            <ul class="table-icons">
-                <li><a href="#" class="mostrar" data-titulo="Mostar"><i class="far fa-eye"></i></a></li>
-                <li><a href="#" class="mostrar" data-titulo="Editar"><i class="fas fa-edit"></i></a></li>
-                <li><a href="#" class="mostrar" data-titulo="Eliminar"><i class="fas fa-trash-alt"></i></a> </li>
-            </ul> 
-        </td>
     </tr>
-    <tr>
-        <td>Quercus</td>
-        <td>Robur</td>
-        <td>Carballo</td>
-        <td>Roble</td>
-        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis, quia.</td>
-        <td>
-            <ul class="table-icons">
-                <li><a href="#" class="mostrar" data-titulo="Mostar"><i class="far fa-eye"></i></a></li>
-                <li><a href="#" class="mostrar" data-titulo="Editar"><i class="fas fa-edit"></i></a></li>
-                <li><a href="#" class="mostrar" data-titulo="Eliminar"><i class="fas fa-trash-alt"></i></a> </li>
-            </ul> 
-        </td>
-    </tr>
+  
 
-    <tr>
-        <td>Quercus</td>
-        <td>Robur</td>
-        <td>Carballo</td>
-        <td>Roble</td>
-        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis error vitae in sint accusantium totam natus atque porro deleniti obcaecati.</td>
-        <td>
-            <ul class="table-icons">
-                <li><a href="#" class="mostrar" data-titulo="Mostar"><i class="far fa-eye"></i></a></li>
-                <li><a href="#" class="mostrar" data-titulo="Editar"><i class="fas fa-edit"></i></a></li>
-                <li><a href="#" class="mostrar" data-titulo="Eliminar"><i class="fas fa-trash-alt"></i></a> </li>
-            </ul> 
-        </td>
-    </tr>
+   
+   
+
+    
 
 </table>
+{{arboles}}
 
 </section>
 
@@ -78,13 +38,22 @@
 
 </template>
 
-<script>
+<script setup>
 import FooterSection from "../page_structure/FooterSection.vue";
 import HeaderSection from "../page_structure/HeaderSection.vue";
 import Menuweb from "../menu-top-web/Menuweb.vue";
-export default {
-    components: { FooterSection, HeaderSection, Menuweb }
-}
+import { useStore } from "vuex";
+import { computed } from "vue";
+
+const store = useStore();
+//onCreated
+store.dispatch('arboles/leerDatos');
+//Variables
+const arboles = computed(() =>{
+    return store.state.arboles.arboles;
+});
+
+
 
 
 </script>
