@@ -6,6 +6,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+<<<<<<< HEAD
   },
   {
     path:'/js6',
@@ -22,6 +23,9 @@ const routes = [
     name: 'CatalogoSenlleira',
     component: () => import('../views/senlleira/Catalogo.vue')
   },
+=======
+  },  
+>>>>>>> 6d30d453eb1eaa03d62f0ad277f95c3ce23d835c
   {
     path: `/arb-:id`,
     name: 'Senlleira',
@@ -35,11 +39,31 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
+<<<<<<< HEAD
+=======
+  {path: '/form',
+    name: 'Form',
+    component: () => import(/* webpackChunkName: "about" */ '../views/form/Form.vue')
+  },
+  {path: '/catalogoad',
+    name: 'CatalogoAdmin',
+    component: () => import(/* webpackChunkName: "about" */ '../views//catalogo/CatalogoAdmin.vue')
+  },
+  {path: '/menuweb',
+    name: 'MenuWeb',
+    component: () => import(/* webpackChunkName: "about" */ '../views/menu-top-web/Menuweb.vue')
+  },
+  {path: '/carrusel',
+    name: 'Carrusel',
+    component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
+  },
+  // {path: '/ficha',
+  //   name: 'Ficha',
+  //   component: () => import(/* webpackChunkName: "about" */ '../views/fichas/FichaTecnica.vue')
+  // }
+>>>>>>> 6d30d453eb1eaa03d62f0ad277f95c3ce23d835c
 ]
 
 const router = createRouter({
