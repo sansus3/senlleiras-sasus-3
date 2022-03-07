@@ -42,7 +42,10 @@
                 <br />
             </fieldset>
 
-            <input type="checkbox" v-model="datos.grosorTronco">
+            Grosor del tronco <input type="checkbox" v-model="datos.grosorTronco"> |
+            Antiguedad <input type="checkbox" v-model="datos.antiguedad"> |
+            Altura <input type="checkbox" v-model="datos.altura">
+             
 
             <fieldset class="formulario-usuario-localizacion">
                 <legend>
@@ -115,7 +118,12 @@ const datos = reactive({  //objetos y array
     arbolProvincia: '',  
     latitud:"",
     longitud:"",
+
+
+
     confirmado: false,
+    antiguedad: false,
+    altura: false,
     grosorTronco: false,
 
 });
