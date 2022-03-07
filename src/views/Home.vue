@@ -1,33 +1,9 @@
 <template>
   <div class="home">
-<<<<<<< HEAD
     <!-- Carrusel de fotos -->
     <carrusel-vue :images="images"></carrusel-vue>
     <!-- Galeria de contenido -->
     <galeria-vue></galeria-vue>
-=======
-    <!-- Vista de la cabecera página -->
-    <HeaderSection/>
-    <Menuweb/>
-
-    <!-- Carrusel de fotos -->
-    <Carrusel/>
-    <!-- <ul>
-      <li>
-        <router-link 
-        class="menu-inicio" 
-        :to="{ name: 'SolicitudSenlleira' }"
-        >
-          Nueva senlleira
-        </router-link>
-      </li>
-    </ul> -->
-
-    <!-- Galeria de contenido -->
-    <Galeria/>
-    <!-- Vista del pie de página -->
-    <FooterSection/>
->>>>>>> 6d30d453eb1eaa03d62f0ad277f95c3ce23d835c
   </div>
 </template>
 
@@ -35,7 +11,6 @@
 import { reactive } from 'vue';
 import CarruselVue from '@/components/senlleira-components/Carrusel.vue';
 import GaleriaVue from "@/components/galeria/galeria.vue"
-<<<<<<< HEAD
 
 const images = reactive([
     {
@@ -64,9 +39,3 @@ const images = reactive([
     },
 ]);
 </script>
-=======
-import Menuweb from './menu-top-web/Menuweb.vue';
-import Carrusel from '../components/senlleira-components/Carrusel.vue';
-import Galeria from '../components/galeria/galeria.vue';
-</script>
->>>>>>> 6d30d453eb1eaa03d62f0ad277f95c3ce23d835c

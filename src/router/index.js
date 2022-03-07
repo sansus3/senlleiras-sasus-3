@@ -6,7 +6,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-<<<<<<< HEAD
   },
   {
     path:'/js6',
@@ -23,9 +22,6 @@ const routes = [
     name: 'CatalogoSenlleira',
     component: () => import('../views/senlleira/Catalogo.vue')
   },
-=======
-  },  
->>>>>>> 6d30d453eb1eaa03d62f0ad277f95c3ce23d835c
   {
     path: `/arb-:id`,
     name: 'Senlleira',
@@ -41,8 +37,6 @@ const routes = [
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-<<<<<<< HEAD
-=======
   {path: '/form',
     name: 'Form',
     component: () => import(/* webpackChunkName: "about" */ '../views/form/Form.vue')
@@ -59,11 +53,6 @@ const routes = [
     name: 'Carrusel',
     component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
   },
-  // {path: '/ficha',
-  //   name: 'Ficha',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/fichas/FichaTecnica.vue')
-  // }
->>>>>>> 6d30d453eb1eaa03d62f0ad277f95c3ce23d835c
 ]
 
 const router = createRouter({
