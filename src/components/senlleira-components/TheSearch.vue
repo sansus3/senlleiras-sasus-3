@@ -1,3 +1,6 @@
+<!-- 
+    Buscador de Senllerias: Género, especie, nombre común, nombre de referencia, localidad
+ -->
 <template>
     <input placeholder="Búsqueda ..." @keyup="filtrar" type="search" v-model.trim="search.text">
 </template>
@@ -13,7 +16,9 @@ const search = reactive({
     text: ''
 })
 
-//Métodos
-const filtrar = () => {
-    store.dispatch('senlleiras/senlleiraSearch',search.text);}
+/**
+ * Método que obtiene los registros de una "Senlleira"
+ * @returns Género, especie, nombre común, nombre de referencia, localidad
+ */
+const filtrar = () => store.dispatch('senlleiras/senlleiraSearch',search.text);
 </script>

@@ -7,17 +7,8 @@
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script setup>
 import HeaderSection from './page_structure/HeaderSection.vue';
-import FooterSection from './page_structure/FooterSection.vue'
-
-export default {
-  name: 'About',
-  components: {
-    HeaderSection,
-    FooterSection
-  }
-}
+import FooterSection from './page_structure/FooterSection.vue';
 </script>
 

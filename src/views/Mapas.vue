@@ -1,26 +1,7 @@
 <template>
-  <div class="home">
-    <!-- Vista de la cabecera página -->
-    <header-section></header-section>
-
-   
+  <div class="container p-3">
+    <h1 class="main-title">
       Mapas
-
-    <!-- Vista del pie de página -->
-    <footer-section></footer-section>
+    </h1>
   </div>
 </template>
-
-<script>
-// @ is an alias to /src
-import HeaderSection from '@/views/page_structure/HeaderSection.vue';
-import FooterSection from '@/views/page_structure/FooterSection.vue'
-
-export default {
-  name: 'Home',
-  components: {
-    HeaderSection,
-    FooterSection,
-  }
-}
-</script>

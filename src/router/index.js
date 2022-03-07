@@ -6,10 +6,25 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-  },  
+  },
   {
-    path: `/catalogo-:id`,
+    path:'/js6',
+    name: 'JavaScript6',
+    component: () => import('../views/javascript/JavaScript6.vue')
+  },
+  {
+    path: '/solicitud-senlleira',
+    name: 'SolicitudSenlleira',
+    component: () => import('../views/senlleira/Solicitud.vue')
+  },
+  {
+    path: '/catalogo-senlleira',
     name: 'CatalogoSenlleira',
+    component: () => import('../views/senlleira/Catalogo.vue')
+  },
+  {
+    path: `/arb-:id`,
+    name: 'Senlleira',
     component: () => import('@/views/senlleira/Mostrar.vue')
   },
   {
@@ -22,22 +37,6 @@ const routes = [
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  {path: '/form',
-    name: 'Form',
-    component: () => import(/* webpackChunkName: "about" */ '../views/form/Form.vue')
-  },
-  {path: '/catalogoad',
-    name: 'CatalogoAdmin',
-    component: () => import(/* webpackChunkName: "about" */ '../views//catalogo/CatalogoAdmin.vue')
-  },
-  {path: '/menuweb',
-    name: 'MenuWeb',
-    component: () => import(/* webpackChunkName: "about" */ '../views/menu-top-web/Menuweb.vue')
-  },
-  {path: '/carrusel',
-    name: 'Carrusel',
-    component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
-  }
 ]
 
 const router = createRouter({
