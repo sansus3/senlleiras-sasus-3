@@ -37,14 +37,6 @@ const routes = [
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
-  {path: '/form',
-    name: 'Form',
-    component: () => import(/* webpackChunkName: "about" */ '../views/form/Form.vue')
-  },
-  {path: '/carrusel',
-    name: 'Carrusel',
-    component: () => import(/* webpackChunkName: "about" */ '../components/senlleira-components/Carrusel.vue')
-  },
 ]
 
 const router = createRouter({
