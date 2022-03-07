@@ -17,21 +17,14 @@
                     <i class="fas fa-chevron-circle-right"></i>
                 </a>
             </div>
-         </div>
-            <!-- indicador de posicion -->
-            <ul class="div-carrusel-position">
-                <li @click="change(index)" v-for="(item, index) in images" :key="index">
-                    <i class="fas fa-circle" :class="item.puntos"></i>
-                </li>
-            </ul>
-<<<<<<< HEAD
-        <div
-            class="carrusel-txt"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quidem nam quae libero beatae tenetur earum dolore ea minus, laboriosam conseqe nam!</div>
-=======
         </div>
+        <!-- indicador de posicion -->
+        <ul class="div-carrusel-position">
+            <li @click="change(index)" v-for="(item, index) in images" :key="index">
+                <i class="fas fa-circle" :class="item.puntos"></i>
+            </li>
+        </ul>
         <div class="carrusel-txt">{{ carruseltext }}</div>
->>>>>>> senlleiras-xurxo
     </section>
 </template>
 
@@ -129,31 +122,25 @@ onMounted(() => {
     display: inline-block;
     position: relative;
     width: 100%;
-    background: rgba(75, 76, 80, 0.4);
-    background: linear-gradient(
-        90deg,
-        rgba(75, 76, 80, 0.5) 4%,
-        rgba(131, 186, 31, 0.2556372890953257) 100%,
-        rgba(197, 205, 194, 0.48252804539784666) 100%
-    );
 }
 .carrusel-images-galery {
     position: relative;
-    height: inherit;
+    height: 400px;
     width: inherit;
 }
 .carrusel-image {
+    display: flex;
     width: inherit;
+    height: inherit;
     position: absolute;
     opacity: 0;
-    transition: all ease-in-out 0.9s;
 }
 .carruselmostrado {
     opacity: 1;
 }
 .carrusel-image img {
     width: 100%;
-    height: 250px;
+    height: inherit;
     object-fit: cover;
 }
 .carrusel-image .carrusel-description {
@@ -174,58 +161,12 @@ onMounted(() => {
     color: var(--colortitulo);
     backdrop-filter: blur(1px);
 }
-<<<<<<< HEAD
-    .carrusel-images-galery{
-        position: relative;
-        height:400px;
-        width: inherit;
-    }
-        .carrusel-image{
-            display: flex;
-            width: inherit;
-            height: inherit;
-            position: absolute;
-            opacity: 0;  
-        }
-            .carruselmostrado{
-                opacity: 1;
-            }
-            .carrusel-image img{
-                width: 100%;
-                height: inherit;
-                object-fit: cover;
-            }
-        .carrusel-image .carrusel-description{
-            display: flex;
-            position: absolute;
-            width: 70%;
-            height: 80px;
-            top:50%;
-            left: 50%;
-            transform: translate( -50% , -50%);
-            text-align: center;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 20px;
-            background-color: rgba(150, 150, 150, .6);
-            color: var(--colortitulo);
-            backdrop-filter: blur(1px);   
-        }
-=======
->>>>>>> senlleiras-xurxo
 /* Botones avance/retroceso carrusel  */
 
 .carrusel-button {
     width: 30px;
-<<<<<<< HEAD
-    margin:0 30px;
+    margin: 0 30px;
     font-size: 35px;
-=======
-    margin: 0 10px;
-    font-size: 22px;
->>>>>>> senlleiras-xurxo
     text-align: center;
     color: var(--colorsecundario);
     opacity: 1;
@@ -254,41 +195,25 @@ onMounted(() => {
     margin: 5px;
     height: 15px;
 }
-.carrusel-position{
+.carrusel-position {
     font-size: 10px;
     color: var(--colorsecundario);
     transition: all ease-in-out 0.2s;
 }
 
-<<<<<<< HEAD
-    .posicionado{
-        color: var(--colorprincipal);
-        font-size: 12px;
-        transition: all ease-in-out .2s;
-    }
-
-    @media screen and (max-width:1080px){  
-        .carrusel-images-galery{
-            height: 250px;
-        }
-        .header-carrusel-app .carrusel-button{
-            font-size: 22px;
-            margin: 0 10px;
-        }
-    }
-
-=======
 .posicionado {
     color: var(--colorprincipal);
     font-size: 12px;
     transition: all ease-in-out 0.2s;
 }
-/* texto */
 
-.carrusel-txt {
-    font-size: 18px;
-    text-align: justify;
-    padding: 10px;
+@media screen and (max-width: 1080px) {
+    .carrusel-images-galery {
+        height: 250px;
+    }
+    .header-carrusel-app .carrusel-button {
+        font-size: 22px;
+        margin: 0 10px;
+    }
 }
->>>>>>> senlleiras-xurxo
 </style>

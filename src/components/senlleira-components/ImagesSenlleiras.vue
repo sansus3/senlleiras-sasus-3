@@ -2,13 +2,17 @@
     Componente donde cargamos las imágenes de "unha árbore senlleria"
  -->
 <template>
-    <div class="imagenes">
-        <carrusel
-            :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
-            :showlegend="false"
-            :images="rutas"
-        ></carrusel>
-        <the-loader :loading="loader"></the-loader>
+    <div class="imagenes" style="display: grid;grid-template-rows: 1fr;grid-template-columns: 1fr;justify-items: center;align-items: center;">
+        <div style="grid-row: 1 / 1;grid-column: 1 / 1;">
+            <the-loader :loading="loader"></the-loader>
+        </div>
+        <div style="grid-row: 1 / 1;grid-column: 1 / 1; width: 100%;">
+            <carrusel
+                :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
+                :showlegend="false"
+                :images="rutas"
+            ></carrusel>
+        </div>      
     </div>
 </template>
 
@@ -52,10 +56,7 @@ onMounted(async () => {
     } catch (error) {
         console.log(error)
     } finally {
-        loader.value = false;
+        loader.value = true;
     }
 });
 </script>
-
-<style scoped>
-</style>
