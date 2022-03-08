@@ -27,8 +27,8 @@
             <th role="columnheader">
                  <a 
                 href="#"
-                @click.prevent="filtrar('concello')"
-                >Ayuntamiento</a>
+                @click.prevent="filtrar('lugar')"
+                >Lugar</a>
             </th>
             <th role="columnheader">Información</th>
         </tr>

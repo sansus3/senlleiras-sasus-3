@@ -8,6 +8,7 @@
                     <p v-if="showlegend" class="carrusel-description">{{ item.text }}</p>
                 </li>
             </ul>
+            
             <!-- botones -->
             <div>
                 <a @click.prevent="turnLeft" href="#" class="carrusel-button carrusel-prev">
