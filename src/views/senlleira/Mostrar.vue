@@ -4,12 +4,14 @@
  -->
 <template>
     <div class="p-3">
+        
         <template v-if="senlleira">
-            <header>
-                <h1 class="main-title">{{ senlleira.genus }} {{ senlleira.specie }}</h1>
+
+        <h1 class="main-title">{{ senlleira.genus }} {{ senlleira.specie }}</h1>
+            <div class="grid">                
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Datos técnicos</h5>
+                        <h5 class="card-title">{{ senlleira.genus }} {{ senlleira.specie }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ senlleira.nombreReferencia }}</h6>
                         <ul class="list-group">
                             <li class="list-group-item">
@@ -26,9 +28,16 @@
                         <a href="#" class="card-link">Card link</a>
                     </div>
                 </div>
-                <h2 class="secondary-title">{{ senlleira.nombreComun }}</h2>
+                <!-- Mapa de coordenadas Leaflet -->
+                <leaflet-vue :location="[senlleira.location.latitude,senlleira.location.longitude]"></leaflet-vue>
+               
+            </div>
+
+
+
+
+             <h2 class="secondary-title">{{ senlleira.nombreComun }}</h2>
                 {{ senlleira.nombreReferenica }}
-            </header>
             <images-senlleiras :id="$route.params.id"></images-senlleiras>
         </template>
     </div>
@@ -39,6 +48,7 @@
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { computed, provide } from 'vue';
+import LeafletVue from '@/components/leaflet/LeafletVue.vue';
 import ImagesSenlleiras from '@/components/senlleira-components/ImagesSenlleiras.vue';
 //Cargamos el store y el route
 const store = useStore();
@@ -63,6 +73,18 @@ provide('senlleira', senlleira);
 </script>
 
 <style scoped>
+.grid{
+    display: grid;
+    grid-template-columns: 1fr;
+     gap:.5rem;   
+}
+@media only screen and (min-width: 30rem) {
+   .grid{
+       
+        grid-template-columns:  18rem 1fr;
+
+    }
+}
 .card {
     position: relative;
     display: flex;
