@@ -206,6 +206,7 @@ onMounted(() => {
     font-size: 12px;
     transition: all ease-in-out 0.2s;
 }
+<<<<<<< HEAD
 
 @media screen and (max-width: 1080px) {
     .carrusel-images-galery {
@@ -218,10 +219,16 @@ onMounted(() => {
 }
 
 /* texto */
+=======
+>>>>>>> 476027428232566ac683feb63f1162265332aea0
 
-.carrusel-txt {
-    font-size: 18px;
-    text-align: justify;
-    padding: 10px;
+@media screen and (max-width: 1080px) {
+    .carrusel-images-galery {
+        height: 250px;
+    }
+    .header-carrusel-app .carrusel-button {
+        font-size: 22px;
+        margin: 0 10px;
+    }
 }
 </style>

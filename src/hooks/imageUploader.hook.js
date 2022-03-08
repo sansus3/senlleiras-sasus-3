@@ -43,13 +43,13 @@ const getImages = async (id,rutas) => {
         //console.log(itemRef.fullPath)
         (async () => {
             const url = await getDownloadURL(ref(storage, itemRef.fullPath));
-            const bool = rutas.length ? false : true;
+            const bool = rutas.length ? true : false;
             rutas.push(
                 {
                     url,
                     text: 'Carballo del Bosque del Banquete de Conxo',
                     clases: { 'carrusel-image': true, 'carruselmostrado': bool },
-                    puntos: { 'posicionado': true },
+                    puntos: { 'posicionado': !bool },
                 },
             );
         })();     
