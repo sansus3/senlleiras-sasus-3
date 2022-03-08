@@ -1,34 +1,26 @@
 <template>
+    <caption>
+        Catálogo de Árbores senlleiras. <strong>Total: {{countRows}}</strong>
+        <router-link :to="{ name: 'SolicitudSenlleira' }" v-slot="{ navigate }">
+            <button @click="navigate" @keypress.enter="navigate">Nueva senlleira</button>
+        </router-link>
+    </caption>
     <thead role="rowgroup">
         <tr role="row">
             <th></th>
             <th role="columnheader">
-                <a 
-                href="#"
-                @click.prevent="filtrar('genus')"
-                >Género</a>
+                <a href="#" @click.prevent="filtrar('genus')">Género</a>
                 y
-                 <a 
-                href="#"
-                @click.prevent="filtrar('specie')"
-                >especie</a> </th>
-            <th role="columnheader">
-                 <a 
-                href="#"
-                @click.prevent="filtrar('nombreComun')"
-                >Nombres comunes</a>
+                <a href="#" @click.prevent="filtrar('specie')">especie</a>
             </th>
             <th role="columnheader">
-                 <a 
-                href="#"
-                @click.prevent="filtrar('nombreReferencia')"
-                >Referencia</a>
-                </th>
+                <a href="#" @click.prevent="filtrar('nombreComun')">Nombres comunes</a>
+            </th>
             <th role="columnheader">
-                 <a 
-                href="#"
-                @click.prevent="filtrar('lugar')"
-                >Lugar</a>
+                <a href="#" @click.prevent="filtrar('nombreReferencia')">Referencia</a>
+            </th>
+            <th role="columnheader">
+                <a href="#" @click.prevent="filtrar('lugar')">Lugar</a>
             </th>
             <th role="columnheader">Información</th>
         </tr>
@@ -37,7 +29,7 @@
 
 <script setup>
 //Dependencias
-import { reactive } from 'vue';
+import { reactive,computed } from 'vue';
 import { useStore } from 'vuex';
 //Carga de vuex/store
 const store = useStore();
@@ -48,7 +40,10 @@ const orden = reactive({
     nombreComun: true,
     nombreReferencia: true,
     concello: true,
-})
+});
+
+//Total de senlleiras del catálogo
+const countRows = computed(()=>store.getters['senlleiras/getSenlleirasLength']);
 
 /**
  * Método que obtiene los registros de una "Senlleira"
@@ -56,6 +51,6 @@ const orden = reactive({
  */
 const filtrar = (genus) => {
     orden[genus] = !orden[genus];
-    store.dispatch('senlleiras/senlleiraSort',{field:genus,sort:orden[genus]})
+    store.dispatch('senlleiras/senlleiraSort', { field: genus, sort: orden[genus] })
 };
 </script>

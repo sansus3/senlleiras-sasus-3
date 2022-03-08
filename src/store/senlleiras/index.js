@@ -97,6 +97,11 @@ const actions = {
     }
 }
 
+const getters = {
+    getSenlleirasLength(state){
+        return state.senlleirasFiltradas.length;
+    }
+}
 
 
 export default {
@@ -104,4 +109,5 @@ export default {
     state,
     mutations,
     actions,
+    getters
 }

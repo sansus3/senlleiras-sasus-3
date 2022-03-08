@@ -26,6 +26,7 @@
 .table-container td:nth-child(odd) {
         background-color: var(--colorprincipal);
         color: var(--colorsecundario);
+		border-color: var(--colorsecundario);
 }
 
 

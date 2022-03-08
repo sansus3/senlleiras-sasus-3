@@ -3,13 +3,7 @@
  -->
 <template>
     <div class="table-container">
-        <table role="table">
-            <caption>
-                Catálogo de Árbores senlleiras
-                <router-link :to="{ name: 'SolicitudSenlleira' }" v-slot="{ navigate }">
-                    <button @click="navigate" @keypress.enter="navigate">Nueva senlleira</button>
-                </router-link>
-            </caption>
+        <table role="table">           
             <!-- thead Componente -->
             <catalogo-cabecera></catalogo-cabecera>
             <!-- tbody -->
