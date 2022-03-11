@@ -1,5 +1,3 @@
-//Dependencia router/index.js
-import router from '@/router';
 //Objecto
 const SENLLEIRA = {
     idSpecie: '',

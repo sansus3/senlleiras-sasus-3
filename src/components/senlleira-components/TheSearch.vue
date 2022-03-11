@@ -2,7 +2,7 @@
     Buscador de Senllerias: Género, especie, nombre común, nombre de referencia, localidad
  -->
 <template>
-    <input placeholder="Búsqueda ..." @keyup="filtrar" type="search" v-model.trim="search.text">
+    <input placeholder="Busca ..." @keyup="filtrar" type="search" v-model.trim="search.text">
 </template>
 
 <script setup>

@@ -9,10 +9,8 @@
     margin: auto;
 }
     .ficha__title{
-        color: var(--colorprincipal);
-	    font-size: clamp(1.3rem, 10vw, 3rem);
         text-align: center;
-	    font-weight: 600;
+	    font-weight: 600;    
     }
 @media screen and (min-width:485px){
     .ficha{

@@ -1,6 +1,11 @@
 <template>
-    <div style="background-color: red;">
-        <l-map style="height: 400px;width:100%;" :options="{attributionControl: false}" :zoom="theZoom" :center="location" :maxZoom="maxZoom">
+    <div style="background-color: rgb(245, 244, 244);">
+        <l-map 
+            :style="`height: ${lMapHeight};width:100%;`" 
+            :options="{attributionControl: false}" 
+            :zoom="theZoom" 
+            :center="centrado" 
+            :maxZoom="maxZoom">
             <l-control-layers position="topright"></l-control-layers>
             <l-tile-layer
                 v-for="tileProvider in tileProviders"
@@ -11,36 +16,79 @@
                 :attribution="tileProvider.attribution"
                 layer-type="base"
             />
-            <l-marker :lat-lng="location">
-                <l-icon :icon-url="iconUrl" :icon-size="iconSize" />
+            <l-marker 
+                v-for="(loc,index) in location" 
+                :key="index" 
+                :lat-lng="loc.latLong" 
+                @click="doRoute(loc.id)"
+            >
+                <l-icon  
+                    :icon-url="iconUrl" 
+                    :icon-size="iconSize"
+                />
+                <l-tooltip>
+                    {{loc.tooltip}}
+                </l-tooltip>
+                
             </l-marker>
         </l-map>
     </div>
 </template>
 
 <script setup>
-import { LMap, LTileLayer, LMarker, LIcon, LControlLayers } from "@vue-leaflet/vue-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon, LControlLayers, LTooltip } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useRouter } from "vue-router";
 import { computed,reactive } from "vue";
 
+const router = useRouter();
 const props = defineProps({
+    /**
+     * {Number} Zoom con que arranca la aplicación. Valor máximo 17
+     */
     theZoom: {
         type: Number,
         default: 16,
     },
+    /**
+     * {Number} Máximo zoom que tiene la aplicación 17
+     */
     maxZoom: {
         type: Number,
         default: 17
     },
+    /**
+     * {Number} Tamaño (ancho) de icono en píxel
+     */
     iconWidth: {
         type: Number,
         default: 25,
     },
+    /**
+     * {Number} Tamaño (altura) de icono en píxel
+     */
     iconHeight: {
         type: Number,
         default: 40,
     },
+    /**
+     * {String} Tamaño Altura del componente mapa
+     */
+    lMapHeight: {
+        type: String,
+        default: "400px",
+    },
+    /**
+     * {Array} Datos que almacena arrays donde almacena [latitiud,longitud]
+     */
     location: {
+        type: Array,
+        default: () => [{latLong:[42.877702, -8.5508146],url:''}]
+    },
+    /**
+     * {Array} Centrado del mapa
+     */
+    centrado: {
         type: Array,
         default: () => [42.877702, -8.5508146]
     }
@@ -67,6 +115,18 @@ const iconUrl = computed(() => "../../conxo.jpg");
 
 const iconSize = computed(() => [props.iconWidth, props.iconHeight]);
 
+
+const doRoute = id => {
+    if(id){
+        router.push({
+        path: '/arb-:id',
+        name: 'Senlleira',
+        params: {
+                id: id
+        }
+      })
+    }
+}
 
 </script>
 

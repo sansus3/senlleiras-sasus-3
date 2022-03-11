@@ -57,7 +57,12 @@
             <!-- Mapa de coordenadas Leaflet -->
             <div class="ficha__mapa">
                 <leaflet-vue
-                    :location="[senlleira.location.latitude, senlleira.location.longitude]"
+                    :location="[
+                        {
+                            tooltip: senlleira.nombreReferencia,
+                            latLong:[senlleira.location.latitude, senlleira.location.longitude]
+                        }
+                    ]"
                 >
                 </leaflet-vue>
             </div>           

@@ -1,20 +1,27 @@
 <template>
-    <caption>
-        Catálogo de Árbores senlleiras. <strong>Total: {{countRows}}</strong>
-        <router-link :to="{ name: 'SolicitudSenlleira' }" v-slot="{ navigate }">
-            <button @click="navigate" @keypress.enter="navigate">Nueva senlleira</button>
-        </router-link>
+    <caption class="title">
+        Catálogo de Árbores senlleiras. <strong>Total: {{countRows}}</strong>       
     </caption>
     <thead role="rowgroup">
         <tr role="row">
-            <th></th>
+            <th> 
+                <router-link 
+                    :to="{ name: 'SolicitudSenlleira' }" 
+                    v-slot="{ navigate }">
+                        <button 
+                            @click="navigate" 
+                            @keypress.enter="navigate">
+                            Nova senlleira
+                        </button>
+                </router-link>
+            </th>
             <th role="columnheader">
-                <a href="#" @click.prevent="filtrar('genus')">Género</a>
-                y
+                <a href="#" @click.prevent="filtrar('genus')">Xénero</a>
+                e
                 <a href="#" @click.prevent="filtrar('specie')">especie</a>
             </th>
             <th role="columnheader">
-                <a href="#" @click.prevent="filtrar('nombreComun')">Nombres comunes</a>
+                <a href="#" @click.prevent="filtrar('nombreComun')">Nomes comúns</a>
             </th>
             <th role="columnheader">
                 <a href="#" @click.prevent="filtrar('nombreReferencia')">Referencia</a>
