@@ -43,6 +43,10 @@
 			display: block;
 		}
 
+		.table-container .indice{
+			opacity: 0;
+		}
+
 		/* Hide table headers (but not display: none;, for accessibility) */
 		.table-container thead tr {
 			position: absolute;
@@ -53,10 +57,25 @@
     .table-container tr{
       margin: 0 0 1rem 0;
     }
+	
       
     .table-container tr:nth-child(odd) {
       background: var(--colorsecundario);
     }
+	.table-container tr:nth-child(odd) td {
+		background: var(--colorsecundario);
+		color: var(--colorprimario);
+		border-bottom: 1px solid white;
+	  }
+
+	.table-container tr:nth-child(even) {
+	background: var(--colorprimario);
+	}
+		.table-container tr:nth-child(even) td {
+			background: var(--colorprimario);
+			color: var(--colorprimario);
+			
+		}
     
     .table-container td {
 			/* Behave  like a "row" */
@@ -81,7 +100,7 @@
 		Label the data
     You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
 		*/
-		.table-container td:nth-of-type(1):before { content: "🌳"; }
+		.table-container td:nth-of-type(1):before { content: "🌳 Senlleira " attr(data-set); }
 		.table-container td:nth-of-type(2):before { content: "Género y especie"; }
 		.table-container td:nth-of-type(3):before { content: "Nombre común"; }
 		.table-container td:nth-of-type(4):before { content: "Referencia"; }

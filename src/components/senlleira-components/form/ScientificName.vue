@@ -1,10 +1,10 @@
 <template>
     <fieldset class="card p-3 mb-3">
-        <legend>Nombre de la planta</legend>
+        <legend>Datos da arbore</legend>
         <ul class="fields row g-2">
             <li class="field col-auto">
                 <label class="form-label required" for="especie">
-                    Nombre científico
+                    Nome científico
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
                 </label>
                 <select
@@ -16,7 +16,7 @@
                     required
                 >
                     <optgroup label="Sin confirmar">
-                        <option value="null">Desconocida</option>
+                        <option value="null">Descoñecida</option>
                     </optgroup>
                     <optgroup label="Especies">
                         <option
@@ -29,7 +29,7 @@
                 <the-loader :loading="loaderSpecies" sizecircle="1em" foreground="lightgreen"></the-loader>
             </li>
             <li class="field col-auto">
-                <label class="form-label" for="nombrecomun">Nombre común</label>
+                <label class="form-label" for="nombrecomun">Nome común</label>
                 <input
                     placeholder="Su nombre aquí"
                     class="form-control"
@@ -43,7 +43,7 @@
             </li>
             <li class="field col">
                 <label class="form-label required" for="nombrearbol">
-                    Nombre de referencia
+                    Nome de referencia
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
                 </label>
                 <input
@@ -57,12 +57,49 @@
                 />
             </li>
         </ul>
+
+        <!-- Altura / diametro / Edad estimada -->
+        <ul class="fields row g-2">
+            <li class="field col">
+                <label for="altura" class="form-label">Altura</label>
+                <input
+                    id="altura"
+                    name="altura"
+                    v-model.trim="form.altura"
+                    type="text"
+                    placeholder="Entre 10 y 20 metros"
+                    class="field__control form-control"
+                />
+            </li>
+            <li class="field col">
+                <label for="diametro" class="form-label">Diametro</label>
+                <input
+                    id="diametro"
+                    name="diametro"
+                    v-model.trim="form.diametro"
+                    type="text"
+                    placeholder="Sobre 1.5 metros"
+                    class="field__control form-control"
+                />
+            </li>
+            <li class="field col">
+                <label for="edadEstimada" class="form-label">Edad estimada en anos</label>
+                <input
+                    id="edadEstimada"
+                    name="edadEstimada"
+                    v-model.number="form.edadEstimada"
+                    type="number"
+                    placeholder="20"
+                    class="field__control form-control"
+                />
+            </li>
+        </ul>
     </fieldset>
 </template>
 
 <script setup>
 //Dependencias
-import { defineProps,onMounted,computed,inject } from 'vue';
+import { defineProps, onMounted, computed, inject } from 'vue';
 import { useStore } from 'vuex';
 import TheLoader from '../../TheLoader.vue';
 //Carga del store

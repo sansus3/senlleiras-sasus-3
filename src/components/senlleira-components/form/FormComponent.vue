@@ -12,7 +12,7 @@
         <header>
             <h2 class="display-6">Senlleira</h2>
         </header>
-        <!-- fieldset Nombre de la planta -->
+        <!-- fieldset Datos de la planta: nombre científico -->
         <scientific-name :form="form"></scientific-name>
         <!-- fieldset Ubicación -->
         <fieldset class="card p-3 mb-3">

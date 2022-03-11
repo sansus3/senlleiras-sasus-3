@@ -3,6 +3,7 @@
  -->
 <template>
     <div class="imagenes" style="display: grid;grid-template-rows: 1fr;grid-template-columns: 1fr;justify-items: center;align-items: center;">
+        
         <div style="grid-row: 1 / 1;grid-column: 1 / 1;">
             <the-loader :loading="loader"></the-loader>
         </div>
@@ -56,7 +57,7 @@ onMounted(async () => {
     } catch (error) {
         console.log(error)
     } finally {
-        loader.value = true;
+        loader.value = false;
     }
 });
 </script>

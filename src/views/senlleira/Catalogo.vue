@@ -9,7 +9,7 @@
             <!-- tbody -->
             <tbody role="rowgroup">
                 <tr class="row" v-for="(item, index) in senlleiras" :key="item.id">
-                    <td>{{ index + 1 }}</td>
+                    <td :data-set="index+1"><span class="indice">{{ index + 1 }}</span></td>
                     <td role="cell" data-th="Género y especie">
                         <strong>{{ item.genus }}</strong>
                         {{ item.specie }}

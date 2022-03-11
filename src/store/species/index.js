@@ -3,6 +3,11 @@ const SPECIE = {
     specie: '',
     genus: '',
     names: [],
+    hojaPerenne: false, //false hoja caduca
+    ginnospermas: false,//false angiospermas
+    altura: '', //String por si meten medidas como "20-30 cm"
+    diametro: '', //String por si meten medidas,
+    distribucion:'',//distribución geográfica
     descriptio: ''
 }
 const state = {
@@ -15,7 +20,6 @@ const mutations = {
         state.species = Object.values(payload);
     },
     setEspecie(state, payload) {
-
         state.specie = state.species.find(spe => spe.id == payload);
         //console.log(state.specie)
     },

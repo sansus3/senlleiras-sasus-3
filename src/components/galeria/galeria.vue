@@ -5,56 +5,56 @@
             
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/400/400" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_1.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_2.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-horizontal" :class="animationHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/240/400" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_3.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_4.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-horizontal" :class="animationHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/300/600" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_5.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_6.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-vertical" :class="animationVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_7.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_8.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip" :class="flipHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_9.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_10.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_11.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_12.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-vertical" :class="animationVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_13.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_14.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_15.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_16.jpg" alt=""></div>
                 </div>
             </div>
             <div class="arboles-card animation-flip" :class="flipHorizontal">
                 <div class="arboles-inner">
-                        <div class="arboles-front"><img src="http://placekitten.com/200/300" alt="imagen-ejemplo"></div>
-                        <div class="arboles-back"><img src="http://placekitten.com/200/300" alt=""></div>
+                        <div class="arboles-front"><img src="../../assets/gallery/senlleiras_17.jpg" alt="imagen-ejemplo"></div>
+                        <div class="arboles-back"><img src="../../assets/gallery/senlleiras_18.jpg" alt=""></div>
                 </div>
             </div>
         </div>

@@ -15,25 +15,25 @@ import GaleriaVue from "@/components/galeria/galeria.vue"
 const images = reactive([
     {
         url: './conxo.jpg',
-        text: 'Carballo del Bosque del Banquete de Conxo',
+        text: 'Árbore sen flor, día sen sol.',
         clases: { 'carrusel-image': true, 'carruselmostrado': true },
         puntos: { 'posicionado': true },
     },
     {
-        url: 'http://placekitten.com/320/249',
-        text: 'chámome Gusifredo, e levei un bo susto',
+        url: './gallery/senlleiras_1.jpg',
+        text: 'De tal árbore, tal acha.',
         clases: { 'carrusel-image': true, 'carruselmostrado': false },
         puntos: { 'posicionado': false },
     },
     {
-        url: 'http://placekitten.com/320/248',
-        text: 'Ese do espello son eu? Pensei que era unha Galiña',
+        url: './gallery/senlleiras_2.jpg',
+        text: 'Árbore  trasplantado, ben regado.',
         clases: { 'carrusel-image': true, 'carruselmostrado': false },
         puntos: { 'posicionado': false },
     },
     {
-        url: 'http://placekitten.com/320/247',
-        text: 'A eso lle chamas pienso? comeo tí lambón',
+        url: './gallery/senlleiras_4.jpg',
+        text: 'Quen ten árbore, ten paxaros.',
         clases: { 'carrusel-image': true, 'carruselmostrado': false },
         puntos: { 'posicionado': false },
     },

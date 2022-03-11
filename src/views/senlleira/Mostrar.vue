@@ -1,44 +1,66 @@
-<!-- 
-    Vista donde mostraremos la información de una "árbore senlleria"
-    Módulos: @/components/~/ImagesSenlleiras.vue
- -->
 <template>
-    <div class="p-3">
-        
+    <div class="ficha">
         <template v-if="senlleira">
-
-        <h1 class="main-title">{{ senlleira.genus }} {{ senlleira.specie }}</h1>
-            <div class="grid">                
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ senlleira.genus }} {{ senlleira.specie }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ senlleira.nombreReferencia }}</h6>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <em>Latitud:</em>
-                                {{ senlleira.location.latitude }}
-                            </li>
-                            <li class="list-group-item">
-                                <em>Longitud:</em>
-                                {{ senlleira.location.longitude }}
-                            </li>
-                            <li class="list-group-item">{{ senlleira.lugar }}</li>
-                        </ul>
-                        <p class="card-text">{{ senlleira.comentarios }}</p>
-                        <a href="#" class="card-link">Card link</a>
-                    </div>
-                </div>
-                <!-- Mapa de coordenadas Leaflet -->
-                <leaflet-vue :location="[senlleira.location.latitude,senlleira.location.longitude]"></leaflet-vue>
-               
+            <h2 class="ficha__title title">Ficha del arbol</h2>
+            <!-- Datos de la tabla -->
+            <div class="ficha__datos">
+                <table class="ficha-tecnica-table">
+                    <tr>
+                        <th>Nombre del árbol:</th>
+                        <td>{{ senlleira.nombreComun }}</td>
+                    </tr>
+                    <tr>
+                        <th>Especie:</th>
+                        <td>{{ senlleira.genus }} {{ senlleira.specie }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo de hoja:</th>
+                        <td>{{ senlleira.specieData.hojaPerenne ? 'Perenne' : 'Caduca' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ubicación:</th>
+                        <td>{{ senlleira.lugar }}</td>
+                    </tr>
+                    <tr>
+                        <th>Edad estimada:</th>
+                        <td>{{ senlleira.edadEstimada }}</td>
+                    </tr>
+                    <tr>
+                        <th>Altura estimada:</th>
+                        <td>{{ senlleira.altura }}</td>
+                    </tr>
+                </table>
             </div>
 
-
-
-
-             <h2 class="secondary-title">{{ senlleira.nombreComun }}</h2>
-                {{ senlleira.nombreReferenica }}
-            <images-senlleiras :id="$route.params.id"></images-senlleiras>
+            <!-- Imágenes -->
+            <div class="ficha__images">
+                <images-senlleiras :id="$route.params.id"></images-senlleiras>
+            </div>
+                
+            <!-- Descripción de la senlleira -->
+            <div class="ficha__description">
+                <table class="ficha-tecnica-table-description">
+                    <tr>
+                        <th colspan="2">Historias leyendas y curiosidades</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{ senlleira.comentarios }}</td>
+                    </tr>
+                    <tr>
+                        <td class="table-usuario" colspan="2">
+                            Ficha subida por:
+                            <span id="name-user">Manuel Rivas</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Mapa de coordenadas Leaflet -->
+            <div class="ficha__mapa">
+                <leaflet-vue
+                    :location="[senlleira.location.latitude, senlleira.location.longitude]"
+                >
+                </leaflet-vue>
+            </div>           
         </template>
     </div>
 </template>
@@ -47,7 +69,7 @@
 //Dependencias
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import { computed, provide } from 'vue';
+import { computed, onMounted, provide } from 'vue';
 import LeafletVue from '@/components/leaflet/LeafletVue.vue';
 import ImagesSenlleiras from '@/components/senlleira-components/ImagesSenlleiras.vue';
 //Cargamos el store y el route
@@ -55,93 +77,33 @@ const store = useStore();
 const route = useRoute();
 
 //Ciclo de vida onCreated
-store.dispatch('senlleiras/setSenlleira', route.params.id);
+
+onMounted(async () => {
+    try {
+        await store.dispatch('species/getListadoEspecies');
+        store.dispatch('senlleiras/setSenlleira', route.params.id);
+    } catch (error) {
+        console.log('Mostrar.vue', error);
+    }
+});
+
+
+
+
 
 //Varibables
 /**
  * Obtenemos el Objeto con todos los datos "da árbore senlleira"
  */
 const senlleira = computed(() => {
-    if (!store.state.senlleira) { //Si la propiedad "senlleira" es null en el store
-        store.dispatch('senlleiras/listSenlleiras');
-        store.dispatch('senlleiras/setSenlleira', route.params.id);
-    }
-    return store.state.senlleiras.senlleira;
+    let sen = store.state.senlleiras.senlleira;
+    const sp = store.state.species.species.find(specie => specie.id === sen.idSpecie);
+    return { ...sen, specieData: { ...sp } };
 });
 
 provide('senlleira', senlleira);
 </script>
 
-<style scoped>
-.grid{
-    display: grid;
-    grid-template-columns: 1fr;
-     gap:.5rem;   
-}
-@media only screen and (min-width: 30rem) {
-   .grid{
-       
-        grid-template-columns:  18rem 1fr;
-
-    }
-}
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-}
-.card-body {
-    flex: 1 1 auto;
-    padding: 1rem 1rem;
-}
-.card-title {
-    margin-bottom: 0.5rem;
-}
-
-.card-subtitle {
-    margin-top: -0.25rem;
-    margin-bottom: 0;
-}
-
-.card h6 {
-    font-size: 1rem;
-}
-
-.card h5 {
-    font-size: 1.25rem;
-}
-
-.card h5,
-.card h6 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-}
-.card p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-}
-.list-group-item:first-child {
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-}
-.list-group-item {
-    position: relative;
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #212529;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-}
+<style scoped lang="scss">
+@import url(../../assets/scss/mostrar.scss);
 </style>
