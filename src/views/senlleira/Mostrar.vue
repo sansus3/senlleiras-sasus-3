@@ -49,7 +49,7 @@
                     <tr>
                         <td class="table-usuario" colspan="2">
                             Ficha subida por:
-                            <span id="name-user">Manuel Rivas</span>
+                            <span id="name-user">{{senlleira.nombrePila}} {{senlleira.apellidos}}</span>
                         </td>
                     </tr>
                 </table>

@@ -2,12 +2,11 @@
     Componente donde cargamos las imágenes de "unha árbore senlleria"
  -->
 <template>
-    <div class="imagenes" style="display: grid;grid-template-rows: 1fr;grid-template-columns: 1fr;justify-items: center;align-items: center;">
-        
-        <div style="grid-row: 1 / 1;grid-column: 1 / 1;">
+    <div class="covertura__imagenes">        
+        <div class="covertura__imagenes loader">
             <the-loader :loading="loader"></the-loader>
         </div>
-        <div style="grid-row: 1 / 1;grid-column: 1 / 1; width: 100%;">
+        <div class="covertura__imagenes componente-carrusel">
             <carrusel
                 :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
                 :showlegend="false"
@@ -61,3 +60,20 @@ onMounted(async () => {
     }
 });
 </script>
+
+<style scoped>
+.covertura__imagenes{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+}
+    .covertura__imagenes.loader{
+        grid-row: 1 / 1;
+        grid-column: 1 / 1;      
+    }
+    .covertura__imagenes.componente-carrusel{
+        width: 100%;
+    }
+</style>

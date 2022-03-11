@@ -20,19 +20,19 @@ const images = reactive([
         puntos: { 'posicionado': true },
     },
     {
-        url: './gallery/senlleiras_1.jpg',
+        url: './senlleiras_1.jpg',
         text: 'De tal árbore, tal acha.',
         clases: { 'carrusel-image': true, 'carruselmostrado': false },
         puntos: { 'posicionado': false },
     },
     {
-        url: './gallery/senlleiras_2.jpg',
+        url: './senlleiras_2.jpg',
         text: 'Árbore  trasplantado, ben regado.',
         clases: { 'carrusel-image': true, 'carruselmostrado': false },
         puntos: { 'posicionado': false },
     },
     {
-        url: './gallery/senlleiras_4.jpg',
+        url: './senlleiras_5.jpg',
         text: 'Quen ten árbore, ten paxaros.',
         clases: { 'carrusel-image': true, 'carruselmostrado': false },
         puntos: { 'posicionado': false },
