@@ -39,7 +39,11 @@
                     <i class="fa-solid fa-upload"></i>Cargar Arbol
                 </router-link>
             </li>
-            <li class="header-search-laptop">
+            <li 
+                class="header-search-laptop" 
+                :class="{'search-li-animation':showSearch}"
+                @click="showSearch=!showSearch"
+            >
                 <a class="btn-search-laptop" href="#">
                     <i class="fas fa-search"></i>
                 </a>
@@ -49,7 +53,10 @@
     </nav>
 </template>
 <script setup>
+import { ref } from 'vue';
 import TheSearch from '@/components/senlleira-components/TheSearch.vue';
+//Variable que indica si el buscador es visible
+const showSearch = ref(false);
 </script>
 <style lang="scss" scoped>
     @import url(../../assets/scss/header-laptop.scss);
