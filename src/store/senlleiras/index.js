@@ -35,8 +35,11 @@ const mutations = {
     senlleiraFilter(state, payload) {
         state.senlleirasFiltradas = payload;
     },
-    setSenlleira(state, payload) {
+    addSenlleira(state, payload) {
         state.senlleira = state.senlleiras.find(element => element.id === payload);
+    },
+    setSenlleira(state,payload){
+        state.senlleira = payload;
     },
     insertSenlleira(state, payload) {
         state.senlleira = {...SENLLEIRA};
@@ -58,6 +61,20 @@ const actions = {
         const data = await response.json();
         if (data) {
             context.commit('listSenlleiras', Object.values(data));
+        }
+    },
+    async getSenlleira({commit, rootState},codSenlleiras){
+        const response = await fetch(`${rootState.realtimeDatabase}senlleiras/${codSenlleiras}.json`,
+            {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json'
+                }
+            });
+        const data = await response.json();
+        
+        if (data) {
+            commit('setSenlleira', data);
         }
     },
     async insertSenlleira({ commit, rootState }, obj) {
@@ -88,8 +105,8 @@ const actions = {
         else
             state.senlleirasFiltradas.sort((z, a) => a[field].localeCompare(z[field]));
     },
-    setSenlleira({ commit }, id) {
-        commit('setSenlleira', id);
+    addSenlleira({ commit }, id) {
+        commit('addSenlleira', id);
     },
     resetSenlleira({state}){
         state.senlleira = {...SENLLEIRA};

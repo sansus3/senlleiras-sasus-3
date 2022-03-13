@@ -7,11 +7,11 @@ document.addEventListener(
     ()=>{
      
     var st = window.pageXOffset || document.documentElement.scrollTop;
-        if(st > lastScrolltop){
+        if(st > lastScrolltop && menuHeader){
             menuHeader.classList.add("reduced");
             //console.log("reduced")
            
-        }else{
+        }else if(st <= lastScrolltop && menuHeader){
             menuHeader.classList.remove("reduced");
             //console.log("no reduced")
             
@@ -19,4 +19,17 @@ document.addEventListener(
         lastScrolltop = st <= 40 ? 40 : st;
        
     }
-)
+);
+
+//Buscador menu laptop
+const buscadorIcon = document.querySelector(".btn-search-laptop");
+const buscadorLi = document.querySelector(".header-search-laptop")
+if(buscadorIcon){
+    buscadorIcon.addEventListener(
+        "click",
+        ()=>{
+            buscadorLi.classList.toggle("search-li-animation");
+            console.log("a")
+        }
+    );
+}

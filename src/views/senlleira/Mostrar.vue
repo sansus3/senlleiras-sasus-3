@@ -63,6 +63,7 @@
                             latLong:[senlleira.location.latitude, senlleira.location.longitude]
                         }
                     ]"
+                    :centrado="[senlleira.location.latitude, senlleira.location.longitude]"
                 >
                 </leaflet-vue>
             </div>           
@@ -81,16 +82,23 @@ import ImagesSenlleiras from '@/components/senlleira-components/ImagesSenlleiras
 const store = useStore();
 const route = useRoute();
 
-//Ciclo de vida onCreated
 
-onMounted(async () => {
-    try {
-        await store.dispatch('species/getListadoEspecies');
-        store.dispatch('senlleiras/setSenlleira', route.params.id);
+
+const getListadoSenlleiras = async()=>{
+     try {
+        await store.dispatch('senlleiras/listSenlleiras');
     } catch (error) {
         console.log('Mostrar.vue', error);
     }
+}
+
+//Ciclo de vida
+onMounted(async () => {
+    await store.dispatch('species/getListadoEspecies');//Listado del modelo de datos de senlleiras para rellenar la ficha
+    await store.dispatch('senlleiras/getSenlleira',route.params.id);
 });
+
+
 
 
 
@@ -101,10 +109,13 @@ onMounted(async () => {
  * Obtenemos el Objeto con todos los datos "da árbore senlleira"
  */
 const senlleira = computed(() => {
-    let sen = store.state.senlleiras.senlleira;
+    const sen = store.state.senlleiras.senlleira;
     const sp = store.state.species.species.find(specie => specie.id === sen.idSpecie);
+    
     return { ...sen, specieData: { ...sp } };
 });
+
+
 
 provide('senlleira', senlleira);
 </script>

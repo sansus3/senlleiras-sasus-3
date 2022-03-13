@@ -1,17 +1,22 @@
 <template>
-  <div class="home">
+  <div class="home">     
     <!-- Carrusel de fotos -->
     <carrusel-vue :images="images"></carrusel-vue>
     <!-- Galeria de contenido -->
-    <galeria-vue></galeria-vue>
+    <galeria-vue @click="catalogoGo"></galeria-vue>
   </div>
 </template>
 
 <script setup>
+//Dependencias
 import { reactive } from 'vue';
+import { useRouter } from "vue-router";
 import CarruselVue from '@/components/senlleira-components/Carrusel.vue';
-import GaleriaVue from "@/components/galeria/galeria.vue"
+import GaleriaVue from "@/components/galeria/galeria.vue";
+//Cargamos el router
+const router = useRouter();
 
+//Imágenes de la galería
 const images = reactive([
     {
         url: './conxo.jpg',
@@ -38,4 +43,10 @@ const images = reactive([
         puntos: { 'posicionado': false },
     },
 ]);
+//Router para la galería. Al hacer click entrar en el catálogo
+const catalogoGo = () => {
+    router.push({
+        name: 'CatalogoSenlleira',
+      })
+}
 </script>

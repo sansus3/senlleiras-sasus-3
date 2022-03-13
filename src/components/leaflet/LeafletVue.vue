@@ -28,8 +28,7 @@
                 />
                 <l-tooltip>
                     {{loc.tooltip}}
-                </l-tooltip>
-                
+                </l-tooltip>                
             </l-marker>
         </l-map>
     </div>
@@ -48,7 +47,7 @@ const props = defineProps({
      */
     theZoom: {
         type: Number,
-        default: 16,
+        default: 10,
     },
     /**
      * {Number} Máximo zoom que tiene la aplicación 17

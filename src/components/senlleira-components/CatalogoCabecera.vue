@@ -8,7 +8,8 @@
                 <router-link 
                     :to="{ name: 'SolicitudSenlleira' }" 
                     v-slot="{ navigate }">
-                        <button 
+                        <button
+                            class="btn btn-primary"
                             @click="navigate" 
                             @keypress.enter="navigate">
                             Nova senlleira

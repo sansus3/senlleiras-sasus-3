@@ -1,6 +1,6 @@
 <template>
   <section class="catalogo-especies-section">
-        <h2 class="title">Catalogo de árboles</h2>
+        <h2 class="title">Catalogo de árbores</h2>
         <div class="catalogo-arboles-app">
             
             <div class="arboles-card animation-flip-vertical" :class="flipVertical">
