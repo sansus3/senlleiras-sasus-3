@@ -39,16 +39,22 @@
                     <i class="fa-solid fa-upload"></i>Cargar Arbol
                 </router-link>
             </li>
-            <li 
+             <li 
                 class="header-search-laptop" 
                 :class="{'search-li-animation':showSearch}"
-                @click="showSearch=!showSearch"
             >
                 <a class="btn-search-laptop" href="#">
-                    <i class="fas fa-search"></i>
+                  <i 
+                    class="fa-solid" 
+                    :class="{
+                            'fa-solid fa-magnifying-glass-plus':!showSearch,
+                            'fa-magnifying-glass-minus':showSearch,
+                            }" 
+                            @click="showSearch=!showSearch"></i> 
                 </a>
                 <the-search></the-search>
             </li>
+ 
         </ul>
     </nav>
 </template>
