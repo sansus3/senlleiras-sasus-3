@@ -13,13 +13,17 @@ const SENLLEIRA = {
     lugar: '',
     concello: '',
     location: { latitude: '', longitude: '' },
+    destacaAntiguedad: false,
+    destacaTamano: false,
+    destacaSituacion: false,
+    destacaContexto: false, //Destaca por su contexto historico
     nombrePila: '',
     apellidos: '',
     comentarios: '',
     email: 'store/senlleira@prueba.com',
+    usosCuriosidades: '',
     confirmado: false
 }
-
 
 const state = {
     senlleiras: [],

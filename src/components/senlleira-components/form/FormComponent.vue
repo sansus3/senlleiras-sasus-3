@@ -62,6 +62,49 @@
                 </li>
             </ul>
         </fieldset>
+         <!--  fieldset Motivacion -->
+        <fieldset class="card p-3 mb-3">
+            <legend>Motivo por la elección del árbol</legend>
+            <ul class="fields g-2 row">
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaAntiguedad"
+                         name="destacaAntiguedad" 
+                         id="destacaAntiguedad" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaAntiguedad">Antigüedad</label> 
+                </li> 
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaTamano"
+                         name="destacaTamano" 
+                         id="destacaTamano" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaTamano">Tamaño del árbol</label> 
+                </li>
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaSituacion"
+                         name="destacaSituacion" 
+                         id="destacaSituacion" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaSituacion">Situación del árbol</label> 
+                </li>
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaContexto" 
+                        
+                         name="destacaContexto" 
+                         id="destacaContexto" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaContexto">Contexto histórico</label> 
+                </li>
+            </ul>
+        </fieldset>
         <fieldset class="card p-3 mb-3">
             <legend>Datos personales</legend>
             <div class="input-group mb-3">
@@ -93,6 +136,16 @@
                     Correo electrónico
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
                 </span>
+            </div>
+        </fieldset>
+        <fieldset class="card p-3 mb-3">
+            <legend>Historias, leyendas y curiosidades</legend>
+            <div class="input-group mb-2">
+                <textarea
+                    v-model.trim="form.usosCuriosidades"
+                    class="form-control"
+                    aria-label="With textarea"
+                ></textarea>
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
