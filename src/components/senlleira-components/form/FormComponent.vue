@@ -65,7 +65,7 @@
          <!--  fieldset Motivacion -->
         <fieldset class="card p-3 mb-3">
             <legend>Motivo por la elección del árbol</legend>
-            <ul class="fields g-2 row">
+            <ul class="fields g-2 row motivo-arbol">
                  <li class="field col">
                     <input 
                          type="checkbox" 
@@ -123,6 +123,10 @@
                 />
             </div>
             <div class="input-group mb-3">
+                <span class="input-group-text required" id="correo">
+                    Correo electrónico
+                    <span data-set="Campo obligatorio" class="text-danger">*</span>
+                </span>
                 <input
                     type="email"
                     required
@@ -132,30 +136,31 @@
                     aria-describedby="correo"
                     v-model.trim="form.email"
                 />
-                <span class="input-group-text required" id="correo">
-                    Correo electrónico
-                    <span data-set="Campo obligatorio" class="text-danger">*</span>
-                </span>
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
             <legend>Historias, leyendas y curiosidades</legend>
             <div class="input-group mb-2">
                 <textarea
+                    placeholder="Lo que hace importante este árbol es..."
                     v-model.trim="form.usosCuriosidades"
                     class="form-control"
                     aria-label="With textarea"
+                    rows = "5"
+                    cols="40"
                 ></textarea>
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
             <legend>Otros datos</legend>
             <div class="input-group mb-2">
-                <span class="input-group-text">Tus comentarios</span>
                 <textarea
+                    placeholder="Tus comentarios"
                     v-model.trim="form.comentarios"
                     class="form-control"
                     aria-label="With textarea"
+                    rows = "3"
+                    cols = "40"
                 ></textarea>
             </div>
         </fieldset>
