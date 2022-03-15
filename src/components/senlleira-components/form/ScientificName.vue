@@ -29,31 +29,31 @@
                 <the-loader :loading="loaderSpecies" sizecircle="1em" foreground="lightgreen"></the-loader>
             </li>
             <li class="field col-auto">
-                <label class="form-label" for="nombrecomun">Nome común</label>
+                <label class="form-label" for="nombreComun">Nome común</label>
                 <input
-                    placeholder="Su nombre aquí"
+                    placeholder="O seu nome aquí"
                     class="form-control"
                     type="text"
                     aria-label="Disabled input"
                     disabled
                     v-model.trim="form.nombreComun"
-                    name="nombrecomun"
-                    id="nombrecomun"
+                    name="nombreComun"
+                    id="nombreComun"
                 />
             </li>
             <li class="field col">
-                <label class="form-label required" for="nombrearbol">
+                <label class="form-label required" for="nombreReferencia">
                     Nome de referencia
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
                 </label>
                 <input
                     class="form-control"
-                    placeholder="Su nombre aquí"
+                    placeholder="O seu nome aquí"
                     required
                     type="text"
                     v-model.trim="form.nombreReferencia"
-                    name="nombrearbol"
-                    id="nombrearbol"
+                    name="nombreReferencia"
+                    id="nombreReferencia"
                 />
             </li>
         </ul>
@@ -67,7 +67,7 @@
                     name="altura"
                     v-model.trim="form.altura"
                     type="text"
-                    placeholder="Entre 10 y 20 metros"
+                    placeholder="Entre 10 e 20 metros"
                     class="field__control form-control"
                 />
             </li>
@@ -83,7 +83,7 @@
                 />
             </li>
             <li class="field col">
-                <label for="edadEstimada" class="form-label">Edad estimada en anos</label>
+                <label for="edadEstimada" class="form-label">Idade estimada en anos</label>
                 <input
                     id="edadEstimada"
                     name="edadEstimada"

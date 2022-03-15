@@ -6,18 +6,18 @@
     <fieldset class="card p-3 mb-3">
             <the-uploader
                 @obtenerImagen="obtenerImagen"
-                :title="'Imagen 1'"
+                :title="'Imaxe 1'"
                 :required="true"
                 cod="uno"
             ></the-uploader>
              <the-uploader
                 @obtenerImagen="obtenerImagen"
-                :title="'Imagen 2'"
+                :title="'Imaxe 2'"
                 cod="dos"
             ></the-uploader>
              <the-uploader
                 @obtenerImagen="obtenerImagen"
-                :title="'Imagen 3'"
+                :title="'Imaxe 3'"
                 cod="tres"
             ></the-uploader>
             <div

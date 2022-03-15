@@ -15,7 +15,7 @@ const errores = reactive({ //gestión de errores de imagen
      * {Boolean} errorImg - Indica que no hay cargada ninguna imagen
      */
     errorImg: true,
-    errorImgStr: 'Debe seleccionar un fichero al menos',
+    errorImgStr: 'Debe seleccionar polo menos un arquivo',
 });
 /**
  * Subida de imágenes a Firestore

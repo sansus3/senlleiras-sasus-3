@@ -19,20 +19,22 @@
             <legend>Ubicación</legend>
             <ul class="fields g-2 row">
                 <li class="field col">
-                    <label class="form-label" for="lugar">Lugar, calle, avenida</label>
+                    <label class="form-label required" for="lugar">Lugar, calle, avenida</label>
+                       <span data-set="Campo obligatorio" class="text-danger">*</span>
                     <input
-                        placeholder="Su nombre aquí"
+                        placeholder="O seu nome aquí"
                         class="form-control"
+                        required
                         type="text"
                         v-model.trim="form.lugar"
                         name="lugar"
                         id="lugar"
-                    />
+                    />                 
                 </li>
                 <li class="field col">
                     <label class="form-label" for="concello">Concello</label>
                     <input
-                        placeholder="Su nombre aquí"
+                        placeholder="O seu nome aquí"
                         class="form-control"
                         type="text"
                         v-model.trim="form.concello"
@@ -63,6 +65,7 @@
             </ul>
         </fieldset>
          <!--  fieldset Motivacion -->
+         <!-- {{form}} -->
         <fieldset class="card p-3 mb-3">
             <legend>Motivo por la elección del árbol</legend>
             <ul class="fields g-2 row motivo-arbol">
@@ -73,7 +76,7 @@
                          name="destacaAntiguedad" 
                          id="destacaAntiguedad" 
                     />&nbsp;
-                    <label class="form-label" for="destacaAntiguedad">Antigüedad</label> 
+                    <label class="form-label" for="destacaAntiguedad">Antigüidade</label> 
                 </li> 
                  <li class="field col">
                     <input 
@@ -82,7 +85,7 @@
                          name="destacaTamano" 
                          id="destacaTamano" 
                     />&nbsp;
-                    <label class="form-label" for="destacaTamano">Tamaño del árbol</label> 
+                    <label class="form-label" for="destacaTamano">Tamaño da árbore</label> 
                 </li>
                  <li class="field col">
                     <input 
@@ -91,7 +94,7 @@
                          name="destacaSituacion" 
                          id="destacaSituacion" 
                     />&nbsp;
-                    <label class="form-label" for="destacaSituacion">Situación del árbol</label> 
+                    <label class="form-label" for="destacaSituacion">Situación da árbore</label> 
                 </li>
                  <li class="field col">
                     <input 
@@ -106,9 +109,9 @@
             </ul>
         </fieldset>
         <fieldset class="card p-3 mb-3">
-            <legend>Datos personales</legend>
+            <legend>Datos persoais</legend>
             <div class="input-group mb-3">
-                <span class="input-group-text">Nombre y apellidos</span>
+                <span class="input-group-text">Nome e apelidos</span>
                 <input
                     v-model.trim="form.nombrePila"
                     type="text"
@@ -139,7 +142,7 @@
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
-            <legend>Historias, leyendas y curiosidades</legend>
+            <legend>Historias, lendas e curiosidades</legend>
             <div class="input-group mb-2">
                 <textarea
                     placeholder="Lo que hace importante este árbol es..."
@@ -152,7 +155,7 @@
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
-            <legend>Otros datos</legend>
+            <legend>Outros datos</legend>
             <div class="input-group mb-2">
                 <textarea
                     placeholder="Tus comentarios"
@@ -172,9 +175,9 @@
             <input type="hidden" v-model="form.genus" />
             <button :disabled="btnDisabled" class="btn btn-primary">
                 <the-loader :loading="loaderSave"></the-loader>
-                Guardar
+                Gardar
             </button>
-            <span v-if="inserted">Senlleira insertada de forma correcta. Gracias por su colaboración</span>
+            <span v-if="inserted">Senlleira insertada de forma correcta. Gracias pola sua colaboración</span>
         </div>
         <!-- <pre>{{imagenesArray}}</pre>
     {{errores}} -->
@@ -224,7 +227,7 @@ const btnDisabled = computed(() => {
     const expReg = /^-?\d+\.\d+$/;
     const expRegEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     //console.log(expReg.test(form.value.location.latitude))
-    return !expReg.test(form.value.location.latitude) || !expReg.test(form.value.location.longitude) || !expRegEmail.test(form.value.email) || !form.value.nombreReferencia.length || !form.value.email.length || loaderSpecies.value || errores.errorImg
+    return !expReg.test(form.value.location.latitude) || !expReg.test(form.value.location.longitude) || !expRegEmail.test(form.value.email) || !form.value.nombreReferencia.length || !form.value.lugar.length || !form.value.email.length || loaderSpecies.value || errores.errorImg
 });
 
 
