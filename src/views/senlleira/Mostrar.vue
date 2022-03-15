@@ -33,7 +33,7 @@
             </div>
 
             <!-- Imágenes -->
-            <div class="ficha__images">
+            <div class="ficha__images" >
                 <images-senlleiras :id="$route.params.id"></images-senlleiras>
             </div>
                 

@@ -1,6 +1,6 @@
 <template>
     
-        <div class="carrusel" :style="{'min-height':minHeight}">
+        <div class="carrusel">
             <!-- galeria -->
             <ul class="carrusel-images-galery">
                 <li v-for="(item, index) in images" :key="index" :class="item.clases">
@@ -59,7 +59,7 @@ const props = defineProps({
      */
     minHeight: {
         type: String,
-        default: '400px'
+        default: '300px'
     }
 });
 

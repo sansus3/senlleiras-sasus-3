@@ -1,7 +1,7 @@
 <template>
   <div class="home">     
     <!-- Carrusel de fotos -->
-    <carrusel-vue :images="images"></carrusel-vue>
+    <carrusel-vue minHeight="350px" :images="images"></carrusel-vue>
     <!-- Galeria de contenido -->
     <galeria-vue @click="catalogoGo"></galeria-vue>
   </div>
