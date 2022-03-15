@@ -5,17 +5,32 @@
     display: grid;
     gap: 1rem;
     width: 90vw;
-    max-width: 1024px;
+    max-width: 650px;
     margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
 }
     .ficha__title{
         text-align: center;
-	    font-weight: 600;    
+	    font-weight: 600; 
+        text-transform: uppercase;   
     }
-@media screen and (min-width:700px){
+    .ficha__images{
+        height: 100%;
+        width: 100%;
+    }
+    .ficha__images img{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+@media screen and (min-width:1080px){
     .ficha{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 60% 1fr;
         align-items: start;
+        max-width: 1024px;
     }
         .ficha__title{
             grid-column: 1 / span 2;
@@ -35,98 +50,6 @@
             grid-row: 4 / span 1;
             grid-column: 1 / span 2;
         }
-}
-/*
-@media screen and (min-width:700px){
-    .ficha{
-        grid-template-columns: 1fr 1fr;
-    }
-        .ficha__datos{
-            grid-column: 1 / span 1;
-        }
-}
-*/
-/*
-@media screen and (min-width:1080px){
-    .ficha{
-        height: calc(100vh - 60px);
-        width: 70%;
-        min-width: 1000px;
-        max-width: none;
-        display: grid;
-        grid-template-columns: 60% 40%;
-        align-self:center;
-        align-content: flex-start;
-        gap:15px 0;
-        margin: auto;
-    }
-    
-    .ficha-tecnica-app{
-        grid-row: 2 / 4;
-        background-color: rgba(150, 150, 150, .4);
-        backdrop-filter: blur(1px);
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-        .header-carrusel-app{
-            width: 100%;
-            height: 595px;
-            align-self: center;
-            align-content: center;
-        } 
-        .ficha-tecnica-galery{
-            width: 100%;
-            height: 100%;
-        }
-        .carrusel-image img{
-            object-fit: contain;
-            width: 100%;
-            height: 100%;
-            max-height: 595px;
-        }
-        
-    .ficha-tecnica-table{
-        max-width: 600px;
-        margin: 0  auto !important;
-    }
-    .ficha-tecnica-table-description{
-        max-width: 600px;
-        margin-bottom: 0 !important;
-    }
-    .mapa-arbore{
-        grid-column: 1 / 3;
-        width: calc(100%);
-        margin: auto
-    }
-}
-
-*/
-
-/* Carrusel */
-.ficha-tecnica-app{
-    width: 90%;
-    margin: auto;
-    box-shadow:  1px 1px 8px gray;
-}
-.ficha-tecnica-galery{
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-
-.div-ficha-position{
-    position: absolute;
-    bottom: 0;
-    right: 50%;
-    transform: translateX(50%);
-    background-color: rgba(150, 150, 150, .6);
-    width: 100%;
-    margin: 0;
-    height: 30px;
 }
 
 /* Tabla ficha tecnica */
@@ -186,4 +109,12 @@
     font-style: italic;
     color: green;
     text-decoration:underline;
+}
+
+
+
+@media screen and (max-width:700px){
+    .ficha .carrusel{
+        height: 250px !important;
+    }
 }

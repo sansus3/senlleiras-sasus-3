@@ -7,7 +7,7 @@
             <the-loader :loading="loader"></the-loader>
         </div>
         <div class="covertura__imagenes componente-carrusel">
-            <carrusel
+            <carrusel 
                 :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
                 :showlegend="false"
                 :images="rutas"
@@ -64,16 +64,27 @@ onMounted(async () => {
 <style scoped>
 .covertura__imagenes{
     display: grid;
+    height:100%;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
+    position: relative;
+}
+.carrusel{
+    height: 100% !important;
 }
     .covertura__imagenes.loader{
+        position: absolute;
+        transform: translate(50% 50%);
+        width: 100%;
+        height:100%;
         grid-row: 1 / 1;
-        grid-column: 1 / 1;      
+        grid-column: 1 / 1;   
+        color: green;   
     }
     .covertura__imagenes.componente-carrusel{
         width: 100%;
+        height:100%;
     }
 </style>

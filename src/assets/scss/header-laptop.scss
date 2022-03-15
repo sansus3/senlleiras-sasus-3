@@ -39,7 +39,7 @@
     .header-nav-app-laptop .menu-buttons-laptop li{
         width: 130px;
         height: 100%;
-        border-left: 3px solid white;
+        border-left: 3px solid rgba(255, 255, 255, .3);
     }    
     
     .header-nav-app-laptop .menu-buttons-laptop .element-button-laptop a{
@@ -66,15 +66,31 @@
     background-color: var(--colorprincipal);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    box-shadow: 0px 0px 10px 4px white;
+    box-shadow: 0px 0px 10px 4px white,
+    inset 0px 10px 10px transparent;
     transform: scale(1.02);
-    animation: bounceAnimation 1.3s ease;
+    animation: bounceAnimation .9s ease;
 }
     .menu-buttons-laptop .element-button-laptop:hover i{
         display: block;
-        font-size: 22px;
+        font-size: 22px !important;
         padding-bottom: 5px;
     }
+    /*Active*/
+   
+    .header-nav-app-laptop .menu-buttons-laptop .router-link-active{
+        height: 70px !important;
+        background-color: var(--colorprincipal);
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: 0px 0px 10px 4px white,
+        inset -3px -3px 4px  darkgray;
+        transform: scale(1.02);
+        transition: all .2s linear;
+    }
+        .header-nav-app-laptop li .router-link-active i {
+            font-size: 22px !important;
+        }
 
      /* buscador menu laptop    */
      .header-nav-app-laptop .menu-buttons-laptop .header-search-laptop{
