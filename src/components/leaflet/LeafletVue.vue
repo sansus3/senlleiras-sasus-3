@@ -47,7 +47,7 @@ const props = defineProps({
      */
     theZoom: {
         type: Number,
-        default: 10,
+        default: 15,
     },
     /**
      * {Number} Máximo zoom que tiene la aplicación 17
@@ -110,7 +110,7 @@ const tileProviders = reactive([
       ]);
 
 // const iconUrl = computed(()=>`https://placekitten.com/${props.iconWidth}/${props.iconHeight}`);
-const iconUrl = computed(() => "../../conxo.jpg");
+const iconUrl = computed(() => "./googlemaps128x128.png");
 
 const iconSize = computed(() => [props.iconWidth, props.iconHeight]);
 

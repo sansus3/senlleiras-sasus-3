@@ -1,6 +1,7 @@
 <template>
+  
   <div class="d-flex text-center" style="height: 20vh">
-    <div class="m-auto"></div>
+    <h1 class="title">Catálogo</h1>
     <TheGoogleMap :location="senlleiras" />
   </div>
 </template>
