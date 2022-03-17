@@ -17,18 +17,18 @@
                 </router-link>
             </th>
             <th role="columnheader">
-                <a href="#" @click.prevent="filtrar('genus')">Xénero</a>
+                <a href="#" @click.prevent="ordernar('genus')">Xénero</a>
                 e
-                <a href="#" @click.prevent="filtrar('specie')">especie</a>
+                <a href="#" @click.prevent="ordernar('specie')">especie</a>
             </th>
             <th role="columnheader">
-                <a href="#" @click.prevent="filtrar('nombreComun')">Nomes comúns</a>
+                <a href="#" @click.prevent="ordernar('nombreComun')">Nomes comúns</a>
             </th>
             <th role="columnheader">
-                <a href="#" @click.prevent="filtrar('nombreReferencia')">Referencia</a>
+                <a href="#" @click.prevent="ordernar('nombreReferencia')">Referencia</a>
             </th>
             <th role="columnheader">
-                <a href="#" @click.prevent="filtrar('lugar')">Lugar</a>
+                <a href="#" @click.prevent="ordernar('lugar')">Lugar</a>
             </th>
             <th role="columnheader">Información</th>
         </tr>
@@ -57,7 +57,7 @@ const countRows = computed(()=>store.getters['senlleiras/getSenlleirasLength']);
  * Método que obtiene los registros de una "Senlleira"
  * @returns Género, especie, nombre común, nombre de referencia, localidad
  */
-const filtrar = (genus) => {
+const ordernar = (genus) => {
     orden[genus] = !orden[genus];
     store.dispatch('senlleiras/senlleiraSort', { field: genus, sort: orden[genus] })
 };

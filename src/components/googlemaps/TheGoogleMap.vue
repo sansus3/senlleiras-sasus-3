@@ -16,7 +16,7 @@
 
 <script setup>
 //Dependencias Vue, api de google
-import { computed, ref, onMounted, reactive } from "vue";
+import { computed, ref, onMounted } from "vue";
 import { Loader } from "@googlemaps/js-api-loader";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
@@ -38,8 +38,7 @@ const props = defineProps({
 });
 
 
-//Obtenemos todas la información de todas las senlleiras. Buscamos en el store
-const senlleiras = computed(() => store.state.senlleiras.senlleirasFiltradas);
+
 //Cargamos la APIKEY
 const loader = new Loader({ apiKey: store.getters['getGoogleMapsApiKey'] });
 //Esta constante se utilizará en el atributo "ref" del elemento div que aparace en el template
@@ -49,22 +48,38 @@ const image = './googlemaps128x128.png';
 //Objeto instanciado de google.maps.Map
 let map = null;
 
+//Obtenemos todas la información de todas las senlleiras. Buscamos en el store
+const senlleiras = computed(() => {
+  limpiar();
+  pintar();
+  return store.state.senlleiras.senlleirasFiltradas
+});
+
+
+
+
+
 /**
  * @description Método que nos permite crear todos los marcadores. Como vemos un array
  */
-const marker = () => {
+let markers = [];
+const markerLoad = () => {
   senlleiras.value.forEach((item, index) => {
-    const marker = new google.maps.Marker({
-      position: {
-        lat: Number(item.location.latitude),
-        lng: Number(item.location.longitude),
-      },
-      map,
-      label: `${index + 1}. ${item.genus} ${item.specie}`,
-      animation: google.maps.Animation.DROP,
-      icon: image,
+    markers.push(
+      new google.maps.Marker({
+        position: {
+          lat: Number(item.location.latitude),
+          lng: Number(item.location.longitude),
+        },
+        map,
+        label: `${index + 1}. ${item.genus} ${item.specie}`,
+        animation: google.maps.Animation.DROP,
+        icon: image,
+      })
+    );
+    markers[index].addListener("click", (e) => {
+      showRoute(item.id);
     });
-    marker.addListener("click", () => { showRoute(item.id) });
   });
 }
 /**
@@ -83,6 +98,29 @@ const showRoute = id => {
   }
 }
 
+const pintar = async () => {
+  await loader.load();
+  let index = 0;
+  for (let sen in senlleiras.value) {
+    const item = senlleiras.value[sen];
+    markers.push(
+      new google.maps.Marker({
+        position: {
+          lat: Number(item.location.latitude),
+          lng: Number(item.location.longitude),
+        },
+        map,
+        label: `${++index}. ${item.genus} ${item.specie}`,
+        animation: google.maps.Animation.DROP,
+        icon: image,
+      })
+    );
+    markers[index - 1].addListener("click", (e) => {
+      showRoute(item.id);
+    });
+  }
+}
+
 //Montamos el mapa
 onMounted(async () => {
   try {
@@ -94,7 +132,7 @@ onMounted(async () => {
         zoom: 17,
       });
       //Llamamos al marcador
-      marker();
+      markerLoad();
     } catch (error) {
       console.log("Loader de GoogleMaps", error);
     }
@@ -103,6 +141,12 @@ onMounted(async () => {
   }
 });
 
+const limpiar = () => {
+  for (let i = 0, tam = markers.length; i < tam; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
 </script>
 
 <style scoped lang="scss">

@@ -3,8 +3,10 @@
         <nav class="header-nav-app" :class="{ 'reduced': show }">
             <router-link class="header-logo" :to="{ name: 'Home' }">LOGO</router-link>
             <ul class="header-nav-buttons">
-                <li class="header-search">
-                    <i class="fas fa-search"></i>
+                <li 
+                    class="header-search" 
+                    v-if="$route.name==='CatalogoSenlleira' || $route.name==='Mapas'">
+                    <i title="Nome, especie, referencia, lugar" class="fas fa-search"></i>
                     <the-search></the-search>
                 </li>
                 <li class="header-upload">
@@ -24,6 +26,8 @@ import { ref } from 'vue';
 
 //Subida y bajada del menú superior
 const show = ref(false);
+
+
 let lastScrolltop = 0;
 window.addEventListener('scroll', e => {
     const st = window.pageXOffset || document.documentElement.scrollTop;

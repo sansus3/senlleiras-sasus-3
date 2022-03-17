@@ -42,9 +42,11 @@
              <li 
                 class="header-search-laptop" 
                 :class="{'search-li-animation':showSearch}"
+                v-if="$route.name==='CatalogoSenlleira' || $route.name==='Mapas'"
             >
                 <a class="btn-search-laptop" href="#">
-                  <i 
+                  <i
+                    title="Nome, especie, referencia, lugar"
                     class="fa-solid" 
                     :class="{
                             'fa-solid fa-magnifying-glass-plus':!showSearch,
