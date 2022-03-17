@@ -11,6 +11,9 @@
                 :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
                 :showlegend="false"
                 :images="rutas"
+                :alt = "`${senlleira.genus} ${senlleira.specie}`"
+                :title = "`${senlleira.genus} ${senlleira.specie}`"
+                :contadorInit="-1"
             ></carrusel>
         </div>      
     </div>

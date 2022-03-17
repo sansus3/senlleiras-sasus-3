@@ -122,9 +122,11 @@ const actions = {
 const getters = {
     getSenlleirasLength(state){
         return state.senlleirasFiltradas.length;
+    },
+    getSenlleirasFiltradas(state){
+        return state.senlleirasFiltradas;
     }
 }
-
 
 export default {
     namespaced: true,

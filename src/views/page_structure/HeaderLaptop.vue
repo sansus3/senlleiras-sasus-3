@@ -27,7 +27,7 @@
             </li>
             <li class="element-button-laptop">
                 <router-link
-                :to="{ name: 'Mapas' }"
+                :to="{ name: 'MapaSenlleiras' }"
                >
                     <i class="fas fa-map-marked-alt"></i>Mapa
                 </router-link>
@@ -42,7 +42,7 @@
              <li 
                 class="header-search-laptop" 
                 :class="{'search-li-animation':showSearch}"
-                v-if="$route.name==='CatalogoSenlleira' || $route.name==='Mapas'"
+                v-if="$route.name==='CatalogoSenlleira' || $route.name==='MapaSenlleiras'"
             >
                 <a class="btn-search-laptop" href="#">
                   <i

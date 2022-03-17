@@ -47,7 +47,7 @@ const getImages = async (id,rutas) => {
             rutas.push(
                 {
                     url,
-                    text: 'Carballo del Bosque del Banquete de Conxo',
+                    text: '',
                     clases: { 'carrusel-image': true, 'carruselmostrado': bool },
                     puntos: { 'posicionado': !bool },
                 },

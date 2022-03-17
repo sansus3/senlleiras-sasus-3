@@ -14,7 +14,7 @@
                     </router-link>
                 </li>
                 <li>
-                    <router-link class="mapa" :to="{ name: 'Mapas' }">
+                    <router-link class="mapa" :to="{ name: 'MapaSenlleiras' }">
                          <i class="fas fa-map-marked-alt"></i>
                         <p>Mapa</p>
                     </router-link>

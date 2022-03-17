@@ -76,7 +76,7 @@
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import { computed, onMounted, provide } from 'vue';
-import LeafletVue from '@/components/leaflet/LeafletVue.vue';
+import LeafletVue from '@/components/maps/LeafletVue.vue';
 import ImagesSenlleiras from '@/components/senlleira-components/ImagesSenlleiras.vue';
 //Cargamos el store y el route
 const store = useStore();

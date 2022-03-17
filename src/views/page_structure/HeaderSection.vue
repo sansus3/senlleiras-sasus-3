@@ -5,7 +5,7 @@
             <ul class="header-nav-buttons">
                 <li 
                     class="header-search" 
-                    v-if="$route.name==='CatalogoSenlleira' || $route.name==='Mapas'">
+                    v-if="$route.name==='CatalogoSenlleira' || $route.name==='MapaSenlleiras'">
                     <i title="Nome, especie, referencia, lugar" class="fas fa-search"></i>
                     <the-search></the-search>
                 </li>
