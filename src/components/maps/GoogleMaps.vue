@@ -1,5 +1,5 @@
 <template>
-    <div :data-set="data" ref="mapDiv" style="width: 100%; height: 80vh; "></div>    
+    <div :data-set="data" ref="mapDiv" style="width: 100%; height: 95vh; "></div>    
 </template>
 
 <script setup>

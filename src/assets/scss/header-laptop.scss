@@ -39,7 +39,7 @@
     .header-nav-app-laptop .menu-buttons-laptop li{
         width: 130px;
         height: 100%;
-        border-left: 3px solid rgba(255, 255, 255, .3);
+        border-left: 1px solid rgba(255, 255, 255, .3);
     }    
     
     .header-nav-app-laptop .menu-buttons-laptop .element-button-laptop a{
@@ -64,10 +64,10 @@
 .header-nav-app-laptop .menu-buttons-laptop .element-button-laptop a:hover{
     height: calc(100% + 10px);
     background-color: var(--colorprincipal);
+    border-left: 1px solid rgba(255, 255, 255, .3);
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    box-shadow: 0px 0px 10px 4px white,
-    inset 0px 10px 10px transparent;
+   
     transform: scale(1.02);
     animation: bounceAnimation .9s ease;
 }
@@ -83,8 +83,7 @@
         background-color: var(--colorprincipal);
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-        box-shadow: 0px 0px 10px 4px white,
-        inset -3px -3px 4px  darkgray;
+        border: 1px solid rgba(255, 255, 255, .3);
         transform: scale(1.02);
         transition: all .2s linear;
     }
