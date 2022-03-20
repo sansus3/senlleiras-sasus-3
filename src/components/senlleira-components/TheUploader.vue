@@ -42,6 +42,13 @@ export default {
             default: 750000
         },
         /**
+         * @param {Number} compress - Compresión de 1 a 100. Representa un %
+         */
+        compress: {
+            type: Number,
+            default: 50
+        },
+        /**
          * Título de la imagen
          * @default "Imagen"
          */
@@ -121,7 +128,7 @@ export default {
                 return;
             } else { //Seleccionado un fichero de tipo imagen jpg/png/gif
                 //Obtenemos el blob
-                const blob = await comprimirImagen(archives[0],80);//convertido a jpg y comprimido al 80%
+                const blob = await comprimirImagen(archives[0],props.compress);//convertido a jpg y comprimido al 80%
                 blob.name = event.target.files[0].name;
                 blob.lastModified = new Date();
                 //Previsualizamos
