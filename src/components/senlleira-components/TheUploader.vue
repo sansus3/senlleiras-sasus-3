@@ -137,7 +137,7 @@ export default {
                 myFile = new File([blob], blob.name, {
                     type: blob.type,
                 });
-                
+                console.log(blob.size,myFile.size,event.target.files[0].size);
                 if(myFile.size>props.size){
                      error.value = `${myFile.name} excede el máximo tamaño permitido ${myFile.size}. (Máximo: ${props.size}).`;
                      return;
