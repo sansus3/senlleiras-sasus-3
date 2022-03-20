@@ -102,12 +102,12 @@ const showRoute = id => {
 
 onMounted(async () => {
     try {
-        await store.dispatch("senlleiras/listSenlleiras");
-        await loader.load();
+        await store.dispatch("senlleiras/listSenlleiras");        
         map = new google.maps.Map(mapDiv.value, {
             center: props.currPos,
             zoom: props.zoom,
         });
+        await pintar();
     } catch (error) {
         console.log(error);
     }

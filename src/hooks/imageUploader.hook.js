@@ -55,5 +55,4 @@ const getImages = async (id,rutas) => {
         })();     
     });
 }
-
 export {subirImagenes,getImages,errores,imagenesArray}
