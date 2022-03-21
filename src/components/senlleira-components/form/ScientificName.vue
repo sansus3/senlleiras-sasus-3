@@ -1,8 +1,5 @@
 <template>
     <fieldset class="card p-3 mb-3">
-        <pre>
-            {{form}}
-        </pre>
         <legend>Datos da arbore</legend>
         <ul class="fields row g-2">
             <li class="field col-auto">
