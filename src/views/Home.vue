@@ -14,7 +14,7 @@
             :to="{
                 name: 'SolicitudSenlleira'
                 }">
-            Solicitud de árbore senlleira
+            Solicitude de árbore senlleira
         </router-link>
     </div>
   </div>

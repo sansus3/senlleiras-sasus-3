@@ -60,9 +60,17 @@ const actions = {
         state.speciesFilter.sort((x, y) => x.genus.localeCompare(y.genus))
     }
 }
+const getters = {
+    getSpeciesNamesSort(state){
+        return state.speciesFilter.sort((x,y)=>{
+            return x.names.toString().localeCompare(y.names.toString());
+        })
+    }
+}
 export default {
     namespaced: true,
     state,
     mutations,
     actions,
+    getters
 }

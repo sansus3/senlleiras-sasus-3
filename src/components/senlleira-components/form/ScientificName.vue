@@ -15,7 +15,7 @@
                     class="form-select"
                     required
                 >
-                    <optgroup label="Sin confirmar">
+                    <optgroup label="Sen confirmar">
                         <option value="null">Descoñecida</option>
                     </optgroup>
                     <optgroup label="Especies">
@@ -30,31 +30,24 @@
             </li>
             <li class="field col-auto">
                 <label class="form-label" for="nombreComun">Nome común</label>
-                <select 
-                    v-model="form.idSpecie" 
+                <select
+                    v-model="form.idSpecie"
                     @change="obtenerNombreComun"
-                    name="nombreComun" 
-                    id="nombreComun"
-                    class="form-select">
-                    <optgroup label="Sin confirmar">
-                        <option value="null">Descoñecida</option>
-                    </optgroup>
-                    <option
-                            v-for="item in species"
-                            :key="item.id"
-                            :value="item.id"
-                        >{{item.names.join()}}</option>
-                </select>
-                <!-- <input
-                    placeholder="O seu nome aquí"
-                    class="form-control"
-                    type="text"
-                    aria-label="Disabled input"
-                    disabled
-                    v-model.trim="form.nombreComun"
                     name="nombreComun"
                     id="nombreComun"
-                /> -->
+                    class="form-select"
+                >
+                    <optgroup label="Sen confirmar">
+                        <option value="null">Descoñecida</option>
+                    </optgroup>
+                    <optgroup label="Nomes comúns">
+                        <option
+                            v-for="item in names"
+                            :key="item.id"
+                            :value="item.id"
+                        >{{ item.names.join() }}</option>
+                    </optgroup>
+                </select>
             </li>
             <li class="field col">
                 <label class="form-label required" for="nombreReferencia">
@@ -146,6 +139,7 @@ const props = defineProps([
  * Obtenemos las especies para el selector html y ordenados por género
  */
 const species = computed(() => store.state.species.speciesFilter);
+const names = computed(() => store.getters['species/getSpeciesNamesSort']);
 
 /**
 * Select del html par buscar en el array de Especies el nombre común y no científico del mismo
