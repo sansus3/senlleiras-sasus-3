@@ -8,7 +8,7 @@
         <label class="form-label">
             {{ title }}
             <span v-if="required" data-set="Campo obligatorio" class="text-danger">*</span>
-            <img width="100" v-if="imagenPrevisualizar" :src="imagenPrevisualizar" alt="">
+            <img width="100" v-if="imagenPrevisualizar" :src="imagenPrevisualizar" alt />
             <input
                 @change="almacenarImagenes($event)"
                 class="form-control"
@@ -81,12 +81,32 @@ export default {
     setup(props, { emit }) {
         const error = ref('');
         let imagenPrevisualizar = ref('');
+
+        function calculateSize(img, maxWidth, maxHeight) {
+            let width = img.width;
+            let height = img.height;
+
+            // calculate the width and height, constraining the proportions
+            if (width > height) {
+                if (width > maxWidth) {
+                    height = Math.round((height * maxWidth) / width);
+                    width = maxWidth;
+                }
+            } else {
+                if (height > maxHeight) {
+                    width = Math.round((width * maxHeight) / height);
+                    height = maxHeight;
+                }
+            }
+            return [width, height];
+        }
         /**
- * @url https://parzibyte.me/blog/2022/01/22/reducir-tamano-imagen-javascript/
- * @param {File} imagenComoArchivo 
- * @param {Number} porcentajeCalidad - 10 para el 10%, 20 el 20% y así sucesivamente 
- * @returns 
- */
+         * @url https://parzibyte.me/blog/2022/01/22/reducir-tamano-imagen-javascript/
+         * @url https://labs.madisoft.it/javascript-image-compression-and-resizing/
+         * @param {File} imagenComoArchivo 
+         * @param {Number} porcentajeCalidad - 10 para el 10%, 20 el 20% y así sucesivamente 
+         * @returns 
+         */
         const comprimirImagen = (imagenComoArchivo, porcentajeCalidad) => {
             /*
                 https://parzibyte.me/blog
@@ -95,9 +115,12 @@ export default {
                 const $canvas = document.createElement("canvas");
                 const imagen = new Image();
                 imagen.onload = () => {
-                    $canvas.width = imagen.width;
-                    $canvas.height = imagen.height;
-                    $canvas.getContext("2d").drawImage(imagen, 0, 0);
+                    console.log(imagen.width,imagen.height)
+                    const [w,h] = calculateSize(imagen,800,600);
+                    console.log(w,h);
+                    $canvas.width = w;
+                    $canvas.height = h;
+                    $canvas.getContext("2d").drawImage(imagen, 0, 0, w, h);
                     $canvas.toBlob(
                         (blob) => {
                             if (blob === null) {
@@ -119,16 +142,16 @@ export default {
         * @param {Object} event Evento onchange de seleccionar una imagen
         */
         const almacenarImagenes = async (event) => {
-            let myFile=null;
+            let myFile = null;
             error.value = '';
             //Campturamos el file
             const archives = event.target.files;//Array FileList
             if (isEmpty(archives) || archives.length === 0) {
-                imagenPrevisualizar.value='';
+                imagenPrevisualizar.value = '';
                 return;
             } else { //Seleccionado un fichero de tipo imagen jpg/png/gif
                 //Obtenemos el blob
-                const blob = await comprimirImagen(archives[0],props.compress);//convertido a jpg y comprimido al 80%
+                const blob = await comprimirImagen(archives[0], props.compress);//convertido a jpg y comprimido al 80%
                 blob.name = event.target.files[0].name;
                 blob.lastModified = new Date();
                 //Previsualizamos
@@ -137,11 +160,11 @@ export default {
                 myFile = new File([blob], blob.name, {
                     type: blob.type,
                 });
-                console.log(blob.size,myFile.size,event.target.files[0].size);
-                if(myFile.size>props.size){
-                     error.value = `${myFile.name} excede el máximo tamaño permitido ${myFile.size}. (Máximo: ${props.size}).`;
-                     return;
-                }    
+                console.log(blob.size, myFile.size, event.target.files[0].size);
+                if (myFile.size > props.size) {
+                    error.value = `${myFile.name} excede el máximo tamaño permitido ${myFile.size}. (Máximo: ${props.size}).`;
+                    return;
+                }
             }
             emit('obtenerImagen', {
                 /**

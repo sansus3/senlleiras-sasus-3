@@ -1,5 +1,8 @@
 <template>
     <fieldset class="card p-3 mb-3">
+        <pre>
+            {{form}}
+        </pre>
         <legend>Datos da arbore</legend>
         <ul class="fields row g-2">
             <li class="field col-auto">
@@ -30,7 +33,22 @@
             </li>
             <li class="field col-auto">
                 <label class="form-label" for="nombreComun">Nome común</label>
-                <input
+                <select 
+                    v-model="form.idSpecie" 
+                    @change="obtenerNombreComun"
+                    name="nombreComun" 
+                    id="nombreComun"
+                    class="form-select">
+                    <optgroup label="Sin confirmar">
+                        <option value="null">Descoñecida</option>
+                    </optgroup>
+                    <option
+                            v-for="item in species"
+                            :key="item.id"
+                            :value="item.id"
+                        >{{item.names.join()}}</option>
+                </select>
+                <!-- <input
                     placeholder="O seu nome aquí"
                     class="form-control"
                     type="text"
@@ -39,7 +57,7 @@
                     v-model.trim="form.nombreComun"
                     name="nombreComun"
                     id="nombreComun"
-                />
+                /> -->
             </li>
             <li class="field col">
                 <label class="form-label required" for="nombreReferencia">
