@@ -53,7 +53,8 @@ const data = computed(()=>
 
 
 const pintar = async () => {
-  await loader.load();
+  if(!loader.loading)
+    await loader.load();
   let index = 0;
   for (let sen in data.value) {
     const item = data.value[sen];
@@ -93,18 +94,27 @@ const showRoute = id => {
   }
 }
 
+/**
+ * Limpiamos marcadores de google maps
+ */
+const limpiar = () => {
+  for (let i = 0, tam = markers.length; i < tam; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
 
 
 
-
-
-
-
-onMounted(async () => {
+/**
+ * Función asíncrona que lanza el lodader 
+ */
+(async () => {
     try {
         //await store.dispatch("senlleiras/listSenlleiras");
-        await loader.load();      
-        map = await new google.maps.Map(mapDiv.value, {
+        if(!loader.loading)
+          await loader.load();      
+        map = new google.maps.Map(mapDiv.value, {
             center: props.currPos,
             zoom: props.zoom,
         });
@@ -112,14 +122,9 @@ onMounted(async () => {
     } catch (error) {
         console.log(error);
     }
-});
+})();
 
 
-const limpiar = () => {
-  for (let i = 0, tam = markers.length; i < tam; i++) {
-    markers[i].setMap(null);
-  }
-  markers = [];
-}
+
 
 </script>
