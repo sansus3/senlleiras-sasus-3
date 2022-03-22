@@ -261,5 +261,5 @@ const submit = async () => {
 </script>
 
 <style lang="scss">
-@import url(../../../assets/scss/form.scss);
+@import url(../../../assets/scss/solicitud-senlleira.scss);
 </style>

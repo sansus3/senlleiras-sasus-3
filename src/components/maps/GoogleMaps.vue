@@ -103,7 +103,7 @@ const showRoute = id => {
 onMounted(async () => {
     try {
         await store.dispatch("senlleiras/listSenlleiras");        
-        map = new google.maps.Map(mapDiv.value, {
+        map = await new google.maps.Map(mapDiv.value, {
             center: props.currPos,
             zoom: props.zoom,
         });
