@@ -13,13 +13,13 @@
             <h2 class="display-6">Senlleira</h2>
         </header>
         <!-- fieldset Datos de la planta: nombre científico -->
-        <scientific-name :form="form"></scientific-name>
+        <datos-arbore :form="form"></datos-arbore>
         <!-- fieldset Ubicación -->
         <fieldset class="card p-3 mb-3">
             <legend>Ubicación</legend>
             <ul class="fields g-2 row">
-                <li class="field col">
-                    <label class="form-label required" for="lugar">Lugar, calle, avenida</label>
+                <li class="field col-auto">
+                    <label class="form-label required" for="lugar">Lugar, rúa, avenida</label>
                        <span data-set="Campo obligatorio" class="text-danger">*</span>
                     <input
                         placeholder="O seu nome aquí"
@@ -29,8 +29,15 @@
                         v-model.trim="form.lugar"
                         name="lugar"
                         id="lugar"
-                    />                 
+                    /> 
+                    <div
+                v-if="!form.lugar.length"
+                class="alert alert-danger m-3"
+                role="alert"
+            >Debe escoller un lugar, rúa ou avenida</div>                
                 </li>
+            </ul>
+            <ul class="fields g-2 row">
                 <li class="field col">
                     <label class="form-label" for="concello">Concello</label>
                     <input
@@ -42,7 +49,7 @@
                         id="concello"
                     />
                 </li>
-                <li class="field col-auto">
+                <li class="field col">
                     <label class="form-label" for="Provincia">Provincia</label>
                     <select
                         disabled
@@ -60,6 +67,7 @@
             </ul>
             <ul class="fields g-2 row">
                 <li class="field">
+                    <hr class="m-3">
                     <the-geolocation :location="form.location"></the-geolocation>
                 </li>
             </ul>
@@ -138,8 +146,13 @@
                     aria-label="Su correo"
                     aria-describedby="correo"
                     v-model.trim="form.email"
-                />
+                />               
             </div>
+             <div
+                v-if="!form.email.length"
+                class="alert alert-danger m-3"
+                role="alert"
+            >Debe poñer un correo electrónico</div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
             <legend>Historias, lendas e curiosidades</legend>
@@ -189,7 +202,7 @@
 import {subirImagenes, errores,imagenesArray} from '@/hooks/imageUploader.hook';//hook tratamiento de imágenes
 import { ref, computed, provide } from 'vue';
 import { useStore } from 'vuex';
-import ScientificName from './ScientificName.vue';
+import DatosArbore from '@/components/senlleira-components/form/DatosArbore.vue';
 import FieldsetImages from "@/components/senlleira-components/form/FieldsetImages.vue";
 import TheGeolocation from '@/components/senlleira-components/TheGeolocation.vue';
 import TheLoader from "@/components/TheLoader.vue";

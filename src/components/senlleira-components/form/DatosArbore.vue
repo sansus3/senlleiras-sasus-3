@@ -16,7 +16,7 @@
                     required
                 >
                     <optgroup label="Sen confirmar">
-                        <option value="null">Descoñecida</option>
+                        <option value="null">Outra</option>
                     </optgroup>
                     <optgroup label="Especies">
                         <option
@@ -30,6 +30,7 @@
             </li>
             <li class="field col-auto">
                 <label class="form-label" for="nombreComun">Nome común</label>
+                <span data-set="Campo obligatorio" class="text-danger">*</span>
                 <select
                     v-model="form.idSpecie"
                     @change="obtenerNombreComun"
@@ -38,7 +39,7 @@
                     class="form-select"
                 >
                     <optgroup label="Sen confirmar">
-                        <option value="null">Descoñecida</option>
+                        <option value="null">Outra</option>
                     </optgroup>
                     <optgroup label="Nomes comúns">
                         <option
@@ -48,8 +49,14 @@
                         >{{ item.names.join() }}</option>
                     </optgroup>
                 </select>
+                <div
+                    v-if="!form.idSpecie"
+                    class="alert alert-danger m-3"
+                    role="alert"
+                >Debe escoller o nome científico o nome común</div>
+                <hr class="m-3" />
             </li>
-            <li class="field col">
+            <li class="field col-auto">
                 <label class="form-label required" for="nombreReferencia">
                     Nome de referencia
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
@@ -63,6 +70,12 @@
                     name="nombreReferencia"
                     id="nombreReferencia"
                 />
+                <div
+                    v-if="!form.nombreReferencia.length"
+                    class="alert alert-danger m-3"
+                    role="alert"
+                >Debe escoller o nome de referencia</div>
+                <hr class="m-3" />
             </li>
         </ul>
 
