@@ -82,24 +82,38 @@
         <!-- Altura / diametro / Edad estimada -->
         <ul class="fields row g-2">
             <li class="field col">
-                <label for="altura" class="form-label">Altura</label>
+                <label for="altura" class="form-label">Altura (metros)</label>
                 <input
                     id="altura"
                     name="altura"
-                    v-model.trim="form.altura"
-                    type="text"
-                    placeholder="Entre 10 e 20 metros"
+                    v-model.number="form.altura"
+                    type="number"
+                    step="0.01"
+                    placeholder="31"
                     class="field__control form-control"
                 />
             </li>
             <li class="field col">
-                <label for="diametro" class="form-label">Diametro</label>
+                <label for="diametroCopa" class="form-label">Diametro da copa (metros)</label>
                 <input
-                    id="diametro"
-                    name="diametro"
-                    v-model.trim="form.diametro"
-                    type="text"
-                    placeholder="Sobre 1.5 metros"
+                    id="diametroCopa"
+                    name="diametroCopa"
+                    v-model.number="form.diametroCopa"
+                    type="number"
+                    step="0.01"
+                    placeholder="10,5"
+                    class="field__control form-control"
+                />
+            </li>
+            <li class="field col">
+                <label for="perimetroTronco" class="form-label">Perímetro do tronco (metros)</label>
+                <input
+                    id="perimetroTronco"
+                    name="perimetroTronco"
+                    v-model.number="form.perimetroTronco"
+                    type="number"
+                    step="0.01"
+                    placeholder="10,5"
                     class="field__control form-control"
                 />
             </li>

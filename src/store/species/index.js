@@ -9,8 +9,10 @@ const SPECIE = {
     descFlorFruto: '',
     descTronco: '',
     usosAprovechamiento: '',
-    altura: '', //String por si meten medidas como "20-30 cm"
-    diametro: '', //String por si meten medidas,
+    altura: 0, //numérico Ej: 31 metros
+    diametroCopa: 0, //numérico Ej: 10.5 metros
+    perimetroTronco: 0, // numérico Ej: 3.45 metros
+    edadEstimada: 0, // numérico Ej: 100 anos
     distribucion:'',//distribución geográfica
     descriptio: ''
 }

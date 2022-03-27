@@ -6,8 +6,10 @@ const SENLLEIRA = {
     nombreReferencia: '',
     genus: '',
     specie: '',
-    altura: '', //String por si meten medidas como "20-30 cm"
-    diametro: '', //String por si meten medidas
+    altura: 0, //numérico Ej: 31 metros
+    diametroCopa: 0, //numérico Ej: 10.5 metros
+    perimetroTronco: 0, // numérico Ej: 3.45 metros
+    edadEstimada: 0, // numérico Ej: 100 anos
     edadEstimada: 0, //Edad estimada de la senlleira
     provincia: 'A Coruña',
     lugar: '',
