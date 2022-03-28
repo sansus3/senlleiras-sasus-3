@@ -29,7 +29,6 @@
 </template>
 
 <script setup>
-import { onMounted, defineProps } from 'vue';
 
 const props = defineProps({
     /**
@@ -100,17 +99,17 @@ const limpiar = () => {
         props.images[i].puntos['posicionado'] = false;
     }
 }
-onMounted(() => {
-    setInterval(() => {
-        contador++;
-        if (contador > props.images.length - 1) {
-            contador = 0;
-        }
-        limpiar();
-        props.images[contador].clases['carruselmostrado'] = true;
-        props.images[contador].puntos['posicionado'] = true;
-    }, 12000)
-});
+
+setInterval(() => {
+    contador++;
+    if (contador > props.images.length - 1) {
+        contador = 0;
+    }
+    limpiar();
+    props.images[contador].clases['carruselmostrado'] = true;
+    props.images[contador].puntos['posicionado'] = true;
+}, 12000)
+
 
 </script>
 
@@ -206,21 +205,6 @@ onMounted(() => {
     font-size: 12px;
     transition: all ease-in-out 0.2s;
 }
-<<<<<<< HEAD
-
-@media screen and (max-width: 1080px) {
-    .carrusel-images-galery {
-        height: 250px;
-    }
-    .header-carrusel-app .carrusel-button {
-        font-size: 22px;
-        margin: 0 10px;
-    }
-}
-
-/* texto */
-=======
->>>>>>> 476027428232566ac683feb63f1162265332aea0
 
 @media screen and (max-width: 1080px) {
     .carrusel-images-galery {

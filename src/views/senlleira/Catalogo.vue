@@ -22,7 +22,7 @@
                     </td>
                     <td role="cell" data-th="Nombre común">{{ item.nombreComun }}</td>
                     <td role="cell" data-th="Nombre de referencia">{{ item.nombreReferencia }}</td>
-                    <td role="cell" data-th="Concello">{{ item.concello }}</td>
+                    <td role="cell" data-th="Concello">{{ item.lugar }}</td>
                     <td role="cell" data-th="Opciones">
                         <router-link
                             data-titulo="Mostrar"
@@ -49,7 +49,7 @@ import CatalogoCabeceraVue from '@/components/senlleira-components/CatalogoCabec
 import TheLoader from '@/components/TheLoader.vue';
 import { onMounted, computed, ref } from 'vue';
 import { useStore } from 'vuex';
-import CatalogoCabecera from '../../components/senlleira-components/CatalogoCabecera.vue';
+import CatalogoCabecera from '@/components/senlleira-components/CatalogoCabecera.vue';
 //Cargamos el store
 const store = useStore();
 

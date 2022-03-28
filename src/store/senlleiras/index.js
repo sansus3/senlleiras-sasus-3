@@ -77,7 +77,7 @@ const actions = {
         //Pasamos todo a minúsculas pues includes es sensible a mayúsculas y minúsculas
         const min = data.toLowerCase();
         //Array temporal donde almacenamos los resultados
-        const tmp = state.senlleiras.filter(senlleira => senlleira.genus.toLowerCase().includes(min) || senlleira.specie.toLowerCase().includes(min) || senlleira.nombreReferencia.toLowerCase().includes(min) || senlleira.concello.toLowerCase().includes(min) || senlleira.nombreComun.toLowerCase().includes(min));
+        const tmp = state.senlleiras.filter(senlleira => senlleira.genus.toLowerCase().includes(min) || senlleira.specie.toLowerCase().includes(min) || senlleira.nombreReferencia.toLowerCase().includes(min) || senlleira.lugar.toLowerCase().includes(min) || senlleira.nombreComun.toLowerCase().includes(min));
         //Almacenams en el state los datos filtrados
         commit('senlleiraFilter', tmp);
     },

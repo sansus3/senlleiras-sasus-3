@@ -28,7 +28,7 @@
                  <a 
                 href="#"
                 @click.prevent="filtrar('concello')"
-                >Ayuntamiento</a>
+                >Lugar</a>
             </th>
             <th role="columnheader">Información</th>
         </tr>
@@ -47,15 +47,15 @@ const orden = reactive({
     specie: true,
     nombreComun: true,
     nombreReferencia: true,
-    concello: true,
+    lugar: true,
 })
 
 /**
  * Método que obtiene los registros de una "Senlleira"
- * @returns Género, especie, nombre común, nombre de referencia, localidad
+ * @returns Género, especie, nombre común, nombre de referencia, lugar
  */
 const filtrar = (genus) => {
-    orden[genus] = !orden[genus];
+    orden[genus] = !orden[genus];//Para establecer el order a-z o z-a. Siempre lo contrario
     store.dispatch('senlleiras/senlleiraSort',{field:genus,sort:orden[genus]})
 };
 </script>
