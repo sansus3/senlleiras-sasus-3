@@ -1,12 +1,12 @@
 <template>
     <div class="ficha">
         <template v-if="senlleira">
-            <h2 class="ficha__title title">Ficha del arbol</h2>
+            <h2 class="ficha__title title">Ficha da árbore</h2>
             <!-- Datos de la tabla -->
             <div class="ficha__datos">
                 <table class="ficha-tecnica-table">
                     <tr>
-                        <th>Nombre del árbol:</th>
+                        <th>Nome da árbore:</th>
                         <td>{{ senlleira.nombreComun }}</td>
                     </tr>
                     <tr>
@@ -14,21 +14,37 @@
                         <td>{{ senlleira.genus }} {{ senlleira.specie }}</td>
                     </tr>
                     <tr>
-                        <th>Tipo de hoja:</th>
+                        <th>Tipo da folla:</th>
                         <td>{{ senlleira.specieData.hojaPerenne ? 'Perenne' : 'Caduca' }}</td>
+                    </tr>
+                      <tr>
+                        <th>Tipo de flor:</th>
+                        <td>{{ senlleira.specieData.ginnospermas ? 'Gimnospermas' : 'Angiospermas' }}</td>
                     </tr>
                     <tr>
                         <th>Ubicación:</th>
                         <td>{{ senlleira.lugar }}</td>
                     </tr>
-                    <tr>
-                        <th>Edad estimada:</th>
+                   <tr v-if=" senlleira.edadEstimada > 0">
+                        <th>Idade estimada:</th>
                         <td>{{ senlleira.edadEstimada }}</td>
                     </tr>
-                    <tr>
-                        <th>Altura estimada:</th>
+                     <tr v-if="senlleira.diametro > 0" >
+                        <th>Diámetro da copa:</th>
+                        <td>{{ senlleira.diametro }}</td>
+                    </tr>
+                    <tr v-if="senlleira.perimetroTronco > 0" >
+                        <th>Perímetro do tronco:</th>
+                        <td>{{ senlleira.perimetroTronco }}</td>
+                    </tr>
+                    <tr v-if="senlleira.altura > 0" >
+                        <th>Altura estimada :</th>
                         <td>{{ senlleira.altura }}</td>
                     </tr>
+                     <!-- <tr>
+                        <th>Motivo pola elección da árbore:</th>
+                        <td> {{senlleira.destacaAntiguedad}} {{senlleira.destacaTamano}} {{senlleira.destacaSituacion}} {{senlleira.destacaContexto}}</td>
+                    </tr> -->
                 </table>
             </div>
 
@@ -41,7 +57,17 @@
             <div class="ficha__description">
                 <table class="ficha-tecnica-table-description">
                     <tr>
-                        <th colspan="2">Historias leyendas y curiosidades</th>
+                        <th colspan="2">Historias lendas e curiosidades</th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">{{ senlleira.usosCuriosidades }}</td>
+                    </tr>
+                </table>
+            </div>
+               <div class="ficha__description">
+                <table class="ficha-tecnica-table-description">
+                    <tr>
+                        <th colspan="2">Outros Datos</th>
                     </tr>
                     <tr>
                         <td colspan="2">{{ senlleira.comentarios }}</td>
