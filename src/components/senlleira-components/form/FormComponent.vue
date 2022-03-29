@@ -22,7 +22,7 @@
                     <label class="form-label required" for="lugar">Lugar, rúa, avenida</label>
                        <span data-set="Campo obligatorio" class="text-danger">*</span>
                     <input
-                        placeholder="O seu nome aquí"
+                        placeholder="nome do lugar"
                         class="form-control"
                         required
                         type="text"
@@ -41,7 +41,7 @@
                 <li class="field col">
                     <label class="form-label" for="concello">Concello</label>
                     <input
-                        placeholder="O seu nome aquí"
+                        placeholder="nome do concello"
                         class="form-control"
                         type="text"
                         v-model.trim="form.concello"
@@ -75,7 +75,7 @@
          <!--  fieldset Motivacion -->
          <!-- {{form}} -->
         <fieldset class="card p-3 mb-3">
-            <legend>Motivo por la elección del árbol</legend>
+            <legend>Motivo pola elección da árbore</legend>
             <ul class="fields g-2 row motivo-arbol">
                  <li class="field col">
                     <input 
@@ -108,7 +108,6 @@
                     <input 
                          type="checkbox" 
                          v-model="form.destacaContexto" 
-                        
                          name="destacaContexto" 
                          id="destacaContexto" 
                     />&nbsp;
