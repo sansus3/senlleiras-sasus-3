@@ -2,15 +2,18 @@
     Componente donde cargamos las imágenes de "unha árbore senlleria"
  -->
 <template>
-    <div class="imagenes" style="display: grid;grid-template-rows: 1fr;grid-template-columns: 1fr;justify-items: center;align-items: center;">
-        <div style="grid-row: 1 / 1;grid-column: 1 / 1;">
+    <div class="covertura__imagenes">        
+        <div class="covertura__imagenes loader">
             <the-loader :loading="loader"></the-loader>
         </div>
-        <div style="grid-row: 1 / 1;grid-column: 1 / 1; width: 100%;">
-            <carrusel
+        <div class="covertura__imagenes componente-carrusel">
+            <carrusel 
                 :carruseltext="`${senlleira.nombreReferencia} 🌳 ${senlleira.nombreComun}`"
                 :showlegend="false"
                 :images="rutas"
+                :alt = "`${senlleira.genus} ${senlleira.specie}`"
+                :title = "`${senlleira.genus} ${senlleira.specie}`"
+                :contadorInit="-1"
             ></carrusel>
         </div>      
     </div>
@@ -56,7 +59,35 @@ onMounted(async () => {
     } catch (error) {
         console.log(error)
     } finally {
-        loader.value = true;
+        loader.value = false;
     }
 });
 </script>
+
+<style scoped>
+.covertura__imagenes{
+    display: grid;
+    height:100%;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+.carrusel{
+    height: 100% !important;
+}
+    .covertura__imagenes.loader{
+        position: absolute;
+        transform: translate(50% 50%);
+        width: 100%;
+        height:100%;
+        grid-row: 1 / 1;
+        grid-column: 1 / 1;   
+        color: green;   
+    }
+    .covertura__imagenes.componente-carrusel{
+        width: 100%;
+        height:100%;
+    }
+</style>

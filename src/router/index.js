@@ -28,9 +28,9 @@ const routes = [
     component: () => import('@/views/senlleira/Mostrar.vue')
   },
   {
-    path: '/mapas',
-    name: 'Mapas',
-    component: () => import('../views/Mapas.vue')
+    path: '/mapa-senlleiras',
+    name: 'MapaSenlleiras',
+    component: () => import('../views/senlleira/MapaSenlleiras.vue')
   },
   {
     path: '/about',

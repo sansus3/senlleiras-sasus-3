@@ -3,26 +3,20 @@
  -->
 <template>
     <div class="table-container">
-        <table role="table">
-            <caption>
-                Catálogo de Árbores senlleiras
-                <router-link :to="{ name: 'SolicitudSenlleira' }" v-slot="{ navigate }">
-                    <button @click="navigate" @keypress.enter="navigate">Nueva senlleira</button>
-                </router-link>
-            </caption>
+        <table role="table">           
             <!-- thead Componente -->
             <catalogo-cabecera></catalogo-cabecera>
             <!-- tbody -->
             <tbody role="rowgroup">
                 <tr class="row" v-for="(item, index) in senlleiras" :key="item.id">
-                    <td>{{ index + 1 }}</td>
+                    <td :data-set="index+1"><span class="indice">{{ index + 1 }}</span></td>
                     <td role="cell" data-th="Género y especie">
                         <strong>{{ item.genus }}</strong>
                         {{ item.specie }}
                     </td>
                     <td role="cell" data-th="Nombre común">{{ item.nombreComun }}</td>
                     <td role="cell" data-th="Nombre de referencia">{{ item.nombreReferencia }}</td>
-                    <td role="cell" data-th="Concello">{{ item.lugar }}</td>
+                    <td role="cell" data-th="Lugar">{{ item.lugar }}</td>
                     <td role="cell" data-th="Opciones">
                         <router-link
                             data-titulo="Mostrar"

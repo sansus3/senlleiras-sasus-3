@@ -15,7 +15,7 @@ const errores = reactive({ //gestión de errores de imagen
      * {Boolean} errorImg - Indica que no hay cargada ninguna imagen
      */
     errorImg: true,
-    errorImgStr: 'Debe seleccionar un fichero al menos',
+    errorImgStr: 'Debe seleccionar polo menos un arquivo',
 });
 /**
  * Subida de imágenes a Firestore
@@ -47,7 +47,7 @@ const getImages = async (id,rutas) => {
             rutas.push(
                 {
                     url,
-                    text: 'Carballo del Bosque del Banquete de Conxo',
+                    text: '',
                     clases: { 'carrusel-image': true, 'carruselmostrado': bool },
                     puntos: { 'posicionado': !bool },
                 },
@@ -55,5 +55,4 @@ const getImages = async (id,rutas) => {
         })();     
     });
 }
-
 export {subirImagenes,getImages,errores,imagenesArray}

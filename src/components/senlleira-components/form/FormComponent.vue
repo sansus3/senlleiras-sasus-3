@@ -12,27 +12,36 @@
         <header>
             <h2 class="display-6">Senlleira</h2>
         </header>
-        <!-- fieldset Nombre de la planta -->
-        <scientific-name :form="form"></scientific-name>
+        <!-- fieldset Datos de la planta: nombre científico -->
+        <datos-arbore :form="form"></datos-arbore>
         <!-- fieldset Ubicación -->
         <fieldset class="card p-3 mb-3">
             <legend>Ubicación</legend>
             <ul class="fields g-2 row">
-                <li class="field col">
-                    <label class="form-label" for="lugar">Lugar, calle, avenida</label>
+                <li class="field col-auto">
+                    <label class="form-label required" for="lugar">Lugar, rúa, avenida</label>
+                       <span data-set="Campo obligatorio" class="text-danger">*</span>
                     <input
-                        placeholder="Su nombre aquí"
+                        placeholder="O seu nome aquí"
                         class="form-control"
+                        required
                         type="text"
                         v-model.trim="form.lugar"
                         name="lugar"
                         id="lugar"
-                    />
+                    /> 
+                    <div
+                v-if="!form.lugar.length"
+                class="alert alert-danger m-3"
+                role="alert"
+            >Debe escoller un lugar, rúa ou avenida</div>                
                 </li>
+            </ul>
+            <ul class="fields g-2 row">
                 <li class="field col">
                     <label class="form-label" for="concello">Concello</label>
                     <input
-                        placeholder="Su nombre aquí"
+                        placeholder="O seu nome aquí"
                         class="form-control"
                         type="text"
                         v-model.trim="form.concello"
@@ -40,7 +49,7 @@
                         id="concello"
                     />
                 </li>
-                <li class="field col-auto">
+                <li class="field col">
                     <label class="form-label" for="Provincia">Provincia</label>
                     <select
                         disabled
@@ -58,14 +67,59 @@
             </ul>
             <ul class="fields g-2 row">
                 <li class="field">
+                    <hr class="m-3">
                     <the-geolocation :location="form.location"></the-geolocation>
                 </li>
             </ul>
         </fieldset>
+         <!--  fieldset Motivacion -->
+         <!-- {{form}} -->
         <fieldset class="card p-3 mb-3">
-            <legend>Datos personales</legend>
+            <legend>Motivo por la elección del árbol</legend>
+            <ul class="fields g-2 row motivo-arbol">
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaAntiguedad"
+                         name="destacaAntiguedad" 
+                         id="destacaAntiguedad" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaAntiguedad">Antigüidade</label> 
+                </li> 
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaTamano"
+                         name="destacaTamano" 
+                         id="destacaTamano" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaTamano">Tamaño da árbore</label> 
+                </li>
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaSituacion"
+                         name="destacaSituacion" 
+                         id="destacaSituacion" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaSituacion">Situación da árbore</label> 
+                </li>
+                 <li class="field col">
+                    <input 
+                         type="checkbox" 
+                         v-model="form.destacaContexto" 
+                        
+                         name="destacaContexto" 
+                         id="destacaContexto" 
+                    />&nbsp;
+                    <label class="form-label" for="destacaContexto">Contexto histórico</label> 
+                </li>
+            </ul>
+        </fieldset>
+        <fieldset class="card p-3 mb-3">
+            <legend>Datos persoais</legend>
             <div class="input-group mb-3">
-                <span class="input-group-text">Nombre y apellidos</span>
+                <span class="input-group-text">Nome e apelidos</span>
                 <input
                     v-model.trim="form.nombrePila"
                     type="text"
@@ -80,6 +134,10 @@
                 />
             </div>
             <div class="input-group mb-3">
+                <span class="input-group-text required" id="correo">
+                    Correo electrónico
+                    <span data-set="Campo obligatorio" class="text-danger">*</span>
+                </span>
                 <input
                     type="email"
                     required
@@ -88,21 +146,37 @@
                     aria-label="Su correo"
                     aria-describedby="correo"
                     v-model.trim="form.email"
-                />
-                <span class="input-group-text required" id="correo">
-                    Correo electrónico
-                    <span data-set="Campo obligatorio" class="text-danger">*</span>
-                </span>
+                />               
+            </div>
+             <div
+                v-if="!form.email.length"
+                class="alert alert-danger m-3"
+                role="alert"
+            >Debe poñer un correo electrónico</div>
+        </fieldset>
+        <fieldset class="card p-3 mb-3">
+            <legend>Historias, lendas e curiosidades</legend>
+            <div class="input-group mb-2">
+                <textarea
+                    placeholder="Lo que hace importante este árbol es..."
+                    v-model.trim="form.usosCuriosidades"
+                    class="form-control"
+                    aria-label="With textarea"
+                    rows = "5"
+                    cols="40"
+                ></textarea>
             </div>
         </fieldset>
         <fieldset class="card p-3 mb-3">
-            <legend>Otros datos</legend>
+            <legend>Outros datos</legend>
             <div class="input-group mb-2">
-                <span class="input-group-text">Tus comentarios</span>
                 <textarea
+                    placeholder="Tus comentarios"
                     v-model.trim="form.comentarios"
                     class="form-control"
                     aria-label="With textarea"
+                    rows = "3"
+                    cols = "40"
                 ></textarea>
             </div>
         </fieldset>
@@ -114,9 +188,9 @@
             <input type="hidden" v-model="form.genus" />
             <button :disabled="btnDisabled" class="btn btn-primary">
                 <the-loader :loading="loaderSave"></the-loader>
-                Guardar
+                Gardar
             </button>
-            <span v-if="inserted">Senlleira insertada de forma correcta. Gracias por su colaboración</span>
+            <span v-if="inserted">Senlleira insertada de forma correcta. Gracias pola sua colaboración</span>
         </div>
         <!-- <pre>{{imagenesArray}}</pre>
     {{errores}} -->
@@ -128,7 +202,7 @@
 import {subirImagenes, errores,imagenesArray} from '@/hooks/imageUploader.hook';//hook tratamiento de imágenes
 import { ref, computed, provide } from 'vue';
 import { useStore } from 'vuex';
-import ScientificName from './ScientificName.vue';
+import DatosArbore from '@/components/senlleira-components/form/DatosArbore.vue';
 import FieldsetImages from "@/components/senlleira-components/form/FieldsetImages.vue";
 import TheGeolocation from '@/components/senlleira-components/TheGeolocation.vue';
 import TheLoader from "@/components/TheLoader.vue";
@@ -166,7 +240,7 @@ const btnDisabled = computed(() => {
     const expReg = /^-?\d+\.\d+$/;
     const expRegEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
     //console.log(expReg.test(form.value.location.latitude))
-    return !expReg.test(form.value.location.latitude) || !expReg.test(form.value.location.longitude) || !expRegEmail.test(form.value.email) || !form.value.nombreReferencia.length || !form.value.email.length || loaderSpecies.value || errores.errorImg
+    return !expReg.test(form.value.location.latitude) || !expReg.test(form.value.location.longitude) || !expRegEmail.test(form.value.email) || !form.value.nombreReferencia.length || !form.value.lugar.length || !form.value.email.length || loaderSpecies.value || errores.errorImg
 });
 
 
@@ -200,5 +274,5 @@ const submit = async () => {
 </script>
 
 <style lang="scss">
-@import url(../../../assets/scss/form.scss);
+@import url(../../../assets/scss/solicitud-senlleira.scss);
 </style>

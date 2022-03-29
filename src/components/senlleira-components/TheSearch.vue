@@ -2,7 +2,7 @@
     Buscador de Senllerias: Género, especie, nombre común, nombre de referencia, localidad
  -->
 <template>
-    <input placeholder="Búsqueda ..." @keyup="filtrar" type="search" v-model.trim="search.text">
+    <input placeholder="Nome, especie, referencia, lugar" @keyup="filtrar" type="search" class="the-search" v-model.trim="search.text">
 </template>
 
 <script setup>
@@ -22,3 +22,10 @@ const search = reactive({
  */
 const filtrar = () => store.dispatch('senlleiras/senlleiraSearch',search.text);
 </script>
+
+<style scoped>
+.the-search::placeholder{
+ color: var(--colorPrincipal);
+ font-size: .8rem;
+}
+</style>

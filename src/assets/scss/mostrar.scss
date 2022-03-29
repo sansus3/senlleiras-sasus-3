@@ -1,0 +1,120 @@
+/* FICHA TECNICA */
+
+/* Grid template ficha tecnica */
+.ficha{
+    display: grid;
+    gap: 1rem;
+    width: 90vw;
+    max-width: 650px;
+    margin: auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+    .ficha__title{
+        text-align: center;
+	    font-weight: 600; 
+        text-transform: uppercase;   
+    }
+    .ficha__images{
+        height: 100%;
+        width: 100%;
+    }
+    .ficha__images img{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+@media screen and (min-width:1080px){
+    .ficha{
+        grid-template-columns: 60% 1fr;
+        align-items: start;
+        max-width: 1024px;
+    }
+        .ficha__title{
+            grid-column: 1 / span 2;
+        }
+        .ficha__images{
+            grid-row: 2 / span 2;
+            align-self: center;
+        }
+        .ficha__datos,.ficha__description{
+            grid-row: 2 / span 1;
+            grid-column: 2 / span 1;
+        }
+        .ficha__description{
+            grid-row: 3 / span 1;
+        }
+        .ficha__mapa{
+            grid-row: 4 / span 1;
+            grid-column: 1 / span 2;
+        }
+}
+
+/* Tabla ficha tecnica */
+
+.ficha-tecnica-table{
+    background-color: rgba(150, 150, 150, .4);
+    backdrop-filter: blur(1px);
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow:  1px 1px 8px gray;
+    border-radius: 5px;
+}
+    .ficha-tecnica-table tr{
+        text-align: left;
+        border-bottom: 3px solid white;
+    }
+        .ficha-tecnica-table tr:last-child{
+            border-bottom: none;
+        }
+    .ficha-tecnica-table th{
+        width: 45%;
+        font-size: var(--textosize);
+        padding:3px;
+    }
+    .ficha-tecnica-table td{
+        font-size: var(--textosize);
+        color: var(--colorprincipal);
+        font-weight: 600;
+    }
+
+/* Ficha descripcion   */
+.ficha-tecnica-table-description{
+    width: 100%;
+    background-color: rgba(150, 150, 150, .4);
+    backdrop-filter: blur(1px);
+    padding: 10px 0;
+    border-radius: 5px;
+    box-shadow:  1px 1px 8px gray;
+
+}
+    .ficha-tecnica-table-description th{
+        text-align: center;
+        color: green;
+        padding: 5px 10px;
+        text-transform: uppercase;
+        font-size: 19px;
+        text-shadow: lightgray 0px 0px 2.5px;
+    }
+    .ficha-tecnica-table-description td{
+        font-size: var(--textosize);
+        text-align: justify;
+        padding: 5px 10px;
+    }
+.ficha-tecnica-table-description .table-usuario{
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    color: green;
+    text-decoration:underline;
+}
+
+
+
+@media screen and (max-width:700px){
+    .ficha .carrusel{
+        height: 250px !important;
+    }
+}
