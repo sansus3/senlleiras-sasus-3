@@ -7,9 +7,11 @@
             </label>
             <input
                 id="latitud"
+                required
                 name="latitud"
-                v-model.trim="location.latitude"
-                type="text"
+                v-model.number="location.latitude"
+                type="number"
+                step="any"
                 placeholder="43.5060736"
                 class="field__control form-control"
             />
@@ -27,9 +29,11 @@
             </label>
             <input
                 id="longitude"
+                required
                 name="longitude"
-                v-model.trim="location.longitude"
-                type="text"
+                v-model.number="location.longitude"
+                step="any"
+                type="number"
                 placeholder="-8.2051072"
                 class="field__control form-control"
             />

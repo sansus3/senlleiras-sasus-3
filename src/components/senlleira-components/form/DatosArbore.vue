@@ -88,7 +88,7 @@
                     name="altura"
                     v-model.number="form.altura"
                     type="number"
-                    step="0.01"
+                    step="any"
                     placeholder="31"
                     class="field__control form-control"
                 />
@@ -100,7 +100,7 @@
                     name="diametroCopa"
                     v-model.number="form.diametroCopa"
                     type="number"
-                    step="0.01"
+                    step="any"
                     placeholder="10,5"
                     class="field__control form-control"
                 />
@@ -112,7 +112,7 @@
                     name="perimetroTronco"
                     v-model.number="form.perimetroTronco"
                     type="number"
-                    step="0.01"
+                    step="any"
                     placeholder="10,5"
                     class="field__control form-control"
                 />
