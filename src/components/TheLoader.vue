@@ -2,7 +2,7 @@
     Loader para cargar las páginas
  -->
 <template>
-    <div :class="{'spinner-border':loading}" role="status">
+    <div class="the-loader" :class="{'spinner-border':loading}" role="status">
         <span class="visually-hidden">Loading...</span>
     </div>
 </template>
