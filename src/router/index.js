@@ -25,7 +25,7 @@ const routes = [
   {
     path: `/arb-:id`,
     name: 'Senlleira',
-    component: () => import('@/views/senlleira/Mostrar.vue')
+    component: () => import('@/views/senlleira/FichaTecnica.vue')
   },
   {
     path: '/mapa-senlleiras',

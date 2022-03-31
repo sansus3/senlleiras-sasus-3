@@ -2,59 +2,63 @@
     <fieldset class="card p-3 mb-3">
         <legend>Datos da arbore</legend>
         <ul class="fields row g-2">
-            <li class="field col-auto">
-                <label class="form-label required" for="especie">
-                    Nome científico
+            <li class="specie field col-auto">
+                 <div class="loader" v-if="loaderSpecies">
+                    <the-loader :loading="loaderSpecies" sizecircle="1em" foreground="lightgreen"></the-loader>
+                </div>
+                <div class="field">
+                    <label class="form-label required" for="especie">
+                        Nome científico
+                        <span data-set="Campo obligatorio" class="text-danger">*</span>
+                    </label>
+                    <select
+                        @change="obtenerNombreComun"
+                        v-model="form.idSpecie"
+                        name="especie"
+                        id="especie"
+                        class="form-select"
+                        required
+                    >
+                        <optgroup label="Sen confirmar">
+                            <option value="null">Outra</option>
+                        </optgroup>
+                        <optgroup label="Especies">
+                            <option
+                                v-for="item in species"
+                                :key="item.id"
+                                :value="item.id"
+                            >{{ item.genus }} {{ item.specie }}</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="field">
+                    <label class="form-label" for="nombreComun">Nome común</label>
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
-                </label>
-                <select
-                    @change="obtenerNombreComun"
-                    v-model="form.idSpecie"
-                    name="especie"
-                    id="especie"
-                    class="form-select"
-                    required
-                >
-                    <optgroup label="Sen confirmar">
-                        <option value="null">Outra</option>
-                    </optgroup>
-                    <optgroup label="Especies">
-                        <option
-                            v-for="item in species"
-                            :key="item.id"
-                            :value="item.id"
-                        >{{ item.genus }} {{ item.specie }}</option>
-                    </optgroup>
-                </select>
-                <the-loader :loading="loaderSpecies" sizecircle="1em" foreground="lightgreen"></the-loader>
-            </li>
-            <li class="field col-auto">
-                <label class="form-label" for="nombreComun">Nome común</label>
-                <span data-set="Campo obligatorio" class="text-danger">*</span>
-                <select
-                    v-model="form.idSpecie"
-                    @change="obtenerNombreComun"
-                    name="nombreComun"
-                    id="nombreComun"
-                    class="form-select"
-                >
-                    <optgroup label="Sen confirmar">
-                        <option value="null">Outra</option>
-                    </optgroup>
-                    <optgroup label="Nomes comúns">
-                        <option
-                            v-for="item in names"
-                            :key="item.id"
-                            :value="item.id"
-                        >{{ item.names.join() }}</option>
-                    </optgroup>
-                </select>
-                <div
-                    v-if="!form.idSpecie"
-                    class="alert alert-danger m-3"
-                    role="alert"
-                >Debe escoller o nome científico o nome común</div>
-                <hr class="m-3" />
+                    <select
+                        v-model="form.idSpecie"
+                        @change="obtenerNombreComun"
+                        name="nombreComun"
+                        id="nombreComun"
+                        class="form-select"
+                    >
+                        <optgroup label="Sen confirmar">
+                            <option value="null">Outra</option>
+                        </optgroup>
+                        <optgroup label="Nomes comúns">
+                            <option
+                                v-for="item in names"
+                                :key="item.id"
+                                :value="item.id"
+                            >{{ item.names.join() }}</option>
+                        </optgroup>
+                    </select>
+                    <div
+                        v-if="!form.idSpecie"
+                        class="alert alert-danger m-3"
+                        role="alert"
+                    >Debe escoller o nome científico o nome común</div>
+                    <hr class="m-3" />
+                </div>
             </li>
             <li class="field col-auto">
                 <label class="form-label required" for="nombreReferencia">
