@@ -5,7 +5,7 @@
 <script setup>
 //Dependendencias
 import { Loader } from "@googlemaps/js-api-loader";
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
