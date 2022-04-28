@@ -56,8 +56,23 @@ const mutations = {
 }
 
 const actions = {
-    async listSenlleiras(context) {
-        const response = await fetch(`${context.rootState.realtimeDatabase}senlleiras.json`,
+    /**
+     * 
+     * @param {Objec} context 
+     * @param {Object} paginacion Opciones para ordenar y paginar los resultados. Propiedades: start, string, id de la última senlleira a partir del que se obtendrán los nuevos resultados
+     */
+    async listSenlleiras(context,paginacion) {
+        //Consultar para ordenación de datos
+        //https://firebase.google.com/docs/database/rest/retrieve-data?hl=es&authuser=0
+        
+        let stringJSON = `${context.rootState.realtimeDatabase}senlleiras.json`;
+
+        if(paginacion){
+            let startAt = paginacion.start.length ? `&startAt="${paginacion.start}"`:'';
+            stringJSON = `${context.rootState.realtimeDatabase}senlleiras.json?orderBy="$key"${startAt}&limitToFirst=3`;
+        }
+
+        const response = await fetch(stringJSON,
             {
                 method: 'GET',
                 headers: {

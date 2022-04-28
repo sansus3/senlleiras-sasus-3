@@ -1,4 +1,9 @@
 # senlleiras-sansus-3
+# Firebase
+email: arboresenlleira@gmail.com
+pass: apdtmMdp27042304()
+usuario: Sansus Senlleira
+project: altas-senlleiras
 
 ## Project setup
 ```
