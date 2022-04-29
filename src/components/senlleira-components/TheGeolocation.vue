@@ -21,7 +21,7 @@
             </div>
         </div>
         <div data-set="data" ref="mapDiv" style="margin:.5em 0;width: 100%; height: 50vh; "></div>
-        <!-- <input type="button" @click="getGeolocation" class="btn btn-primary mt-2" value="Geolocalizar" /> -->
+        <input type="button" @click="onClickGetCoords" class="btn btn-primary mt-2" value="Reseteo ubicación" />
         <the-loader :loading="loader"></the-loader>
         {{ errorStr }}
     </section>
@@ -46,33 +46,66 @@ const props = defineProps({
     }
 });
 
-const getGeolocation = () => {
+
+
+/**
+ * Obtención de coordenadas a través del objeto navigator.geolocation
+ * Utilizamos una promesa para garantizar la espera de los datos antes de una llamada que tenga que esperar los datos
+ * @return {Object} { lat: Number, lng: Number} Coordenadas de latitud y longitud
+ */
+const getCoords = async () => {
+
+    const pos = await new Promise((resolve, reject) => {
+        /**
+         * https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition
+         * Syntax:
+         * getCurrentPosition(success)
+         * getCurrentPosition(success, error)
+         * getCurrentPosition(success, error, options)
+         */
+        navigator.geolocation.getCurrentPosition(
+            resolve,
+            reject,
+            {
+                maximumAge: 60000,
+                timeout: 10000,
+                enableHighAccuracy: true
+            }
+        );
+    });
+
+    return {
+        lng: pos.coords.longitude,
+        lat: pos.coords.latitude,
+    };
+}
+/**
+ * Método que nos devuelve las coordenadas.
+ */
+const onClickGetCoords = async () => {
     errorStr.value = '';
     if (!window.navigator.geolocation) {
         errorStr.value = "La Geolocalización no está disponible";
         return;
     }
-    //geolocationBool.value = true;
     try {
-        window.navigator.geolocation.getCurrentPosition(
-            posicion => {
-                props.location.latitude = posicion.coords.latitude;
-                props.location.longitude = posicion.coords.longitude;
-                loader.value = false;
-                //geolocationBool.value = false;
-            },
-            error => {
-                errorStr.value = error.message;
-                loader.value = false;
-                //geolocationBool.value = false;
-            }
-        );
+        loader.value = true;
+        // Coordenadas actuales
+        let { lat, lng } = await getCoords();
+        //Cargamos los valores del formulario
+        props.location.latitude = lat;
+        props.location.longitude = lng;
+
+        if(marker && marker.position){
+            let latlng = new google.maps.LatLng(lat, lng);
+            marker.setPosition(latlng);
+        }
+
     } catch (error) {
         errorStr.value = error.message;
     } finally {
-        loader.value = true;
+        loader.value = false;
     }
-
 }
 
 
@@ -85,23 +118,8 @@ const mapDiv = ref(null);
 let apikey = computed(() => store.state.google_maps_api_key);
 const theLoader = new Loader({ apiKey: apikey.value });
 let map, infoWindow, marker;
-//Icono del marcador
-const image = './googlemaps128x128.png';
 
-/**
- * Función que nos devuelve las coordenadas actuales
- * Utilizamos promesa puesto que es necesario esperar la respuesta
- */
-const getCoords = async () => {
-    const pos = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
 
-    return {
-        lng: pos.coords.longitude,
-        lat: pos.coords.latitude,
-    };
-};
 
 //Función callback anónima y lanzada automáticamente
 (async () => {
@@ -114,12 +132,12 @@ const getCoords = async () => {
         //Cargamos los valores del formulario
         props.location.latitude = lat;
         props.location.longitude = lng;
-        //cargamos marca
+        //cargamos mapa y colocamos valores
         map = new google.maps.Map(mapDiv.value, {
             center: {
                 lat: lat, lng: lng
             },
-            zoom: 18,
+            zoom: 12,
         });
         //Cargamos marcador
         marker = new google.maps.Marker({
@@ -130,7 +148,7 @@ const getCoords = async () => {
                 lat: lat,
                 lng: lng
             },
-            icon: image,
+            icon: './googlemaps128x128.png',
         });
         // Agregamos el listener para capturar el click y movimiento del marcador
         marker.addListener("click", function () {
