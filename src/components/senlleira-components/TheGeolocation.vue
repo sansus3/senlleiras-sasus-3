@@ -20,8 +20,8 @@
             <div v-if="!location.longitude" class="alert alert-danger m-3" role="alert">Debe escoller unha lonxitude
             </div>
         </div>
-        <div data-set="data" ref="mapDiv" style="margin:.5em 0;width: 100%; height: 35vh; "></div>
-        <input type="button" @click="getGeolocation" class="btn btn-primary mt-2" value="Geolocalizar" />
+        <div data-set="data" ref="mapDiv" style="margin:.5em 0;width: 100%; height: 50vh; "></div>
+        <!-- <input type="button" @click="getGeolocation" class="btn btn-primary mt-2" value="Geolocalizar" /> -->
         <the-loader :loading="loader"></the-loader>
         {{ errorStr }}
     </section>
@@ -111,6 +111,9 @@ const getCoords = async () => {
             await theLoader.load();
         // Coordenadas actuales
         let { lat, lng } = await getCoords();
+        //Cargamos los valores del formulario
+        props.location.latitude = lat;
+        props.location.longitude = lng;
         //cargamos marca
         map = new google.maps.Map(mapDiv.value, {
             center: {
@@ -131,7 +134,6 @@ const getCoords = async () => {
         });
         // Agregamos el listener para capturar el click y movimiento del marcador
         marker.addListener("click", function () {
-            console.log('lala')
             if (marker.getAnimation() !== null) {
                 marker.setAnimation(null);
             } else {
@@ -140,21 +142,20 @@ const getCoords = async () => {
         });
         // Capturamos cuando la posición del marcador cambie y realizamos la acción que se requiera
         google.maps.event.addListener(marker, "position_changed", function () {
-            console.log('tata')
             var lat = marker.getPosition().lat();
             var lng = marker.getPosition().lng();
 
-            console.log('Latitude: ' + lat);
-            console.log('Longitude: ' + lng);
+            // console.log('Latitude: ' + lat);
+            // console.log('Longitude: ' + lng);
 
             //Pintamos en el formulario
             props.location.latitude = lat;
             props.location.longitude = lng;
 
         });
-        infoWindow = new google.maps.InfoWindow(); 
-        infoWindow.setPosition({lat,lng});
-        infoWindow.setContent("Vostede está aquí");
+        infoWindow = new google.maps.InfoWindow();
+        infoWindow.setPosition({ lat, lng });
+        infoWindow.setContent(`Latitude: ${lat}|Lonxitude: ${lng}.<br> Despraze o marcador para un mellor axuste.`);
         infoWindow.open(map);
     } catch (error) {
         console.log(error);
