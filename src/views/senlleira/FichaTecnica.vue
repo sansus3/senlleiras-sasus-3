@@ -41,10 +41,10 @@
                         <th>Altura estimada :</th>
                         <td>{{ senlleira.altura }}</td>
                     </tr>
-                    <!-- <tr>
+                     <tr v-if="(senlleira.destacaAntiguedad==true || senlleira.destacaTamano == true || senlleira.destacaSituacion == true || senlleira.destacaContexto ==true)" >
                         <th>Motivo pola elección da árbore:</th>
-                        <td> {{senlleira.destacaAntiguedad}} {{senlleira.destacaTamano}} {{senlleira.destacaSituacion}} {{senlleira.destacaContexto}}</td>
-                    </tr> -->
+                        <td> {{'Antiguedad'}}, {{'Situación'}}, {{'Tamaño'}}, {{'Contexto histórico'}}</td>
+                    </tr>
                 </table>
             </div>
 
@@ -72,7 +72,7 @@
                     <tr>
                         <td colspan="2">{{ senlleira.comentarios }}</td>
                     </tr>
-                    <tr>
+                    <tr v-if="(senlleira.nombrePila != '' || senlleira.apellidos != '')">
                         <td class="table-usuario" colspan="2">
                             Ficha subida por:
                             <span id="name-user">{{ senlleira.nombrePila }} {{ senlleira.apellidos }}</span>
