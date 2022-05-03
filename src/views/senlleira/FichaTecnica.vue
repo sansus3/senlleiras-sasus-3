@@ -17,7 +17,7 @@
                         <th>Tipo da folla:</th>
                         <td>{{ senlleira.specieData.hojaPerenne ? 'Perenne' : 'Caduca' }}</td>
                     </tr>
-                      <tr>
+                    <tr>
                         <th>Tipo de flor:</th>
                         <td>{{ senlleira.specieData.ginnospermas ? 'Gimnospermas' : 'Angiospermas' }}</td>
                     </tr>
@@ -25,34 +25,34 @@
                         <th>Ubicación:</th>
                         <td>{{ senlleira.lugar }}</td>
                     </tr>
-                   <tr v-if=" senlleira.edadEstimada > 0">
+                    <tr v-if="senlleira.edadEstimada > 0">
                         <th>Idade estimada:</th>
                         <td>{{ senlleira.edadEstimada }}</td>
                     </tr>
-                     <tr v-if="senlleira.diametro > 0" >
+                    <tr v-if="senlleira.diametro > 0">
                         <th>Diámetro da copa:</th>
                         <td>{{ senlleira.diametro }}</td>
                     </tr>
-                    <tr v-if="senlleira.perimetroTronco > 0" >
+                    <tr v-if="senlleira.perimetroTronco > 0">
                         <th>Perímetro do tronco:</th>
                         <td>{{ senlleira.perimetroTronco }}</td>
                     </tr>
-                    <tr v-if="senlleira.altura > 0" >
+                    <tr v-if="senlleira.altura > 0">
                         <th>Altura estimada :</th>
                         <td>{{ senlleira.altura }}</td>
                     </tr>
-                     <!-- <tr>
+                     <tr v-if="(senlleira.destacaAntiguedad==true || senlleira.destacaTamano == true || senlleira.destacaSituacion == true || senlleira.destacaContexto ==true)" >
                         <th>Motivo pola elección da árbore:</th>
-                        <td> {{senlleira.destacaAntiguedad}} {{senlleira.destacaTamano}} {{senlleira.destacaSituacion}} {{senlleira.destacaContexto}}</td>
-                    </tr> -->
+                        <td> {{'Antiguedad'}}, {{'Situación'}}, {{'Tamaño'}}, {{'Contexto histórico'}}</td>
+                    </tr>
                 </table>
             </div>
 
             <!-- Imágenes -->
-            <div class="ficha__images" >
+            <div class="ficha__images">
                 <images-senlleiras :id="$route.params.id"></images-senlleiras>
             </div>
-                
+
             <!-- Descripción de la senlleira -->
             <div class="ficha__description">
                 <table class="ficha-tecnica-table-description">
@@ -63,8 +63,8 @@
                         <td colspan="2">{{ senlleira.usosCuriosidades }}</td>
                     </tr>
                 </table>
-            </div>
-               <div class="ficha__description">
+           
+            
                 <table class="ficha-tecnica-table-description">
                     <tr>
                         <th colspan="2">Outros Datos</th>
@@ -72,27 +72,24 @@
                     <tr>
                         <td colspan="2">{{ senlleira.comentarios }}</td>
                     </tr>
-                    <tr>
+                    <tr v-if="(senlleira.nombrePila != '' || senlleira.apellidos != '')">
                         <td class="table-usuario" colspan="2">
                             Ficha subida por:
-                            <span id="name-user">{{senlleira.nombrePila}} {{senlleira.apellidos}}</span>
+                            <span id="name-user">{{ senlleira.nombrePila }} {{ senlleira.apellidos }}</span>
                         </td>
                     </tr>
                 </table>
             </div>
             <!-- Mapa de coordenadas Leaflet -->
             <div class="ficha__mapa">
-                <leaflet-vue
-                    :location="[
-                        {
-                            tooltip: senlleira.nombreReferencia,
-                            latLong:[senlleira.location.latitude, senlleira.location.longitude]
-                        }
-                    ]"
-                    :centrado="[senlleira.location.latitude, senlleira.location.longitude]"
-                >
+                <leaflet-vue :location="[
+                    {
+                        tooltip: senlleira.nombreReferencia,
+                        latLong: [senlleira.location.latitude, senlleira.location.longitude]
+                    }
+                ]" :centrado="[senlleira.location.latitude, senlleira.location.longitude]">
                 </leaflet-vue>
-            </div>           
+            </div>
         </template>
     </div>
 </template>
@@ -110,8 +107,8 @@ const route = useRoute();
 
 
 
-const getListadoSenlleiras = async()=>{
-     try {
+const getListadoSenlleiras = async () => {
+    try {
         await store.dispatch('senlleiras/listSenlleiras');
     } catch (error) {
         console.log('Mostrar.vue', error);
@@ -121,7 +118,7 @@ const getListadoSenlleiras = async()=>{
 //Ciclo de vida
 onMounted(async () => {
     await store.dispatch('species/getListadoEspecies');//Listado del modelo de datos de senlleiras para rellenar la ficha
-    await store.dispatch('senlleiras/getSenlleira',route.params.id);
+    await store.dispatch('senlleiras/getSenlleira', route.params.id);
 });
 
 
@@ -137,7 +134,7 @@ onMounted(async () => {
 const senlleira = computed(() => {
     const sen = store.state.senlleiras.senlleira;
     const sp = store.state.species.species.find(specie => specie.id === sen.idSpecie);
-    
+
     return { ...sen, specieData: { ...sp } };
 });
 
@@ -147,5 +144,5 @@ provide('senlleira', senlleira);
 </script>
 
 <style scoped lang="scss">
-@import url(../../assets/scss/mostrar.scss);
+@import url(../../assets/scss/ficha-tecnica.scss);
 </style>

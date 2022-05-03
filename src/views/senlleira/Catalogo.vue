@@ -20,13 +20,17 @@
                     <td role="cell" data-th="Opciones">
                         <router-link
                             data-titulo="Mostrar"
+                            title="Máis info"
                             :to="{
                                 name: 'Senlleira',
                                 params: {
                                     id: item.id
                                 }
                             }"
-                        >🍳</router-link>
+                        >👈</router-link>
+                        <a title="Xeolocalización" target="blank" :href="`https://maps.google.com/?q=${item.location.latitude},${item.location.longitude}`">
+                        🎯
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -35,17 +39,22 @@
             <the-loader foreground="green" :loading="loading"></the-loader>
         </div>
     </div>
+    <!-- <button @click="nextGo(senlleiras.slice(-1))">Siguiente</button> -->
 </template>
 
 <script setup>
 //Dependencias
-import CatalogoCabeceraVue from '@/components/senlleira-components/CatalogoCabecera.vue';
 import TheLoader from '@/components/TheLoader.vue';
 import { onMounted, computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import CatalogoCabecera from '@/components/senlleira-components/CatalogoCabecera.vue';
 //Cargamos el store
 const store = useStore();
+
+
+// const nextGo = (el) => {
+//     store.dispatch('senlleiras/listSenlleiras',{start:el[0].id});
+// }
 
 /**
  * Obtenemos el catálogo de las senlleiras filtrados
@@ -69,6 +78,7 @@ onMounted(async () => {
     }
 
 });
+
 </script>
 
 <style scoped lang="scss">
