@@ -1,7 +1,7 @@
 <template>
     <header class="main-header">
         <nav class="header-nav-app" :class="{ 'reduced': show }">
-            <router-link class="header-logo" :to="{ name: 'Home' }">LOGO</router-link>
+            <router-link class="header-logo" :to="{ name: 'Home' }"><img src="@/assets/logo-entero.png" alt="Senllapp" height="40" width="80"></router-link>
             <ul class="header-nav-buttons">
                 <li 
                     class="header-search" 
