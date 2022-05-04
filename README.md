@@ -45,3 +45,9 @@ https://cloud.google.com/vision/docs/object-localizer
 
 Aprendizaje automático
 https://www.tensorflow.org/
+
+Ruta Waypoin API GOOGLEMAP js
+https://developers.google.com/maps/documentation/javascript/examples/directions-waypoints#maps_directions_waypoints-javascript
+
+Ruta Polyline API GOOGLEMAP js
+https://developers.google.com/maps/documentation/javascript/examples/polyline-simple
