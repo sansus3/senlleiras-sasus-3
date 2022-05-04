@@ -72,7 +72,7 @@
                     <tr>
                         <td colspan="2">{{ senlleira.comentarios }}</td>
                     </tr>
-                    <tr v-if="(senlleira.nombrePila != '' || senlleira.apellidos != '')">
+                    <tr v-if="(senlleira.nombrePila != '' || senlleira.apellidos != '' || senlleira.comentarios!= '')">
                         <td class="table-usuario" colspan="2">
                             Ficha subida por:
                             <span id="name-user">{{ senlleira.nombrePila }} {{ senlleira.apellidos }}</span>
