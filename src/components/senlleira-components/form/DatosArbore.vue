@@ -12,7 +12,7 @@
                         <span data-set="Campo obligatorio" class="text-danger">*</span>
                     </label>
                     <select
-                        @change="obtenerNombreComun"
+                        
                         v-model="form.idSpecie"
                         name="especie"
                         id="especie"
@@ -36,7 +36,7 @@
                     <span data-set="Campo obligatorio" class="text-danger">*</span>
                     <select
                         v-model="form.idSpecie"
-                        @change="obtenerNombreComun"
+                        
                         name="nombreComun"
                         id="nombreComun"
                         class="form-select"
@@ -171,23 +171,4 @@ const props = defineProps([
  */
 const species = computed(() => store.state.species.speciesFilter);
 const names = computed(() => store.getters['species/getSpeciesNamesSort']);
-
-/**
-* Select del html par buscar en el array de Especies el nombre común y no científico del mismo
-* @param {Object} e Evento
-*/
-const obtenerNombreComun = e => {
-    props.form.nombreComun = '';
-    const specie = species.value.find(element => element.id === e.target.value);
-    //console.log(specie)
-    if (specie) {
-        props.form.nombreComun = specie.names.join();
-        props.form.genus = specie.genus;
-        props.form.specie = specie.specie;
-    } else {
-        props.form.nombreComun = '';
-        props.form.genus = '';
-        props.form.specie = '';
-    }
-}
 </script>

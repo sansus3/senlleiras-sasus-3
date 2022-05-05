@@ -55,7 +55,7 @@ const countRows = computed(()=>store.getters['senlleiras/getSenlleirasLength']);
 
 /**
  * Método que obtiene los registros de una "Senlleira"
- * @returns Género, especie, nombre común, nombre de referencia, localidad
+ * @returns Género, especie, nombre común, nombre de referencia, lugar
  */
 const ordernar = (genus) => {
     orden[genus] = !orden[genus];
