@@ -2,24 +2,24 @@
   <div class="grid d-flex text-center" style="height: 20vh">
     <div class="map">
       <google-maps></google-maps>
-      <nav class="enlaces">
-      <button class="btn btn-primary" @click="show=!show">{{show?'Ocultar':'Mostrar'}} nomes</button>
-      <ul v-if="show">
-        <li v-for="(item, index) in data" :key="item.id">
-          <router-link
-            data-titulo="Mostrar"
-            :to="{
+      <div v-if="fetchError" class="enlaces">
+        <div class="msg-error" role="alert">Problema de conexión. Comprobe a súa rede</div>
+      </div>
+      <nav v-else class="enlaces">
+        <button class="btn btn-primary" @click="show = !show">{{ show ? 'Ocultar' : 'Mostrar' }} nomes</button>
+        <ul v-if="show">
+          <li v-for="(item, index) in data" :key="item.id">
+            <router-link data-titulo="Mostrar" :to="{
               name: 'Senlleira',
               params: {
                 id: item.id
               }
-            }"
-          >🍳 {{ (index + 1) }} {{ item.nombreReferencia }}</router-link>
-        </li>
-      </ul>
-    </nav>
+            }">🍳 {{ (index + 1) }} {{ item.nombreReferencia }}</router-link>
+          </li>
+        </ul>
+      </nav>
     </div>
-        
+
   </div>
 </template>
 
@@ -32,6 +32,7 @@ import { ref } from 'vue';
 
 const store = useStore();
 const show = ref(false);
+const fetchError = ref(false);
 
 
 /**
@@ -42,6 +43,7 @@ onMounted(async () => {
     await store.dispatch("senlleiras/listSenlleiras");
   } catch (error) {
     console.log('MapaSenllerias tiene un error', error);
+    fetchError.value = true;
   }
 });
 //const data = store.getters['senlleiras/getSenlleirasFiltradas'];//Sin reactividad
@@ -49,30 +51,35 @@ const data = computed(() => store.getters['senlleiras/getSenlleirasFiltradas']);
 </script>
 
 <style scoped lang="scss">
-.map-title{
+.map-title {
   text-align: center;
 }
-.map{
+
+.map {
   position: relative;
 }
-.enlaces{
+
+.enlaces {
   position: absolute;
   z-index: 9999;
   left: 0;
   top: 0;
-  background-color: rgba(161, 159, 159,0);
+  background-color: rgba(161, 159, 159, 0);
 }
-.enlaces ul{
+
+.enlaces ul {
   display: flex;
   gap: .1rem;
   row-gap: .2rem;
   flex-wrap: wrap;
 }
-.enlaces li{
-  background-color: rgba(255, 255, 255,.6);
+
+.enlaces li {
+  background-color: rgba(255, 255, 255, .6);
   border-radius: .3rem;
 }
-.enlaces a{
+
+.enlaces a {
   display: block;
   font-size: clamp(.8rem, 1.2vw, 0.8rem);
   color: var(--colorPrincipal)

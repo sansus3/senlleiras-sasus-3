@@ -1,6 +1,12 @@
 <template>
     <fieldset class="card p-3 mb-3">
         <legend>Datos da arbore</legend>
+        <div 
+            v-if="fetchError"
+            class="msg-error"
+            role="alert">
+            Problema de conexión. Comprobe a súa rede
+        </div>
         <ul class="fields row g-2">
             <li class="specie field col-auto">
                  <div class="loader" v-if="loaderSpecies">
@@ -138,11 +144,12 @@
 
 <script setup>
 //Dependencias
-import { defineProps, onMounted, computed, inject } from 'vue';
+import { defineProps, onMounted, computed, ref, inject } from 'vue';
 import { useStore } from 'vuex';
 import TheLoader from '../../TheLoader.vue';
 //Carga del store
 const store = useStore();
+const fetchError = ref(false);
 const loaderSpecies = inject('loaderSpecies');
 //Ciclo de vida
 onMounted(async () => {
@@ -153,7 +160,8 @@ onMounted(async () => {
         //Los ordenamos alfabéticamente por el género
         store.dispatch('species/setSpeciesGenusSort');
     } catch (error) {
-        console.log(error);
+        console.log('fetch fallo----->',error);
+        fetchError.value=true;
     } finally {
         loaderSpecies.value = false;
     }

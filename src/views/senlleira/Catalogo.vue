@@ -34,6 +34,9 @@
                     </td>
                 </tr>
             </tbody>
+            <caption v-if="fetchError">
+                <div class="msg-error" role="alert">Problema de conexión. Comprobe a súa rede</div>
+            </caption> 
         </table>
         <div style="text-align: center;">
             <the-loader foreground="green" :loading="loading"></the-loader>
@@ -45,16 +48,12 @@
 <script setup>
 //Dependencias
 import TheLoader from '@/components/TheLoader.vue';
-import { onMounted, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import CatalogoCabecera from '@/components/senlleira-components/CatalogoCabecera.vue';
 //Cargamos el store
 const store = useStore();
 
-
-// const nextGo = (el) => {
-//     store.dispatch('senlleiras/listSenlleiras',{start:el[0].id});
-// }
 
 /**
  * Obtenemos el catálogo de las senlleiras filtrados
@@ -63,21 +62,24 @@ const senlleiras = computed(() => {
     return store.state.senlleiras.senlleirasFiltradas;
 });
 const loading = ref(false); //Variable que carga un loader en función de la carga asíncrona de los datos
+const fetchError = ref(false);
 
 /**
  * Lanzamos la acción vuex/store para obtener los datos
  */
-onMounted(async () => {
+(async () => {
     try {
         loading.value = true;
-        store.dispatch('senlleiras/listSenlleiras');
+        //Este await es importante para poder controlar el error del catch
+        await store.dispatch('senlleiras/listSenlleiras');
     } catch (error) {
-        console.log(error);
+        console.log('Catalogo.vue-------->',error);
+        fetchError.value=true;
     } finally {
         loading.value = false;
     }
 
-});
+})();
 
 </script>
 
