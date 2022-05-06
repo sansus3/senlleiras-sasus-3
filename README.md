@@ -43,11 +43,18 @@ https://cloud.google.com/vision
 Detección de objetos imagen:
 https://cloud.google.com/vision/docs/object-localizer
 
+
 Aprendizaje automático
 https://www.tensorflow.org/
 
+
 Ruta Waypoin API GOOGLEMAP js
 https://developers.google.com/maps/documentation/javascript/examples/directions-waypoints#maps_directions_waypoints-javascript
+
+
+Ruta para probar los Travel Mods in Directions
+https://developers.google.com/maps/documentation/javascript/examples/directions-travel-modes#maps_directions_travel_modes-javascript
+
 
 Ruta Polyline API GOOGLEMAP js
 https://developers.google.com/maps/documentation/javascript/examples/polyline-simple
