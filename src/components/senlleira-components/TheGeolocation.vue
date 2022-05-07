@@ -20,10 +20,16 @@
             <div v-if="!location.longitude" class="alert alert-danger m-3" role="alert">Debe escoller unha lonxitude
             </div>
         </div>
-        <div data-set="data" ref="mapDiv" style="margin:.5em 0;width: 100%; height: 50vh; "></div>
+        <div v-if="geolocationPositionError" class="alert alert-danger m-3" role="alert">Problema de Geolocalización.
+            Compruebe la red o si su ubicación está activa.
+        </div>
+        <div v-else data-set="data" ref="mapDiv" style="margin:.5em 0;width: 100%; height: 50vh; "></div>
         <input type="button" @click="onClickGetCoords" class="btn btn-primary mt-2" value="Reseteo ubicación" />
         <the-loader :loading="loader"></the-loader>
-        {{ errorStr }}
+        
+        <div v-if="errorStr.length" class="alert alert-danger m-3" role="alert">
+            {{ errorStr }}
+        </div>
     </section>
 </template>
 
@@ -37,6 +43,7 @@ import TheLoader from "@/components/TheLoader.vue"
 const store = useStore();
 let errorStr = ref("");
 let loader = ref(false);//Loader para que el usuario sepa el tiempo de espera
+const geolocationPositionError = ref(false);
 
 const props = defineProps({
     location: {
@@ -96,7 +103,7 @@ const onClickGetCoords = async () => {
         props.location.latitude = lat;
         props.location.longitude = lng;
 
-        if(marker && marker.position){
+        if (marker && marker.position) {
             let latlng = new google.maps.LatLng(lat, lng);
             marker.setPosition(latlng);
         }
@@ -177,6 +184,7 @@ let map, infoWindow, marker;
         infoWindow.open(map);
     } catch (error) {
         console.log(error);
+        geolocationPositionError.value = true;
     }
 })();
 
