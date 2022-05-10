@@ -44,7 +44,7 @@ let directionsService=null, directionsRenderer = null;
     
    
         zoom: 14,
-        center: { lat: 37.77, lng: -122.447 },
+        center: { lat: 42.8775066, lng:  -8.5489188 },
     });
 
     directionsRenderer.setMap(map);
@@ -57,8 +57,8 @@ function calculateAndDisplayRoute() {
 
     directionsService
         .route({
-            origin: { lat: 37.77, lng: -122.447 },
-            destination: { lat: 37.768, lng: -122.511 },
+            origin: { lat: 42.8775066, lng:  -8.5489188 },
+            destination: { lat: 42.8775067, lng: -8.5489189 },
             // Note that Javascript allows us to access the constant
             // using square brackets and a string value as its
             // "property."
