@@ -28,6 +28,11 @@ const routes = [
     component: () => import('@/views/senlleira/FichaTecnica.vue')
   },
   {
+    path: `/trails`,
+    name: 'Trails',
+    component: () => import('@/views/Trails.vue')
+  },
+  {
     path: '/mapa-senlleiras',
     name: 'MapaSenlleiras',
     component: () => import('../views/senlleira/MapaSenlleiras.vue')

@@ -6,7 +6,7 @@ export default createStore({
   state: {
     //realtimeDatabase : 'https://senlleiras-especies-default-rtdb.europe-west1.firebasedatabase.app/',
     realtimeDatabase : 'https://altas-senlleiras-default-rtdb.europe-west1.firebasedatabase.app/',//demo
-    google_maps_api_key : "AIzaSyCSE6IBglHUkUcMrETJqQdtwq9nCyZxKXc",
+    google_maps_api_key : "AIzaSyAIoIZPEpf-sWgO6z285Afba4FADowz5Xk",
   },
   mutations: { 
   },
