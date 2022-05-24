@@ -1,0 +1,13 @@
+Creacion de la APK con Cordova.
+
+// IMPORTANTE // -> Hace falta tener los paths, jdk versiones compatibles y SDK tools correspondientes instalados.
+
+Despues de crear la carpeta src-cordova instalamos el "build" para android y verificamos la instalacion. -> "npm run cordova-build-android" (Imagen 1, 2).
+
+Nos creara un archivo .aab dentro de la ruta de la imagen (Imagen 3).
+
+Dentro de la terminal nos posicionamos con 'cd' dentro de la carpeta creada con cordova (Imagen 4) y ejecutamos el comando -> "cordova run" para crear la APK (Imagen 5).
+
+
+
+
