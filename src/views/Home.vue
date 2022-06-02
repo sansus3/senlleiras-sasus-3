@@ -1,5 +1,6 @@
 <template>
-  <div class="home">     
+  <div class="home">  
+      <ArbolStories></ArbolStories>   
     <!-- Carrusel de fotos -->
     <carrusel-vue minHeight="350px" :images="images"></carrusel-vue>
     <!-- Galeria de contenido -->
@@ -14,6 +15,7 @@ import { reactive } from 'vue';
 import { useRouter } from "vue-router";
 import CarruselVue from '@/components/senlleira-components/Carrusel.vue';
 import GaleriaVue from "@/components/galeria/galeria.vue";
+import ArbolStories from  "@/components/senlleira-components/ArbolStories.vue";
 //Cargamos el router
 const router = useRouter();
 
