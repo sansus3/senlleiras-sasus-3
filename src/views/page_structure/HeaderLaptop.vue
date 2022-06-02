@@ -5,7 +5,7 @@
                 <router-link
                 :to="{ name: 'Home' }"
                >
-               <img src="@/assets/logo-cuadrado.png" alt="Senllapp" width="45" height="45">
+               <img src="@/assets/img/logo-senlleirapp.png" alt="Senllapp">
                </router-link>
             </li>
         </ul>

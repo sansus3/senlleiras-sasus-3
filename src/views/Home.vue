@@ -5,18 +5,6 @@
     <!-- Galeria de contenido -->
     <galeria-vue @click="catalogoGo"></galeria-vue>
     <!-- Solicitud -->
-    <div 
-    class="solicitud"
-    style="padding:5vw;display: flex;justify-content:center;align-items: center"
-    >
-        <router-link
-            class="btn btn-primary"
-            :to="{
-                name: 'SolicitudSenlleira'
-                }">
-            Solicitude de árbore senlleira
-        </router-link>
-    </div>
   </div>
 </template>
 

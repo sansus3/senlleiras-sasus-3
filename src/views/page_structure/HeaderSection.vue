@@ -1,7 +1,7 @@
 <template>
     <header class="main-header">
         <nav class="header-nav-app" :class="{ 'reduced': show }">
-            <router-link class="header-logo" :to="{ name: 'Home' }"><img src="@/assets/logo-entero.png" alt="Senllapp" height="40" width="80"></router-link>
+            <router-link class="header-logo" :to="{ name: 'Home' }"><img src="@/assets/img/logo-senlleirapp.png" alt="Senllapp"></router-link>
             <ul class="header-nav-buttons">
                 <li 
                     class="header-search" 
@@ -11,7 +11,7 @@
                 </li>
                 <li class="header-upload">
                     <router-link :to="{ name: 'SolicitudSenlleira' }">
-                        <i class="fas fa-tree"></i>
+                        <i class="fa-solid fa-plus"></i>
                     </router-link>
                 </li>
             </ul>
