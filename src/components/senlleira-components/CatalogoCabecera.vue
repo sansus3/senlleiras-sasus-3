@@ -18,7 +18,6 @@
             </th>
             <th role="columnheader">
                 <a href="#" @click.prevent="ordernar('genus')">Xénero</a>
-                e
                 <a href="#" @click.prevent="ordernar('specie')">especie</a>
             </th>
             <th role="columnheader">
@@ -33,6 +32,9 @@
             <th role="columnheader">Información</th>
         </tr>
     </thead>
+    <div>
+
+    </div>
 </template>
 
 <script setup>

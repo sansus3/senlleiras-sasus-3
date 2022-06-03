@@ -33,6 +33,26 @@
         <img src="../../assets/gallery/senlleiras_7.jpg" alt="sdsd">
         <p class="arbol-name"> Eucalipto</p>
       </router-link>
+      <router-link to="/" class="component-arbol">
+        <img src="../../assets/gallery/senlleiras_3.jpg" alt="sdsd">
+        <p class="arbol-name"> Alcornoque</p>
+      </router-link>
+      <router-link to="/" class="component-arbol">
+        <img src="../../assets/gallery/senlleiras_4.jpg" alt="sdsd">
+        <p class="arbol-name"> Ciprés</p>
+      </router-link>
+      <router-link to="/" class="component-arbol">
+        <img src="../../assets/gallery/senlleiras_5.jpg" alt="sdsd">
+        <p class="arbol-name"> Sauce</p>
+      </router-link>
+      <router-link to="/" class="component-arbol">
+        <img src="../../assets/gallery/senlleiras_6.jpg" alt="sdsd">
+        <p class="arbol-name"> haya</p>
+      </router-link>
+      <router-link to="/" class="component-arbol">
+        <img src="../../assets/gallery/senlleiras_7.jpg" alt="sdsd">
+        <p class="arbol-name"> Eucalipto</p>
+      </router-link>
       
     </div>
 
@@ -46,12 +66,14 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
 .stories-navigator {
   display: flex;
   gap: .2rem;
   margin: .5rem 0;
   overflow: scroll;
+  overflow: -webkit-overflow-scrolling;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   align-items: center;
 }
